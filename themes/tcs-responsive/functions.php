@@ -217,6 +217,7 @@ function get_cookie() {
 	return $meta;
 }
 
+
 // add menu support
 add_theme_support ( 'menus' );
 

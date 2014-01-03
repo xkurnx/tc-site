@@ -296,11 +296,11 @@ var app = {
 				$('.challengeType .'+conType).addClass('active');
 				
 				if(conType == "data"){
-						app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon',false,function(){
-						app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm',true);
+						app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-marathon',false,function(){
+						app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-srm',true);
 					});
 				}else{					
-					app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, conType,false);
+					app.getContests(ajaxUrl, $('.dataTable'), 100, conType,false);
 				}
 				
 			}
@@ -485,9 +485,50 @@ var app = {
 				});	
 				callback();
 			});
-		}
+		},
+	
 		
     },
+	getTrackSymbol: function(type){
+		 var trackName = "o";
+		 switch (type) {
+                case "Web Design":
+                    trackName = "w";
+                    break;
+                case "Widget or Mobile Screen Design":
+                    trackName = "wi";
+                    break;
+                case "Logo Design":
+					trackName = "l";
+					break;
+				case "Banners/Icons":
+					trackName = "bi";
+					break;						
+				case "Wireframes":
+                    trackName = "wf";
+                    break;
+                case "Idea Generation":
+                    trackName = "ig";
+                    break;
+                case "Other":
+                    trackName = "o";
+                    break;
+				 case "UI Prototype Competition":
+                    trackName = "p";
+                    break;
+				case "Content Creation":
+					trackName = "cc";
+					break;
+				case "Assembly Competition":
+					trackName = "as";
+					break;
+				case "Conceptualization":
+					trackName = "c";
+					break;		
+				
+            }
+		return trackName;
+	},
 
 	/*
 	 * 0verview page functions
@@ -848,7 +889,12 @@ var app = {
 				* generate table row for other contest type
 				*/	
            		//$('.contestName', row).html('<i></i>' + rec.challengeName);
+            	
+				var trackName = app.getTrackSymbol(rec.challengeType);				
+            
             	$('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '</a>');
+				row.addClass('track-' + trackName);
+				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
@@ -867,7 +913,8 @@ var app = {
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
 				}
-				$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				//$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				$('.colTLeft', row).html(secondsToString(rec.currentPhaseRemainingTime));
 				
 				if (rec.isEnding === "true") {
 					$('.colTLeft', row).addClass('imp');
@@ -898,7 +945,11 @@ var app = {
 				* generate table row for other contest type
 				*/	
 //           		$('.contestName', row).html('<i></i>' + rec.contestName);
-            	$('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
+				var trackName = app.getTrackSymbol(rec.challengeType);				
+            
+            	$('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>' );
+				row.addClass('track-' + trackName);
+				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
@@ -917,7 +968,8 @@ var app = {
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
 				}
-				$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				//$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				$('.colTLeft', row).html(secondsToString(rec.currentPhaseRemainingTime));
 				
 				if (rec.isEnding === "true") {
 					$('.colTLeft', row).addClass('imp');
@@ -968,7 +1020,8 @@ var app = {
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
 				}
-				$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				//$('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+				$('.colTLeft', row).html(secondsToString(rec.currentPhaseRemainingTime));
 				
 				if (rec.isEnding === "true") {
 					$('.colTLeft', row).addClass('imp');
@@ -1245,7 +1298,8 @@ var app = {
 			}else if(ajax.data["contest_type"]=="design"){
 				/*
 				* generate table row for contest type
-				*/			
+				*/		
+				
             	$('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '</a>');
 				
 				if (rec.startDate == null || rec.startDate == "") {
@@ -1347,6 +1401,7 @@ var blueprints = {
 						<td class="colCh"><div>\
 								<a href="#" class="contestName"></a>\
 							</div></td>\
+							<td class="colType"><i class="ico"></i></td>\
 						<td class="colTime"><div>\
 								<div class="row">\
 									<label class="lbl">Start Date</label>\
@@ -1427,4 +1482,17 @@ $(document).ready(function() {
     app.init();
     app.initEvents();
 })
+
+function secondsToString(seconds)
+{
+	var numdays = Math.floor(seconds / 86400);
+	var numhours = Math.floor((seconds % 86400) / 3600);
+	var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+	var numseconds = ((seconds % 86400) % 3600) % 60;
+	var style = "";
+	if ( numdays == 0 && numhours <= 2 ){
+		style="color:red";
+	}	
+	return "<span style='font-size:14px;"+style+"'>"+( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" )+"</span>";
+}
 

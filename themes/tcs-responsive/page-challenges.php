@@ -21,6 +21,7 @@ $siteURL = site_url ();
 <script type="text/javascript" >
 	var siteurl = "<?php bloginfo('siteurl');?>";
 	var activePastContest = "active";
+	var challengeDetailsUrl =  "<?php echo get_page_link_by_slug('challenge-details'); ?>";
 	$(document).ready(function() {
 		app.buildRequestData("activeContest", "<?php echo $contest_type;?>");
 		app.challenges.init();
@@ -84,6 +85,7 @@ $siteURL = site_url ();
 									<thead>
 										<tr class="head">
 											<th class="colCh asc" char="contestName" >Challenges</th>
+											<th class="colType" char="contestType" >Type</th>
 											<th class="colTime" char="startDate" >Timeline</th>
 											<th class="colTLeft" char="">Time Left</th>
 											<th class="colPur" char="purse" >Purse</th>

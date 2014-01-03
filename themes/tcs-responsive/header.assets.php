@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/base-responsive.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/style-responsive.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/coder.css" />
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/contact-about.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/profileBadges.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/register-login.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog-base.css" />
@@ -51,16 +52,22 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/raphael-min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.carousel.js" type="text/javascript"></script>
-<!-- 
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.customSelect.min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/swipe.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.inputhints.js" type="text/javascript"></script>
- -->
+
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/scripts.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/script-member.js" type="text/javascript"></script>
-<!-- 
+
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/register-login.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/blog.js" type="text/javascript"></script>
- -->
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/contact-about.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/challenge-detail-software.css" />
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/challenge-detail-software.js" type="text/javascript"></script>
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js" type="text/javascript"></script>
+
 
 

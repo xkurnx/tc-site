@@ -1,23 +1,53 @@
 <?php
+session_start();
+/***
+ since staging or localhost could not use tcsso cookie, 
+ then create dummy "tcsso" cookie at first time, only ON localhost OR staging server.
+ please remove/disable line below on Prod 
+*/
+//setcookie("tcsso", "22760600|22554c24d30b15fd79289dd053a9a98e5ff385535dd6cc9b45e645fbabb0a4" );
 
+/*** 
+if receive ?auth=logout, then kill cookie and any other sessions 
+*/ 
+if( $_GET['auth'] == 'logout' ){
+//	unset($_COOKIE['tcsso']);
+//	setcookie('tcsso', null);
+	setcookie('tcsso', '', time()-3600, '/', 'topcoder.com');
 
+	/***
+	kill any other sessions or cookie here 
+	*/
+	unset($coder);
+	session_destroy();	
+
+	/***
+	then send back user to where they came 	
+	*/
+	echo "redirecting ... <script>location.href = '".$_SERVER['HTTP_REFERER']."';</script>";
+	exit;
+	
+}
+
+$urlLogout = add_query_arg( 'auth', 'logout', get_bloginfo('wpurl'));
 require_once 'auth0/vendor/autoload.php';
 require_once 'auth0/src/Auth0.php';
 require_once 'auth0/vendor/adoy/oauth2/vendor/autoload.php';
 require_once 'auth0/client/config.php';
-
 use Auth0SDK\Auth0;
 
 $auth0 = new Auth0(array(
-    'domain'        => $auth0_cfg['domain'],
-    'client_id'     => $auth0_cfg['client_id'],
-    'client_secret' => $auth0_cfg['client_secret'],
-    'redirect_uri'  => $auth0_cfg['redirect_uri']
+    'domain'        => auth0_domain,
+    'client_id'     => auth0_client_id,
+    'client_secret' => auth0_client_secret,
+    'redirect_uri'  => auth0_redirect_uri
 ));
 
-$token = $auth0->getAccessToken();
+//$token = $auth0->getAccessToken();
+//$user_info = $auth0->getUserInfo();
+//$_SESSION['token'] = $token ;
+#echo $token;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +59,25 @@ $token = $auth0->getAccessToken();
 	<?php wp_head(); ?>	
 	<script type="text/javascript">
 		var ajaxUrl = "<?php  bloginfo('wpurl')?>/wp-admin/admin-ajax.php";		
+
+		function getCookie(cname)
+		{
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) 
+			{
+				var c = ca[i].trim();
+				if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+
+		var js_cookie = getCookie("tcsso");
+		
 	</script>
 
-   	
+   	<script id="auth0" src="https://sdk.auth0.com/auth0.js#client=<?php echo auth0_client_id;?>"></script>
+
 	<script src="https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery.js"></script>
 
@@ -42,6 +88,7 @@ $token = $auth0->getAccessToken();
 <body>
 
 <?php
+
 $nav = array (
 		'menu' => 'Main Navigation',
 		'menu_class' => '',
@@ -52,7 +99,8 @@ $nav = array (
 );
 
 //Get the TopCoder SSO Cookie
-$cookie = $_COOKIE["tcsso"];
+$cookie = $_COOKIE['tcsso'];
+
 #$cookie = "22760600|22554c24d30b15fd79289dd053a9a98e5ff385535dd6cc9b45e645fbabb0a4"; // Please  disable (#) this line on prod
 $cookie_parts = explode( "|", $cookie);
 $user_id = $cookie_parts[0];
@@ -64,7 +112,7 @@ $data = json_decode ( $response )->data;
 
 $handle = $data[0]->handle;
 
-if ( isset($_COOKIE["user"]) )
+if ( isset($_COOKIE["tcsso"]) )
 {
 	$user = "";
 	$welcome = "hide";
@@ -86,7 +134,9 @@ if ( $coder->photoLink != '')
 $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 else
 $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
+
 ?>
+
 
 <div id="wrapper">
 		<nav class="sidebarNav mainNav onMobi <?php echo $user; ?>">
@@ -122,14 +172,14 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						<?php wp_nav_menu ( $nav );	?>
 						
 						<?php if ( $user_id != '' ) : ?>
-						<li class="noReg"><a href="#" class="actionLogout">Log Out</a></li>
+						<li class="noReg"><a href="<?php echo $urlLogout;?>" class="actionLogout">Log Out</a></li>
 						<?php else: ?>
 						<li class="noReg"><a href="javascript:;" class="actionLogin">Log In</a></li>
 						<?php endif; ?>
 					</ul>
 				</nav>
 				<?php if ( $user_id != '' ) : ?>
-						<a href="javascript:;" class="onMobi noReg linkLogout actionLogout">Log Out</a>
+						<a href="<?php echo $urlLogout;?>" class="onMobi noReg linkLogout actionLogout">Log Out</a>
 				<?php else: ?>		
 				<a href="javascript:;" class="onMobi noReg linkLogin actionLogin">Log In</a>
 				<?php endif; ?>
@@ -156,7 +206,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 					<div class="action">
 						<a href="<?php bloginfo('wpurl');?>/member-profile/<?php echo $coder->handle;?>">My Profile</a>
 						<a href="http://community.topcoder.com/tc?module=MyHome">My Dashboard </a>
-						<a href="#" class="linkAlt actionLogout">Log Out</a>
+						<a href="<?php echo $urlLogout;?>" class="linkAlt actionLogout">Log Out</a>
 					</div>
 				</div>
 				<?php endif; ?>

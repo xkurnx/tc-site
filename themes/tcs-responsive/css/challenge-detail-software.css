@@ -198,7 +198,6 @@
 }
 
 .challenge-detail .tabNav ul{
-	width: auto;
 	padding:0;
 	margin-left: -10px;
 }
@@ -223,7 +222,14 @@
     .challenge-detail .tabNav .link.active:hover{
         color: #666;
         cursor: default;
+					font-size: 16px;
     }
+.firstTabNav ul{
+	width: 	236px;
+}
+.secondTabNav ul{
+	width: 	180px;
+}
 
 .challenge-detail .tableWrap h1{
 	color: #00aeff;
@@ -509,7 +515,7 @@
 	
 }
 
-.btnSubmit{
+.challenge-detail .btnSubmit{
     background: #00aeff!important;
     border-bottom: 4px solid #0096ff!important;
 	text-align:left!important;
@@ -520,11 +526,11 @@
 	overflow:hidden;
 	display:block;
 }
-    .btnSubmit:hover{
+    .challenge-detail .btnSubmit:hover{
         background: #0096ff!important;
 }
 
-.btnSubmit span{
+.challenge-detail .btnSubmit span{
 	float:left;
 	width: 21px;
 	height: 37px;
@@ -538,7 +544,7 @@
 	background: url("../i/arrow-button.png") no-repeat 0 0;
 }
 
-.btnSubmit strong{
+.challenge-detail .btnSubmit strong{
 	float:left;
 	height:100%;
 	width:77%;
@@ -570,6 +576,41 @@
 .fifty{
 	width:50%;
 }
+/* Studio contests */
+.twenty{
+	width:20%;
+}
+.scPoints span{
+	color: #00AEFF;
+	font-size: 18px;
+}
+#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
+	height: 90px;
+}
+#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label{
+	width: 113px;
+}
+.challenge-detail .tabNav span.inactive{
+	color: #aaa;
+	cursor: default;
+	font-size: 16px;
+	margin: 0 10px;
+}
+.morePayments{
+	width: 19px;
+	background: url("../i/more-payments.png") no-repeat;
+	background-color: #fafafa;
+}
+#stepBox .middleColumn.studio table{
+	table-layout:fixed;
+}
+#stepBox .middleColumn.studio table p{
+	font-size: 12px;
+}
+#stepBox .middleColumn table .noPrize h2, #stepBox .middleColumn table .noPrize h3{
+	color: #d1d1d1;	
+}
+
 
 @media (max-width: 1019px) {
 	.challenge-detail .pageHeading h1{
@@ -579,7 +620,6 @@
 	}
 	
 	.challenge-detail .tabNav ul{
-		width:218px;
 		display:block;
 		margin: 0 auto;
 	}
@@ -601,7 +641,7 @@
 		float:none;
 		display:block;
 		margin: 0 auto;
-		width:110px;
+		width:119px;
 	}
 	#stepBox .rightColumn{
 		float:right;
@@ -705,6 +745,41 @@
 }
    .columnSideBar .slider .bx-controls .bx-pager-item a.active,
     .columnSideBar .slider .bx-controls .bx-pager-item a:hover{
+        background-position: 0 -20px;        
+    }
+    
+/* Studio */  
+.prizeSlider .bx-controls {
+		margin: 10px 0 10px 0;
+		text-align: center;
+}
+	.prizeSlider .prizeWrapper {
+			float: left;
+	}
+	 .prizeSlider .bx-controls .bx-pager-item{
+        display: inline;
+        text-align: center;
+        overflow: hidden;
+    
+        max-width: 21px;
+        vertical-align: top;
+        height: 11px;
+}
+        .prizeSlider .bx-controls .bx-pager-item a{
+            display: inline-block;
+            background: url(../i/orange-dots.png) no-repeat;
+            text-indent: -100px;
+            background-position: 0 0;
+            width: 11px;
+            height: 11px;
+            margin: 0 5px;
+            -moz-transition-duration: 0s; 
+			-webkit-transition-duration: 0s; 
+			transition-duration: 0s; 
+            overflow: hidden;
+}
+   .prizeSlider .bx-controls .bx-pager-item a.active,
+    .prizeSlider .bx-controls .bx-pager-item a:hover{
         background-position: 0 -20px;        
     }
 	
