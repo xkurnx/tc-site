@@ -496,13 +496,13 @@ var app = {
                     trackName = "w";
                     break;
                 case "Widget or Mobile Screen Design":
-                    trackName = "wi";
+                    trackName = "mo";
                     break;
                 case "Logo Design":
 					trackName = "l";
 					break;
 				case "Banners/Icons":
-					trackName = "bi";
+					trackName = "i";
 					break;						
 				case "Wireframes":
                     trackName = "wf";
@@ -524,6 +524,18 @@ var app = {
 					break;
 				case "Conceptualization":
 					trackName = "c";
+					break;		
+				case "Code":
+					trackName = "co";
+					break;		
+				case "First 2 Finish":
+					trackName = "f2";
+					break;		
+				case "Specification":
+					trackName = "s";
+					break;		
+				case "Architecture":
+					trackName = "ar";
 					break;		
 				
             }
@@ -819,7 +831,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.purse);
+				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
 				if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -866,7 +878,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.purse);
+				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
 				if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -923,7 +935,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.prize[0]);
+				$('.colPur', row).html("$" + numberWithCommas(rec.prize[0]));
 				
 				if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -978,7 +990,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.prize[0]);
+				$('.colPur', row).html("$" + numberWithCommas(rec.prize[0]));
 				
 				if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -1030,7 +1042,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.prize[0]);
+				$('.colPur', row).html("$" + numberWithCommas(rec.prize[0]));
 				
 				if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -1107,7 +1119,7 @@ var app = {
 			if (rec.purse == null || rec.purse == "") {
 					rec.purse = "--"; //dummy data
 				}
-            $('.cgPur', con).html('<i></i> $' + rec.purse);
+            $('.cgPur', con).html('<i></i> $' + numberWithCommas(rec.purse));
 			
 			if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "--"; //dummy data
@@ -1152,7 +1164,7 @@ var app = {
 			if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-            $('.cgPur', con).html('<i></i> $' + rec.prize[0]);
+            $('.cgPur', con).html('<i></i> $' + numberWithCommas(rec.prize[0]));
 			
 			if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -1197,7 +1209,7 @@ var app = {
 			if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-            $('.cgPur', con).html('<i></i> $' + rec.prize[0]);
+            $('.cgPur', con).html('<i></i> $' + numberWithCommas(rec.prize[0]));
 			
 			if (rec.registrants == null || rec.registrants == "") {
 					rec.registrants = "10"; //dummy data
@@ -1261,7 +1273,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.purse);				
+				$('.colPur', row).html("$" + numberWithCommas(rec.purse));				
 				
 				
 			}else if(ajax.data["contest_type"]=="data-marathon"){
@@ -1293,7 +1305,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.purse);
+				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
 			}else if(ajax.data["contest_type"]=="design"){
 				/*
@@ -1325,7 +1337,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.prize[0]);
+				$('.colPur', row).html("$" + numberWithCommas(rec.prize[0]));
 				
 				
 			}else{
@@ -1357,7 +1369,7 @@ var app = {
 				if (rec.purse == null || rec.purse == "") {
 					rec.purse = "1500"; //dummy data
 				}
-				$('.colPur', row).html("$" + rec.prize[0]);
+				$('.colPur', row).html("$" + numberWithCommas(rec.prize[0]));
 				
 			}		
 		
@@ -1496,3 +1508,6 @@ function secondsToString(seconds)
 	return "<span style='font-size:14px;"+style+"'>"+( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" )+"</span>";
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

@@ -51,7 +51,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 										<tr>
 											<th class="colCh">Challenges</th>
 											<th class="colTime">Timeline</th>
-											<th class="colPur">Purse</th>
+											<th class="colPur">Prizes</th>
 										</tr>
 									</thead>
 									<tbody>

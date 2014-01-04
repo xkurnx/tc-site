@@ -440,14 +440,14 @@ $contest = get_contest_detail('',$contestID, $contestType);
 																					if ( $contestType != 'design' ):
 																					?>
                                 <div class="nextBoxContent allDeadlineNextBoxContent hide">
-                                    <p><label>Posted On:</label><span><?php echo $contest->postingDate;?></span></p>
+                                    <p><label>Posted On:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->postingDate")) . " EST" ;?></span></p>
                     
                                     
                                         <p><label>Register By:</label>
-                                           <span><?php echo $contest->registrationEndDate ;?>
+                                           <span><?php echo date("M d, Y H:i", strtotime("$contest->registrationEndDate")) . " EST" ;?>
                                            </span>
                                         </p>
-                                    <p class="last"><label>Submit By:</label><span><?php echo $contest->submissionEndDate ;?></span></p>
+                                    <p class="last"><label>Submit By:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->submissionEndDate")) . " EST" ;?></span></p>
                     
                                 </div>
                                 <!--End nextBoxContent-->
@@ -455,10 +455,10 @@ $contest = get_contest_detail('',$contestID, $contestType);
 																					else:
 																					?>
 																					<div class="nextBoxContent allDeadlineNextBoxContent studio hide">
-                                    <p><label>Start Date:</label><span><?php echo $contest->postingDate;?></span></p>
-                                    <p><label>Checkpoint:</label><span><?php echo $contest->checkpointSubmissionEndDate ;?></span></p>
-                                    <p><label>End Date:</label><span><?php echo $contest->submissionEndDate ;?></span></p>
-                    											<p class="last"><label>Winners Announced:</label><span><?php echo $contest->appealsEndDate ;?></span></p>
+                                    <p><label>Start Date:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->postingDate")) . " EST" ;?></span></p>
+                                    <p><label>Checkpoint:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->checkpointSubmissionEndDate")) . " EST" ;?></span></p>
+                                    <p><label>End Date:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->submissionEndDate")) . " EST" ;?></span></p>
+                    											<p class="last"><label>Winners Announced:</label><span><?php echo date("M d, Y H:i", strtotime("$contest->appealsEndDate")) . " EST" ;?></span></p>
                                 </div>
                                 <!--End nextBoxContent-->
 																					<?php
@@ -500,12 +500,12 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											<?php 
 											if ( $contestType != 'design' ):
 										  ?>
-											<li><a href="#contest-overview" class="active link">Challenge Overview</a></li>
+											<li><a href="#contest-overview" class="active link">Details</a></li>
 											<li><a href="#winner" class="link">Results</a></li>
 											<?php 
 											else:
 											?>
-											<li><a href="#contest-overview" class="active link">Contest Details</a></li>
+											<li><a href="#contest-overview" class="active link">Details</a></li>
 											<?php 
 											if ( strpos($contest->currentPhaseName,'Submission') !== FALSE ):
 										  ?>
@@ -668,7 +668,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 <article id="studioTournamentFormat">
 	<h1>STUDIO TOURNAMENT FORMAT</h1>
  <p class="paragraph">This Studio competition will be run as a two-round tournament with a total prize purse of
-                $4,250.00.</p>
+                $#,###.</p>
 
                 
 	                <span class="subTitle">Round One (1)</span>
@@ -979,7 +979,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 										</li>
 										<li class="slide">
                    <div class="slideBox">
-               		     <h3>Forums Feed:</h3>                                
+               		     <!-- <h3>Forums Feed:</h3> -->                                
                    	  	<div class="inner"></div>
                    </div>                           
 										</li>

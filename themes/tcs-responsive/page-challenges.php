@@ -88,7 +88,7 @@ $siteURL = site_url ();
 											<th class="colType" char="contestType" >Type</th>
 											<th class="colTime" char="startDate" >Timeline</th>
 											<th class="colTLeft" char="">Time Left</th>
-											<th class="colPur" char="purse" >Purse</th>
+											<th class="colPur" char="purse" >Prizes</th>
 											<th class="colReg" char="registrants">Registrants</th>
 											<th class="colSub" char="submissions">Submissions</th>
 											<th>&nbsp;</th>

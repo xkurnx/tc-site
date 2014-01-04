@@ -81,7 +81,6 @@ $auth0 = new Auth0(array(
 	<script src="https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery.js"></script>
 
-
 <?php get_template_part('header.assets'); ?>
   </head>
 
