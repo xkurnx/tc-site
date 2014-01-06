@@ -764,7 +764,6 @@
     }
 	
 	.dataTable .colType .ico {
-		cursor: pointer;
 		display: inline-block;
 		height: 18px;
 		width: 20px;
@@ -943,7 +942,7 @@
     .contestGrid .cgCh a{
         color: #666;
         position: relative;
-        padding: 0 0 0 54px;    
+        padding: 0 0 0 30px;    
         display: block;
         height: 36px;
         max-width: 234px;

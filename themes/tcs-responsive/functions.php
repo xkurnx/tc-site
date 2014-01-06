@@ -5,7 +5,16 @@ define('WP_DEBUG_DISPLAY', true);
 #include 'auth0/src/Auth0.php';
 #include 'auth0/vendor/adoy/oauth2/vendor/autoload.php';
 #include 'auth0/client/config.php';
+require_once 'auth0/vendor/autoload.php';
+require_once 'auth0/src/Auth0.php';
+require_once 'auth0/vendor/adoy/oauth2/vendor/autoload.php';
+require_once 'auth0/client/config.php';
+define("auth0_domain",$auth0_cfg['domain']);
+define("auth0_client_id",$auth0_cfg['client_id']);
+define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
+define("auth0_state",$auth0_cfg['state']);
 include("functions-widget.php");
+
 
 define("BLOG","blog");
 
@@ -216,7 +225,6 @@ function get_cookie() {
 	$meta->handle_name = $handleName;
 	return $meta;
 }
-
 
 // add menu support
 add_theme_support ( 'menus' );

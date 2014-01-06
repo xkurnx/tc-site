@@ -51,7 +51,7 @@
 #stepBox .middleColumn table td{
 	border: 1px solid #e7e7e7;
 	text-align: center;
-	padding:10px;
+	padding:9px 10px 10px;
 }
 
 #stepBox .middleColumn table h2{
@@ -478,8 +478,8 @@
 	font-size:11px;
 }
 
-.btnRegisterDeac{
-    background: #7fd6ff!important;
+.challenge-detail .btnRegister{
+    background: #00AEFF !important;
     border-bottom: 4px solid #7fcaff!important;
 	text-align:left!important;
 	line-height:12px!important;
@@ -489,11 +489,11 @@
 	overflow:hidden;
 	display:block;
 }
-    .btnRegisterDeac:hover{
+    .challenge-detail .btnRegister:hover{
         background: #7fd6ff!important;
 }
 
-.btnRegisterDeac span{
+.challenge-detail .btnRegister span{
 	float:left;
 	width: 21px;
 	height: 37px;
@@ -507,7 +507,7 @@
 	background: url("../i/arrow-button.png") no-repeat 0 0;
 }
 
-.btnRegisterDeac strong{
+.challenge-detail .btnRegister strong{
 	float:left;
 	height:100%;
 	width:77%;
@@ -515,7 +515,7 @@
 	
 }
 
-.challenge-detail .btnSubmit{
+.challenge-detail .btnAction{
     background: #00aeff!important;
     border-bottom: 4px solid #0096ff!important;
 	text-align:left!important;
@@ -526,11 +526,11 @@
 	overflow:hidden;
 	display:block;
 }
-    .challenge-detail .btnSubmit:hover{
+    .challenge-detail .btnAction:hover{
         background: #0096ff!important;
 }
 
-.challenge-detail .btnSubmit span{
+.challenge-detail .btnAction span{
 	float:left;
 	width: 21px;
 	height: 37px;
@@ -544,7 +544,7 @@
 	background: url("../i/arrow-button.png") no-repeat 0 0;
 }
 
-.challenge-detail .btnSubmit strong{
+.challenge-detail .btnAction strong{
 	float:left;
 	height:100%;
 	width:77%;

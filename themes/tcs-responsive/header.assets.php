@@ -62,7 +62,7 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/register-login.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/blog.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/contact-about.js" type="text/javascript"></script>
-
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/init-header.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/challenge-detail-software.css" />
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/challenge-detail-software.js" type="text/javascript"></script>

@@ -19,6 +19,7 @@ $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
 $contest = get_contest_detail('',$contestID, $contestType);
+#print_r($contest);
 ?>
 
 <?php
@@ -44,14 +45,14 @@ $contest = get_contest_detail('',$contestID, $contestType);
                              	<?php 
 								if ( $contestType != 'design' ):
 								?>								
-									<a class="btn btnRegisterDeac" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contest->challengeId ;?>"><span>1</span> <strong>Register For This Contest</strong></a>
-									<a class="btn btnSubmit" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contest->challengeId ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
+									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Contest</strong></a>
+									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contestID ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
 								<?php
 								else:
 								?>
-									<a class="btn btnRegisterDeac" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>1</span> <strong>Register For This Contest</strong></a>
-									<a class="btn btnSubmit" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>2</span> <strong>Submit Your Entries</strong></a>
-									<a class="btn btnSubmit" href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID  ;?>"><span>3</span> <strong>View Your Submission</strong></a>
+									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>1</span> <strong>Register For This Contest</strong></a>
+									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>2</span> <strong>Submit Your Entries</strong></a>
+									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID  ;?>"><span>3</span> <strong>View Your Submission</strong></a>
 								<?php
 								endif;
 								?>
@@ -284,7 +285,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 																								  ?>
                                     </td>
                                     <td colspan="3">
-                                    	<p class="scPoints"><span><?php echo $contest->numberOfCheckpointsPrizes;?></span> CHECKPOINT AWARDS WORTH <span>$100</span> EACH</p>
+                                    	<p class="scPoints"><span><?php echo $contest->numberOfCheckpointsPrizes;?></span> CHECKPOINT AWARDS WORTH <span>$<?php echo $contest->topCheckPointPrize;?></span> EACH</p>
                                     </td>
 																								<?php
 																								endif;
@@ -651,7 +652,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 								else:
 								?> 
 <article id="contestOverview">
-
+<!-- 
 <article id="contestSummary">
 	<h1>CONTEST SUMMARY</h1>
  <p class="paragraph"></p><p>AppStream is a new “application streaming as a service” product from Amazon (currently in private beta) that provides the functionality to run an application in EC2 and stream the video and audio output to an end-user’s device. Developers will be able to write software once and run it via AppStream&nbsp;to instantly and securely deliver the experience to computers, tablets, phones, and televisions with an Internet connection. The service allows graphically-intense and resource-intense applications to run on low-end and low-performance devices, enabling developers to reach new customers without having to constrain their application design to the device, port across platforms or protect from piracy.</p>
@@ -694,7 +695,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
                     <li><a href="http://community.topcoder.com/studio/types-of-competitions/multi-round-competitions-mini-tournaments/">Learn more here</a>.</li>
                 </ul>
 </article>
-
+-->
 <article id="fullDescription">
 	<h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 	<p><?php echo $contest->detailedRequirements;?></p>

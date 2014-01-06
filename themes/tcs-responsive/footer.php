@@ -31,12 +31,12 @@ $footerNav = array (
 			<section class="updates">
 				<h4>Get Updates</h4>
 				<div class="row">
-					<form method="post" action="http://www.topcoder.com/newsletter/" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
+					<form id="emailForm" method="post" action="http://www.topcoder.com/newsletter/" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
 						<input type="email" class="email" name="EMAIL" placeholder="Your email address" maxlength="64" />
 						<input name="FEEDID" type="hidden" value="926643" /> 
 						<input name="PUBLISHER" type="hidden" value="34610190" />
-						<!--<a onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" class="btn">Submit</a> -->
-						<a type="button" class="btn" value="Submit" onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" />Submit</a>
+						<!-- <a onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" class="btn">Submit</a> -->
+						<input onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" type="button" class="btn" value="Submit"/>
 						<input type="hidden" name="na" value="s"/>
 						<input type="hidden" name="nr" value="widget"/>
 					</form> 
@@ -522,6 +522,9 @@ $footerNav = array (
     },
     function (err) {
       // invalid user/password
+	 //alert(err);	 
+	 $('#loginForm .btnSubmit').html('Login'); 
+	 $('#loginForm .err1').show().html('Incorrect Username or Password');
     });
   });
 </script>
