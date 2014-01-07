@@ -164,7 +164,7 @@ class Tops_Rank_Widget extends WP_Widget {
 			$arrRank = $arrTopRank->data;
 			if ($arrRank != null)
 			foreach ( $arrRank as $row ) :
-				$handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $row->Handle;
+				$handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $row->handle;
 				?>
 				<tr>
 					<td><?php echo $row->rank;?></td>
@@ -181,7 +181,7 @@ class Tops_Rank_Widget extends WP_Widget {
 			<thead>
 				<tr>
 					<th class="colRank">#</th>
-					<th class="colHandle">School</th>
+					<th class="colHandle">Handle</th>
 					<th>Rating</th>
 				</tr>
 			</thead>
@@ -203,7 +203,7 @@ class Tops_Rank_Widget extends WP_Widget {
 		</table>
 	</div>
 	<div class="views">
-		<a href="http://community.topcoder.com/tc?module=AlgoRank">View All</a>
+	<!--	<a href="http://community.topcoder.com/tc?module=AlgoRank">View All</a> -->
 	</div>
 </section>
 <!-- /.tops -->
