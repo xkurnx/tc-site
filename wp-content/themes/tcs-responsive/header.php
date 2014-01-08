@@ -120,7 +120,7 @@ else
 $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 ?>
 
-<div id="wrapper" class="<?php if ( $user_id == '' ) { echo 'tcssoUsingJS';} ?>">
+<div id="wrapper" class="tcssoUsingJS">
 		<nav class="sidebarNav mainNav onMobi <?php echo $user; ?>">
 		 <ul class="root"><?php wp_nav_menu ( $nav );	?>
 			 <li class="notLogged"><a href="javascript:;" class="actionLogin"><i></i>Log In</a></li>
@@ -133,9 +133,9 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 					<div class="userDetails">
 						<a href="<?php bloginfo('wpurl');?>/member-profile/?ha=<?php echo $coder->handle;?>" style="color:<?php echo $coder->colorStyle->color;?>" class="coder"><?php echo $handle ;?></a>
 						<p class="country"><?php echo $coder->country; ?></p>
-						<a href="<?php bloginfo('wpurl');?>/member-profile/?ha=<?php echo $coder->handle;?>" class="link myProfileLink">My Profile</a>
-						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">My Dashboard </a>
-						<a href="#" class="link actionLogout">Log Out </a>	
+						<a href="<?php bloginfo('wpurl');?>/member-profile/<?php echo $coder->handle;?>" class="link myProfileLink">My Profile</a>
+						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">My TopCoder </a>
+						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">Account Settings </a>	
 					</div>
 				</div>
 			</li>
@@ -184,9 +184,9 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						</div>
 					</div>
 					<div class="action">
-						<a class="profileLink" href="<?php bloginfo('wpurl');?>/member-profile/?ha=<?php echo $coder->handle;?>">My Profile</a>
-						<a href="http://community.topcoder.com/tc?module=MyHome">My Dashboard </a>
-						<a href="<?php echo $urlLogout;?>" class="linkAlt actionLogout">Log Out</a>
+						<a class="profileLink" href="<?php bloginfo('wpurl');?>/member-profile/<?php echo $coder->handle;?>">My Profile</a>
+						<a href="http://community.topcoder.com/tc?module=MyHome">My TopCoder </a>
+						<a href="http://community.topcoder.com/tc?module=MyHome" class="linkAlt">Account Settings</a>
 					</div>
 				</div>
 				</div>
