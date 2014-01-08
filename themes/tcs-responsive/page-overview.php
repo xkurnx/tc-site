@@ -53,7 +53,7 @@ $siteURL = site_url ();
 					<!-- /.mainStream -->
 					<aside class="sideStream  grid-1-3">
 						<div class="sideFindRelatedContent">
-							<h3>Find Related Content</h3>
+							<h3>Related Content</h3>
 
 							<ul class="relatedContentList">
 							<?php
