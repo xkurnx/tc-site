@@ -15,7 +15,6 @@ define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
 define("auth0_state",$auth0_cfg['state']);
 include("functions-widget.php");
 
-
 define("BLOG","blog");
 
 // add featured image
@@ -34,6 +33,24 @@ function tags_support_all() {
 	register_taxonomy_for_object_type('post_tag', 'page');
 }
 add_action('init', 'tags_support_all');
+
+/* RSS Feeds for challenge listings */
+add_action('init', 'challengesRSS');
+function challenges_rss_rewrite_rules( $wp_rewrite ) {
+  $new_rules = array(
+    'challenges/feed/?' => 'index.php?feed=challenges-feed'
+  );
+  $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
+}
+function challengesRSS(){
+	global $wp_rewrite;
+	add_feed('challenges-feed', 'challengesRSSFunc');
+	add_action('generate_rewrite_rules', 'challenges_rss_rewrite_rules');
+	$wp_rewrite->flush_rules();
+}
+function challengesRSSFunc(){
+	get_template_part('rss', 'challenges');
+}
 ?>
 <?php
 $includes_path = TEMPLATEPATH . '/lib';
@@ -135,6 +152,8 @@ function tcapi_query_vars($query_vars) {
 	$query_vars [] = 'handle';
 	$query_vars [] = 'slug';
 	$query_vars [] = 'tab';
+	$query_vars [] = 'list';
+	$query_vars [] = 'contestType';
 	return $query_vars;
 }
 add_filter ( 'query_vars', 'tcapi_query_vars' );

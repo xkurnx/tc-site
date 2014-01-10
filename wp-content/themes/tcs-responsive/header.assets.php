@@ -8,6 +8,8 @@
 
 <!-- Main CSS -->
 <link href="http://fonts.googleapis.com/css?family=Lato:400,300,700,i,300i" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog.css" />
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog-responsive.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/base.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/style.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/style-profile.css" />
@@ -18,8 +20,7 @@
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/profileBadges.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/register-login.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog-base.css" />
-<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog.css" />
-<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog-responsive.css" />
+
 
 
 <!-- External JS -->
