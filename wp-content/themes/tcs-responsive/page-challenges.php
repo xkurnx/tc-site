@@ -55,7 +55,7 @@ $siteURL = site_url ();
 									<li><a href="all" class="active link">All</a></li>
 									<li><a href="design" class="link design">Design</a></li>
 									<li><a href="develop" class="link develop">Develop </a></li>
-									<li><a href="data" class="link data">Data</a></li>
+									<li><a href="data" class="link data">Data Science</a></li>
 								</ul>
 
 							</div>
@@ -74,6 +74,13 @@ $siteURL = site_url ();
 								-->
 							</div>
 							<div class="rt">
+							<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
+								<?php
+								//$contest_type="";
+								$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=".$contest_type;
+								?>
+								<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
+							</div>
 								<!-- 
 								<a href="javascript:;" class="searchLink">
 									<i></i>Advanced Search

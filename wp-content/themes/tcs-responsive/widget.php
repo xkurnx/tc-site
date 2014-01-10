@@ -36,7 +36,7 @@ class Related_Content extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		?>
 						<div class="sideFindRelatedContent">
-                                	<h3>Find Related Content</h3>
+                                	<h3>Related Content</h3>
                                    
                                 </div>
 <!-- /.sideFindRelatedContent -->

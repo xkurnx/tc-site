@@ -16,9 +16,9 @@
 				<a href="#" class="thumb"></a>
 				<div class="head">
 					<a href="#" class="postTitle">Algorithm Final Round Hard </a>
-					<span class="postedBy">Last Post by: <a href="#" class="postAuthor">Mahestro</a></span>
+					<span class="postedBy">Last Post by: <a href="#" class="postAuthor">TC Member</a></span>
 				</div>
-				<div class="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+				<div class="postBody">Latest posts are coming soon...</div>
 
 				<div class="postInfo">
 					<div class="row">

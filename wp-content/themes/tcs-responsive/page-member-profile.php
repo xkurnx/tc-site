@@ -64,10 +64,11 @@ $coder = get_member_profile ( $userkey, $handle );
 						</div>
 						<blockquote class="coderQuote">“<?php echo $coder->quote;?>”</blockquote>
 						<ul class="social">
-							<li><a class="gp" href="#"></a></li>
-							<li><a class="mail" href="#"></a></li>
-							<li><a class="tw" href="#"></a></li>
-							<li><a class="fb" href="#"></a></li>
+							<li><a class="gp" href="<?php echo get_option('gPlusURL'); ?>"></a></li>
+							<li><a class="mail" href="<?php echo get_option('linkedInURL'); ?>"></a></li>
+							<li><a class="tw" href="<?php echo get_option('twitterURL'); ?>"></a></li>
+							<li><a class="fb" href="<?php echo get_option('facebookURL'); ?>"></a></li>
+							
 						</ul>
 					</article>
 					<!-- /.aboutCoder -->
@@ -79,6 +80,16 @@ $coder = get_member_profile ( $userkey, $handle );
 $coder = get_member_statistics ( $handle, $track );
 ?>
 
+<article>
+	<div class="container" align="center">
+		</br>
+		<p><b>Coming Soon!  Rating history, achievements, forum history, and more. Below is a preview of what is coming.
+		</br>Features will be added <font color="red">as they complete</font>. 
+		</br></br>Check out the <a href="/challenges">active challenges</a> to get involved in the effort!</b></p>
+		</br>
+	</div>
+</article>
+
 
 		<article id="mainContent" class="noShadow">
 			<article class="coderRatings">
@@ -87,7 +98,7 @@ $coder = get_member_statistics ( $handle, $track );
 						<ul class="trackSwitch switchBtns">
 							<li class="first"><a href="./?tab=design" class="<?php if($tab == "design"){ echo "isActive";}?>">Design</a></li>
 							<li><a href="./?tab=develop" class="<?php if($tab == "develop"){ echo "isActive";}?>">Develop</a></li>
-							<li class="last"><a href="./?tab=algo" class="<?php if($tab == "algo" || $tab == null || $tab == ""){ echo "isActive";}?>">Algorithm</a></li>
+							<li class="last"><a href="./?tab=algo" class="<?php if($tab == "algo" || $tab == null || $tab == ""){ echo "isActive";}?>">Data Science</a></li>
 						</ul>
 						<!-- /.trackSwitch -->
 						<ul class="viewSwitch switchBtns">

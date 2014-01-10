@@ -175,12 +175,12 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 							<?php endif; ?>
 						</div>
 						<div class="userDetails">
-							<?php echo get_handle($coder->handle); ?>
-							<p class="country"><?php echo $coder->country; ?></p>
+							<?php //echo get_handle($coder->handle); ?>
+							<p class="country"><?php //echo $coder->country; ?></p>
 							<p class="lbl">Member Since:</p>
-							<p class="val memberSince"><?php echo $memberSince[2] ?></p>
+							<p class="val memberSince"><?php //echo $memberSince[2] ?></p>
 							<p class="lbl">Total Earnings :</p>
-							<p class="val memberEarning"><?php echo $memberEarning?></p>
+							<p class="val memberEarning"><?php //echo $memberEarning?></p>
 						</div>
 					</div>
 					<div class="action">

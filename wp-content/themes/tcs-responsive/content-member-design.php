@@ -126,7 +126,7 @@ $WebDesign = $coder->Tracks->WebDesign;
 	<!-- /.ratingInfo -->
 	<aside class="badges">
 		<header class="head">
-			<h4>Badges Cabinet</h4>
+			<h4>Badges</h4>
 		</header>
 		<?php get_template_part('content', 'badges');?>		
 	</aside>

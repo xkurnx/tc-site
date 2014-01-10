@@ -311,11 +311,11 @@ $srmClnge->series [] = array (
 					</div>
 					<nav class="tabNav">
 						<ul>
-							<li><a href="javascript:;" class="isActive">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
+							<li><a href="javascript:;" class="isActive">SRM</a></li>
+							<li><a href="javascript:;">Marathon</a></li>
+							<li><a href="javascript:;">Architecture</a></li>
+							<li><a href="javascript:;">Development</a></li>
+							<li><a href="javascript:;">Prototype</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -503,7 +503,7 @@ $srmClnge->series [] = array (
 	<!-- /.ratingInfo -->
 	<aside class="badges">
 		<header class="head">
-			<h4>Badges Cabinet</h4>
+			<h4>Badges</h4>
 		</header>
 		<?php get_template_part('content', 'badges');?>		
 	</aside>

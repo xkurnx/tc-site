@@ -55,6 +55,12 @@ $footerNav = array (
 			</section>
 		</div>
 		<div class="clear"></div>
+		<section align="center">
+		</br>
+		©2014 Appirio. All Rights Reserved  
+		</br>
+		<a href="/how-it-works/terms/">Terms</a> | <a href="/how-it-works/privacy-policy/">Privacy</a>
+		</section>
 	</div>
 </footer>
 <!-- /#footer -->
@@ -69,8 +75,8 @@ $footerNav = array (
 	<div id="thanks" class="modal">
 		<a href="javascript:;" class="closeBtn closeModal"></a>
 		<div class="content">
-			<h2>Thanks for registering</h2>
-			<p>We have sent you an email with a activation instructions.<br />If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
+			<h2>Thanks for joining!</h2>
+			<p>We have sent you an email with activation instructions.<br />If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
 			<div>
 				<a href="javascript:;" class="btn closeModal">Close</a>
 			</div>

@@ -914,11 +914,16 @@ var app = {
 				}
 				$('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 				
-				if (rec.round1EndDate == null || rec.round1EndDate == "") {
-					rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
+				if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+					rec.checkpointSubmissionEndDate = ""; // no checkpoint
+					$('.lEndRound', row).html("");
+					$('.vEndRound', row).html("");
+				} else {
+					//$('.lEndRound').show();			
+					$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
-				
+
+							
 				if (rec.endDate == null || rec.endDate == "") {
 					rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
@@ -970,10 +975,15 @@ var app = {
 				}
 				$('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 				
-				if (rec.round1EndDate == null || rec.round1EndDate == "") {
-					rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
+				if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+					rec.checkpointSubmissionEndDate = ""; // no checkpoint
+					$('.lEndRound', row).html("");
+					$('.vEndRound', row).html("");
+				} else {
+					//$('.lEndRound').show();			
+					$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
+
 				
 				if (rec.endDate == null || rec.endDate == "") {
 					rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1022,10 +1032,14 @@ var app = {
 				}
 				$('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 				
-				if (rec.round1EndDate == null || rec.round1EndDate == "") {
-					rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
+				if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+					rec.checkpointSubmissionEndDate = ""; // no checkpoint
+					$('.lEndRound', row).html("");
+					$('.vEndRound', row).html("");
+				} else {
+					//$('.lEndRound').show();			
+					$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				
 				if (rec.endDate == null || rec.endDate == "") {
 					rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1189,10 +1203,14 @@ var app = {
 			}
 			$('.vStartDate', con).html(app.formatDate2(new Date(rec.postingDate)));
             
-			if (rec.round1EndDate == null || rec.round1EndDate == "") {
-                rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
-				}
-			$('.vEndRound', con).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
+			if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+				rec.checkpointSubmissionEndDate = ""; // no checkpoint
+				//$('.lEndRound').hide();
+				$('.vEndRound', con).html("");
+			} else {
+				$('.lEndRound').show();
+				$('.vEndRound', con).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
+			}
 			
 			if (con.endDate == null || con.endDate == "") {
                 con.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1323,10 +1341,14 @@ var app = {
 				}
 				$('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 				
-				if (rec.round1EndDate == null || rec.round1EndDate == "") {
-                rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
+				if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+					rec.checkpointSubmissionEndDate = ""; // no checkpoint
+					$('.lEndRound', row).html("");
+					$('.vEndRound', row).html("");
+				} else {
+					//$('.lEndRound').show();			
+					$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1355,10 +1377,14 @@ var app = {
 				}
 				$('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 				
-				if (rec.round1EndDate == null || rec.round1EndDate == "") {
-                rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
+				if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+					rec.checkpointSubmissionEndDate = ""; // no checkpoint
+					$('.lEndRound', row).html("");
+					$('.vEndRound', row).html("");
+				} else {
+					//$('.lEndRound').show();			
+					$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1424,7 +1450,7 @@ var blueprints = {
 									<div class="val vStartDate"> </div>\
 								</div>\
 								<div class="row">\
-									<label class="lbl">Round End</label>\
+									<label class="lbl lEndRound">Round End</label>\
 									<div class="val vEndRound"> </div>\
 								</div>\
 								<div class="row">\
@@ -1448,7 +1474,7 @@ var blueprints = {
 									<div class="val vStartDate"> </div>\
 								</div>\
 								<div class="row">\
-									<label class="lbl">Round End</label>\
+									<label class="lbl lEndRound">Round End</label>\
 									<div class="val vEndRound"> </div>\
 								</div>\
 								<div class="row">\
@@ -1467,7 +1493,7 @@ var blueprints = {
 												<div class="val vStartDate"></div>\
 											</div>\
 											<div class="row">\
-												<label class="lbl">Round End</label>\
+												<label class="lbl lEndRound">Round End</label>\
 												<div class="val vEndRound"></div>\
 											</div>\
 											<div class="row">\
@@ -1509,6 +1535,9 @@ function secondsToString(seconds)
 	if ( numdays == 0 && numhours <= 2 ){
 		style="color:red";
 	}	
+	if (isNaN(numhours)){
+		return "<em style='font-size:14px;'>not available</em>";
+	}
 	return "<span style='font-size:14px;"+style+"'>"+( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" )+"</span>";
 }
 
