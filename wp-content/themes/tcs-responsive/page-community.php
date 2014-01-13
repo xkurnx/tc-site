@@ -28,6 +28,9 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 		//listActiveContest("activeContest","activeContest","<?php // echo $contest_type;?>");
 	});
 </script>
+<style>
+.bx-controls{display:none}
+</style>
 <div class="content">
 	<div id="main">
 	
@@ -114,8 +117,9 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 								<ul>
 								<?php
 								$args = array (
-										'post_type' => 'post',
-										'category_name' => 'News' 
+										'post_type' => 'blog',
+										'posts_per_page' => '1',
+										'category_name' => 'news-blog' 
 								);
 								$news = new WP_Query ( $args );
 								
@@ -133,11 +137,12 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 											</div>
 											<?php endif;?>
 												<p class="title"><?php the_title();?></p>
-											<p class="postedBy">
+											<!-- <p class="postedBy">
 												Posted by
 												<a href="<?php bloginfo('wpurl');?>/member-profile/<?php the_author();?>" class="coderTextOrange"><?php the_author();?></a>
 													on <?php the_time('F jS, Y');?>
 												</p>
+											-->	
 											<div class="excerpt">
 													<?php echo the_excerpt();?>
 												</div>
@@ -156,8 +161,9 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 								<ul>
 										<?php
 										$args = array (
-												'post_type' => 'post',
-												'category_name' => 'Events' 
+												'post_type' => 'blog',
+												'posts_per_page' => '1',
+												'category_name' => 'events' 
 										);
 										$news = new WP_Query ( $args );
 										
@@ -175,11 +181,12 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 											</div>
 											<?php endif;?>
 												<p class="title"><?php the_title();?></p>
-											<p class="postedBy">
+											<!-- <p class="postedBy">
 												Posted by
 												<a href="<?php bloginfo('wpurl');?>/member-profile/<?php the_author();?>" class="coderTextOrange"><?php the_author();?></a>
 													on <?php the_time('F jS, Y');?>
 												</p>
+											-->	
 											<div class="excerpt">
 													<?php echo the_excerpt();?>
 												</div>
@@ -198,8 +205,9 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 								<ul>
 								<?php
 								$args = array (
-										'post_type' => 'post',
-										'category_name' => 'Community Highlights' 
+										'post_type' => 'blog',
+										'posts_per_page' => '1',
+										'category_name' => 'community-highlights' 
 								);
 								$news = new WP_Query ( $args );
 								
@@ -217,11 +225,12 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 											</div>
 											<?php endif;?>
 												<p class="title"><?php the_title();?></p>
-											<p class="postedBy">
+											<!--<p class="postedBy">
 												Posted by
 												<a href="<?php bloginfo('wpurl');?>/member-profile/<?php the_author();?>" class="coderTextOrange"><?php the_author();?></a>
 													on <?php the_time('F jS, Y');?>
 												</p>
+											-->	
 											<div class="excerpt">
 													<?php echo the_excerpt();?>
 												</div>

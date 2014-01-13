@@ -6,6 +6,8 @@ $(document).ready(function(){
  			$('.actionLogout').attr('href', 'javascript:;');
  			$('.loginLink, .linkLogin, .btnRegister').addClass('hide').hide();
 			$('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('hide').show();
+			$('.headerTopRightMenuLink.logIn a').unbind('click');
+			$('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
  			var tcssoValues = tcsso.split("|");
  			$.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {			
 				var handle = data['data'][0]['handle'];

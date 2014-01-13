@@ -705,6 +705,30 @@ function themeoptions_page() {
 			</tr>
 		</table>
 		<br />
+		<h3>Twitter OAuth Tokens</h3>
+		<table width="100%">
+			<tr>
+				<?php $field = 'twConsumerKey'; ?>
+				<td width="150"><label for="<?php echo $field; ?>">Consumer key:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+			<tr>
+				<?php $field = 'twConsumerSecret'; ?>
+				<td><label for="<?php echo $field; ?>">Consumer secret:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+			<tr>
+				<?php $field = 'twAccessToken'; ?>
+				<td><label for="<?php echo $field; ?>">Access token:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+			<tr>
+				<?php $field = 'twAccessTokenSecret'; ?>
+				<td><label for="<?php echo $field; ?>">Access token secret:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+		</table>
+		<br />
 
 		<p>
 			<input type="submit" name="submit" value="Update Options" class="button button-primary" />
@@ -743,6 +767,12 @@ function themeoptions_update() {
 	update_option ( 'twitterURL', $_POST ['twitterURL'] );
 	update_option ( 'linkedInURL', $_POST ['linkedInURL'] );
 	update_option ( 'gPlusURL', $_POST ['gPlusURL'] );
+	
+	// Twitter OAuth Tokens
+	update_option ( 'twConsumerKey', $_POST ['twConsumerKey'] );
+	update_option ( 'twConsumerSecret', $_POST ['twConsumerSecret'] );
+	update_option ( 'twAccessToken', $_POST ['twAccessToken'] );
+	update_option ( 'twAccessTokenSecret', $_POST ['twAccessTokenSecret'] );
 }
 // END OF THEME OPTIONS SUPPORT
 

@@ -29,7 +29,7 @@ var coder = {
 				prevLink.trigger('click');
 			}
 		});
-		$('.pager .pageLink').on(ev,function(e){
+		/*$('.pager .pageLink').on(ev,function(e){
 			var pager = $(this).closest('.pager');
 			$('.prevLink',pager).show();
 			$('.nextLink',pager).show();
@@ -38,6 +38,23 @@ var coder = {
 			app.forum.populate(newUrl);
 			$('.isActive',$(this).closest('.pager')).removeClass('isActive');			
 			$(this).addClass('isActive');
+			if($('.pageLink:last',pager).hasClass('isActive')){
+				$('.nextLink',pager).hide();
+			}
+			if($('.pageLink:first',pager).hasClass('isActive')){
+				$('.prevLink',pager).hide();
+			}
+			e.preventDefault();
+		});*/
+		$('.pager .pageLink').on(ev,function(e){
+			var pager = $(this).closest('.pager');
+			$('.prevLink',pager).show();
+			$('.nextLink',pager).show();
+			var page = $(this).attr('href').replace(/#/g,'');
+			$('.isActive',$(this).closest('.pager')).removeClass('isActive');			
+			$(this).addClass('isActive');
+			$('.page').hide();
+			$('.page'+parseInt($(this).text().trim())).show();
 			if($('.pageLink:last',pager).hasClass('isActive')){
 				$('.nextLink',pager).hide();
 			}

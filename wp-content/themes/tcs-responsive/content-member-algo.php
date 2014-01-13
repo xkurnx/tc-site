@@ -268,7 +268,7 @@ $srmClnge->series [] = array (
 				</div>
 				<div class="row">
 					<label>Rank:</label>
-					<div class="val"><?php echo $coder->rank;?> of <?php echo $coder->activeMembers;?></div>
+					<div class="val"><?php echo $coder->rank;?><!-- of <?php echo $coder->activeMembers;?>--></div>
 				</div>
 				<div class="row">
 					<label>Default Language:</label>
@@ -298,7 +298,7 @@ $srmClnge->series [] = array (
 			</div>
 		</header>
 		<div class="ratingViews">
-			<div id="graphView">
+			<div id="graphView" class="hide">
 				<div class="subTrackTabs">
 					<div class="srm subTrackTab">
 						<div class="chartWrap">
@@ -322,7 +322,7 @@ $srmClnge->series [] = array (
 				<!-- /.subTrackTabs -->
 			</div>
 			<!-- /#graphView -->
-			<div id="tabularView" class="hide">
+			<div id="tabularView" class="show">
 				<div class="subTrackTabs">
 					<div class="srm subTrackTab">
 						<div class="tableView leftTabSplit">
@@ -486,11 +486,11 @@ $srmClnge->series [] = array (
 					</div>
 					<nav class="tabNav">
 						<ul>
-							<li><a href="javascript:;" class="isActive">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
-							<li><a href="javascript:;">Loerem ipsum</a></li>
+							<li><a href="javascript:;" class="isActive">SRM</a></li>
+							<li><a href="javascript:;">Marathon</a></li>
+							<li><a href="javascript:;">Architecture</a></li>
+							<li><a href="javascript:;">Development</a></li>
+							<li><a href="javascript:;">Prototype</a></li>
 						</ul>
 					</nav>
 				</div>

@@ -1,49 +1,82 @@
-<article id="aboutContent">
-	<div class="container">
-	<?php 
-	$footer = get_page_by_path ( 'footer', OBJECT, 'page' );
-	if ($footer->post_content != ''):
-	?>
-		<?php echo do_shortcode($footer->post_content);?>
-	<?php endif; ?>
-	</div>
-</article>
-<!-- /#aboutContent -->
-</div>
-<!-- /#main -->
-<footer id="footer">
 <?php
-// footer nav 
-$footerNav = array (
-	'menu' => 'Main Navigation',
-	'menu_class' => '',
-	'container'       => '',
-	'menu_class'      => 'root',
-	'items_wrap'      => '%3$s',
-	'walker' => new footer_menu_walker ()
-);
-?>
-	<div class="container">
-	<ul class="footerNav">
-	<?php wp_nav_menu($footerNav); ?>
-	</ul>
-		<div class="connected">
-			<section class="updates">
-				<h4>Get Updates</h4>
-				<div class="row">
-					<form id="emailForm" method="post" action="http://www.topcoder.com/newsletter/" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
-						<input type="email" class="email" name="EMAIL" placeholder="Your email address" maxlength="64" />
-						<input name="FEEDID" type="hidden" value="926643" /> 
-						<input name="PUBLISHER" type="hidden" value="34610190" />
-						<!-- <a onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" class="btn">Submit</a> -->
-						<input onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" type="button" class="btn" value="Submit"/>
-						<input type="hidden" name="na" value="s"/>
-						<input type="hidden" name="nr" value="widget"/>
-					</form> 
-					<script language="Javascript">function FeedBlitz_9feab01d431311e39e69002590771423i(){var x=document.getElementsByName('FeedBlitz_9feab01d431311e39e69002590771423');for(i=0;i<x.length;i++){x[i].EMAIL.style.display='block'; x[i].action='http://www.feedblitz.com/f/f.fbz?AddNewUserDirect';}} function FeedBlitz_9feab01d431311e39e69002590771423s(v){v.submit();}FeedBlitz_9feab01d431311e39e69002590771423i();</script>
+require_once 'TwitterAPIExchange.php';
 
+$settings = array(
+    'oauth_access_token' => get_option('twAccessToken'),
+    'oauth_access_token_secret' => get_option('twAccessTokenSecret'),
+    'consumer_key' => get_option('twConsumerKey'),
+    'consumer_secret' => get_option('twConsumerSecret')
+);
+
+$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+$getfield = '?screen_name=topcoder&count=3';
+$requestMethod = 'GET';
+$twitter = new TwitterAPIExchange($settings);
+$tweets = json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());
+
+$blog_posts_args = array(
+	'posts_per_page'   => 3,
+	'offset'           => 0,
+	'category'         => '2',
+	'orderby'          => 'post_date',
+	'order'            => 'DESC',
+	'post_type'        => 'blog',
+	'suppress_filters' => true );
+	
+$blog_posts = get_posts( $blog_posts_args );
+?>
+<footer id="footer">
+	<div class="container">
+		<div class="footerContentSection twitter">
+			<div class="title">Twitter</div>
+			<div class="footerContent">
+				<?php 
+				foreach ($tweets as $tweet) :
+				?>
+				<div class="footerTwEntry">
+					<?php 
+					if ($tweet->retweeted_status):
+					?>
+					<a href="http://www.twitter.com/<?php echo $tweet->retweeted_status->user->screen_name; ?>" >
+					@<?php echo $tweet->retweeted_status->user->screen_name; ?>
+					</a>
+					<?php else:	?>
+					<a href="<?php echo get_option('twitterURL'); ?>" >
+					@<?php echo $tweet->user->screen_name; ?>
+					</a>
+					<?php endif;	?>
+					<?php echo $tweet->text; ?>
 				</div>
-			</section>
+				<?php endforeach;	?>
+				<a class="btn btnFooter" href="<?php echo get_option('twitterURL'); ?>"><span class="twFollowIcon"></span><span class="twFollowBtnText">Follow</span></a>
+			</div>		
+		</div>
+		<div class="footerContentSection recentBlogPosts">
+			<div class="title">Recent Blog Posts</div>
+			<div class="footerContent">
+				<?php 
+				foreach ($blog_posts as $post) :
+					setup_postdata( $post );
+				?>
+				<div class="footerBlogEntry">
+					<a href="<?php the_permalink();?>" ><?php the_date('F j'); ?></a> <?php echo wrap_content_strip_html(wpautop($post->post_content), 150, true,'\n\r',''); ?>
+					<a href="<?php the_permalink();?>">...read more &gt;</a>
+				</div>
+				<?php endforeach;	?>
+				<a class="btn btnFooter" href="<?php bloginfo('wpurl')?>/blog">View More</a>
+			</div>
+		</div>
+		<div class="footerContentSection aboutTopCoder">
+			<div class="title">About topcoder</div>
+			<div class="footerContent">
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+			</div>
+			<a class="btn btnFooter" href="<?php bloginfo('wpurl')?>/aboutus">About Us</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="container">
+		<div class="connected">
 			<section class="social">
 				<h4>Get Connected</h4>
 				<ul>
@@ -52,15 +85,33 @@ $footerNav = array (
 					<li><a class="gp" href="<?php echo get_option('gPlusURL'); ?>">GP</a></li>
 					<li><a class="in" href="<?php echo get_option('linkedInURL'); ?>">IN</a></li>
 				</ul>
+				<div class="clear"></div>
+			</section>
+			<section class="updates">
+				<div class="row">
+					<form id="emailForm" method="post" action="http://www.topcoder.com/newsletter/" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
+						<input type="email" class="email" name="EMAIL" placeholder="Your email address" maxlength="64" />
+						<input name="FEEDID" type="hidden" value="926643" /> 
+						<input name="PUBLISHER" type="hidden" value="34610190" />
+						<!-- <a onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" class="btn">Submit</a> -->
+						<input onclick="FeedBlitz_9feab01d431311e39e69002590771423s(this.form);" type="button" class="btn btnSubmitFooter" value="Submit"/>
+						<input type="hidden" name="na" value="s"/>
+						<input type="hidden" name="nr" value="widget"/>
+					</form> 
+					<script language="Javascript">function FeedBlitz_9feab01d431311e39e69002590771423i(){var x=document.getElementsByName('FeedBlitz_9feab01d431311e39e69002590771423');for(i=0;i<x.length;i++){x[i].EMAIL.style.display='block'; x[i].action='http://www.feedblitz.com/f/f.fbz?AddNewUserDirect';}} function FeedBlitz_9feab01d431311e39e69002590771423s(v){v.submit();}FeedBlitz_9feab01d431311e39e69002590771423i();</script>
+
+				</div>
+			</section>
+		</div>
+		<div class="copyright">
+			<section>
+			</br>
+			© 2014 topcoder. All Rights reserved.
+			</br>
+			<a href="/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Statement</a> | <a href="javascript:;" class="legalDisclaimerLink">Legal Disclaimer</a>
 			</section>
 		</div>
 		<div class="clear"></div>
-		<section align="center">
-		</br>
-		©2014 Appirio. All Rights Reserved  
-		</br>
-		<a href="/how-it-works/terms/">Terms</a> | <a href="/how-it-works/privacy-policy/">Privacy</a>
-		</section>
 	</div>
 </footer>
 <!-- /#footer -->

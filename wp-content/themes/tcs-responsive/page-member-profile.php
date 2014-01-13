@@ -23,6 +23,7 @@ if ($tab == "algo") {
 
 $userkey = get_option ( 'api_user_key' );
 $coder = get_member_profile ( $userkey, $handle );
+#print_r($coder);
 
 ?>
 <script type="text/javascript">
@@ -32,6 +33,8 @@ $coder = get_member_profile ( $userkey, $handle );
 })
 //-->
 </script>
+
+
 
 <div class="content">
 	<div id="main" class="coderProfile">
@@ -77,7 +80,7 @@ $coder = get_member_profile ( $userkey, $handle );
 		</div>
 		<!-- /#hero -->
 <?php 
-$coder = get_member_statistics ( $handle, $track );
+//$coder = get_member_statistics ( $handle, $track );
 ?>
 
 <article>
@@ -102,8 +105,8 @@ $coder = get_member_statistics ( $handle, $track );
 						</ul>
 						<!-- /.trackSwitch -->
 						<ul class="viewSwitch switchBtns">
-							<li class="graphView first"><a href="#graphView" class="isActive"></a></li>
-							<li class="tabularView last"><a href="#tabularView"></a></li>
+							<li class="graphView first"><a id="graphButton" href="#graphView"></a></li>
+							<li class="tabularView last"><a id="tableButton" href="#tabularView" class="isActive"></a></li>
 						</ul>
 					</div>
 					<!-- /.actions -->

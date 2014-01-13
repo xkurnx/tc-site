@@ -285,8 +285,8 @@ var app = {
 			}
 		}).fail(function() { /* add failure handler */
 				$('.loading').hide();
-				$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
-				 setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
+				//$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
+				// setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
 			});;
 	},
 	
@@ -776,8 +776,8 @@ var app = {
 			}
         }).fail(function() { /* add failure handler */
 				$('.loading').hide();
-				$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
-				 setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
+				//$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
+				// setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
 			});
     },
     // generate contest view table

@@ -90,11 +90,11 @@ $cookie_parts = explode( "|", $cookie);
 $user_id = $cookie_parts[0];
 $tc_token = $cookie_parts[1];
 
-$url = "http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=".$user_id."&json=true";
-$response = get_json_from_url ( $url );
-$data = json_decode ( $response )->data;
+#$url = "http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=".$user_id."&json=true";
+#$response = get_json_from_url ( $url );
+#$data = json_decode ( $response )->data;
 
-$handle = $data[0]->handle;
+#$handle = $data[0]->handle;
 
 if ( isset($_COOKIE["user"]) )
 {
@@ -110,7 +110,7 @@ else
 }
 
 global $coder;
-$coder = get_raw_coder($handle);
+/*$coder = get_raw_coder($handle);
 $memberSince = explode(" ",$coder->memberSince);
 $memberSince = explode(".",$memberSince[0]);
 $memberEarning = '$'.$coder->overallEarning;
@@ -118,6 +118,7 @@ if ( $coder->photoLink != '')
 $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 else
 $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
+*/
 ?>
 
 <div id="wrapper" class="tcssoUsingJS">
@@ -144,6 +145,31 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 		<!-- /.sidebarNav -->
 		<header id="navigation" class="<?php echo $user; ?>">
 			<div class="container">
+				<div class="headerTopRightMenu">
+					<div class="headerTopRightMenuLink logIn">
+						<div class="text"><a href="javascript:;" class="<?php if ( $user_id == '' ) { echo 'actionLogin'; } else { echo 'actionLogout'; }?>"><?php if ( $user_id == '' ) { echo 'Log In'; } else { echo 'Log Out'; }?></a></div>
+						<div class="icon"></div>
+						<div class="clear"></div>
+					</div>
+					<div class="separator"></div>
+					<div class="headerTopRightMenuLink contact">
+						<div class="text"><a href="javascript:;">Contact</a></div>
+						<div class="clear"></div>
+					</div>
+					<div class="separator"></div>
+					<div class="headerTopRightMenuLink help">
+						<div class="text"><a href="javascript:;">Help</a></div>
+						<div class="clear"></div>
+					</div>
+					<div class="separator beforeSearch"></div>
+					<div class="headerTopRightMenuLink search last">
+						<div class="icon"></div>
+						<div class="text"><a href="javascript:;">Search</a></div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
 				<h1 class="logo">
 					<a href="<?php bloginfo('wpurl');?>" title="<?php bloginfo('name'); ?>"></a>
 				</h1>
@@ -170,9 +196,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 				<div class="userWidget">
 					<div class="details">
 						<div class="userPic">
-							<?php if ( $photoLink != '' || $user_id == '') : ?>
-								<img alt="<?php echo $coder->handle; ?>" src="<?php echo $photoLink;?>">
-							<?php endif; ?>
+							<img src="">
 						</div>
 						<div class="userDetails">
 							<?php //echo get_handle($coder->handle); ?>
