@@ -6,7 +6,7 @@ var ie7 = false;
 
 var ajax = {
     data: '',
-	postPerPage: '10'
+	postPerPage: '100' // temp setting until we have paging on the challenges page.
 }
 
 var xhr= "";
