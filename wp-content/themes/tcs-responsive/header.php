@@ -124,7 +124,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 <div id="wrapper" class="tcssoUsingJS">
 		<nav class="sidebarNav mainNav onMobi <?php echo $user; ?>">
 		 <ul class="root"><?php wp_nav_menu ( $nav );	?>
-			 <li class="notLogged"><a href="javascript:;" class="actionLogin"><i></i>Log In</a></li>
+<!--			 <li class="notLogged"><a href="javascript:;" class="actionLogin"><i></i>Log In</a></li> -->
 			 <li class="notLogged"><a href="javascript:;"><i></i>REGISTER</a></li>
 			 <li class="userLi isLogged">
 				<div class="userInfo">
@@ -153,20 +153,22 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 					</div>
 					<div class="separator"></div>
 					<div class="headerTopRightMenuLink contact">
-						<div class="text"><a href="javascript:;">Contact</a></div>
+						<div class="text"><a href="/contact-us">Contact</a></div>
 						<div class="clear"></div>
 					</div>
 					<div class="separator"></div>
 					<div class="headerTopRightMenuLink help">
-						<div class="text"><a href="javascript:;">Help</a></div>
+						<div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
 						<div class="clear"></div>
 					</div>
+<!--
 					<div class="separator beforeSearch"></div>
 					<div class="headerTopRightMenuLink search last">
 						<div class="icon"></div>
 						<div class="text"><a href="javascript:;">Search</a></div>
 						<div class="clear"></div>
 					</div>
+-->
 					<div class="clear"></div>
 				</div>
 				<div class="clear"></div>
@@ -178,17 +180,20 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 				
 					<ul class="root">
 						<?php wp_nav_menu ( $nav );	?>
-						
+<!--						
 						<li class="noReg logoutLink 	<?php if ( $user_id == '' ) { echo 'hide';} ?>"><a href="<?php echo $urlLogout;?>" class="actionLogout">Log Out</a></li>
 						<?php if ( $user_id == '' ) : ?>
 						<li class="noReg loginLink"><a href="javascript:;" class="actionLogin">Log In</a></li>
 						<?php endif; ?>
+-->
 					</ul>
 				</nav>
+<!--
 				<a href="<?php echo $urlLogout;?>" class="onMobi noReg linkLogout actionLogout <?php if ( $user_id == '' ) { echo 'hide';} ?>">Log Out</a>
 				<?php if ( $user_id == '' ) : ?>
 						<a href="javascript:;" class="onMobi noReg linkLogin actionLogin">Log In</a>
 				<?php endif; ?>
+-->				
 				<div class="userDetailsWrapper <?php if ( $user_id == '' ) { echo 'hide';} ?>">
 				<span class="btnAccWrap noReg"><a href="javascript:;" class="btn btnAlt btnMyAcc">
 						My Account<i></i>

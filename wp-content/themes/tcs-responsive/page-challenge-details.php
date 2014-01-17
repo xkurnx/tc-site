@@ -2,6 +2,42 @@
 /**
  * Template Name: Challenge details
  */
+ 
+ /* 
+added by @pemula 2014-01-17
+source : http://stackoverflow.com/questions/8273804/convert-seconds-into-days-hours-minutes-and-seconds
+*/
+function secondsToTime($inputSeconds) {
+
+    $secondsInAMinute = 60;
+    $secondsInAnHour  = 60 * $secondsInAMinute;
+    $secondsInADay    = 24 * $secondsInAnHour;
+
+    // extract days
+    $days = floor($inputSeconds / $secondsInADay);
+
+    // extract hours
+    $hourSeconds = $inputSeconds % $secondsInADay;
+    $hours = floor($hourSeconds / $secondsInAnHour);
+
+    // extract minutes
+    $minuteSeconds = $hourSeconds % $secondsInAnHour;
+    $minutes = floor($minuteSeconds / $secondsInAMinute);
+
+    // extract the remaining seconds
+    $remainingSeconds = $minuteSeconds % $secondsInAMinute;
+    $seconds = ceil($remainingSeconds);
+
+    // return the final array
+    $obj = array(
+        'd' => (int) $days,
+        'h' => (int) $hours,
+        'm' => (int) $minutes,
+        's' => (int) $seconds,
+    );
+    return $obj;
+}
+
 ?>
 <?php
 
@@ -432,9 +468,14 @@ $contest = get_contest_detail('',$contestID, $contestType);
                                 <div class="nextBoxContent nextDeadlineNextBoxContent">
                                 	<div class="icoTime">
                                         <span class="nextDTitle">Current Phase</span>
-                                        <span class="CEDate"><?php echo $contest->currentPhaseName;?></span>
+                                        <span class="CEDate"><?php echo ( $contest->currentStatus == 'Completed' )?"Completed":$contest->currentPhaseName;?></span>
                                     </div>
-                                    <span class="timeLeft"><?php echo (int)date("d", $contest->currentPhaseRemainingTime); ?><small>Days</small> <?php echo (int)date("H", $contest->currentPhaseRemainingTime); ?><small>Hours</small> <?php echo (int)date("i", $contest->currentPhaseRemainingTime); ?><small>Mins</small></span>
+                                    <span class="timeLeft">
+									<?php 
+									$remaining = secondsToTime($contest->currentPhaseRemainingTime);
+									echo ( $contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted' )? "" : $remaining[d]." <small>Days</small> ".$remaining[h]." <small>Hours</small> ".$remaining[m]." <small>Mins</small>";
+									?>
+									</span>
                                 </div>
                                 <!--End nextBoxContent-->
                                 <?php 

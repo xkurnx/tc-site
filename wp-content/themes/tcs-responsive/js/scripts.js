@@ -748,9 +748,18 @@ var app = {
 	},
 
 	formatDate2: function(date){
-		//return date.replace(/ /g, '&nbsp;').replace(/[.]/g, '/');
+		//return date.toDateString() + ' ' + ( (date.getHours()<10?'0':'') + date.getHours() ) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() );
 
-		return date.toDateString() + ' ' + ( (date.getHours()<10?'0':'') + date.getHours() ) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() );
+		var d = new Date(date); 
+		var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds()); 
+
+		// obtain local UTC offset and convert to msec 
+		localOffset = d.getTimezoneOffset() * 60000; 
+		var newdate = new Date(utcd + localOffset); 
+//		return newdate.toISOString().replace(":00.000Z", "").replace(/[T]/, ' '); 
+
+		return newdate.toDateString() + ' ' + ( (newdate.getUTCHours()<10?'0':'') + newdate.getUTCHours() ) + ':' + ( (newdate.getUTCMinutes()<10?'0':'') + newdate.getUTCMinutes() );
+
 	},
 
 	
@@ -859,17 +868,17 @@ var app = {
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vStartDate', row).html(app.formatDate(rec.startDate));
+				$('.vStartDate', row).html(app.formatDate2(rec.startDate));
 				
 				if (rec.round1EndDate == null || rec.round1EndDate == "") {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndRound', row).html(app.formatDate(rec.round1EndDate));
+				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndDate', row).html(app.formatDate(rec.endDate));
+				$('.vEndDate', row).html(app.formatDate2(rec.endDate));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
@@ -1114,17 +1123,17 @@ var app = {
 			if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-			$('.vStartDate', con).html(app.formatDate(rec.startDate));
+			$('.vStartDate', con).html(app.formatDate2(rec.startDate));
 				
             if (rec.round1EndDate == null || rec.round1EndDate == "") {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-            $('.vEndRound', con).html(app.formatDate(rec.round1EndDate));
+            $('.vEndRound', con).html(app.formatDate2(rec.round1EndDate));
 			
 			if (con.endDate == null || con.endDate == "") {
                 con.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-            $('.vEndDate', con).html(app.formatDate(rec.endDate));
+            $('.vEndDate', con).html(app.formatDate2(rec.endDate));
 			
 			if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
@@ -1215,7 +1224,7 @@ var app = {
 			if (con.endDate == null || con.endDate == "") {
                 con.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-            $('.vEndDate', con).html(app.formatDate(rec.endDate));
+            $('.vEndDate', con).html(app.formatDate2(rec.endDate));
 			$('.vEndDate', con).html(app.formatDate2(new Date(rec.submissionEndDate)));
 			
 			if (rec.timeLeft == null || rec.timeLeft == "") {

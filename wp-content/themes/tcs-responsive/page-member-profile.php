@@ -35,7 +35,16 @@ $coder = get_member_profile ( $userkey, $handle );
 </script>
 
 
+<?php
 
+if ( $coder->photoLink != '')
+$photoLink = 'http://community.topcoder.com'.$coder->photoLink;
+else
+$photoLink = 'http://local.topcoder.com/reviewer/tc-cs/wp-content/themes/tcs-responsive/i/no-photo.png';
+
+$quote = ($coder->quote == '' ) ? "Member of the world's largest global competitive community. ": $coder->quote;
+
+?>
 <div class="content">
 	<div id="main" class="coderProfile">
 		<div id="hero">
@@ -44,7 +53,7 @@ $coder = get_member_profile ( $userkey, $handle );
 					<article class="aboutCoder">
 						<div class="details">
 							<figure class="coderPicWrap">
-								<img alt="<?php echo $coder->handle;?>" src="<?php echo 'http://community.topcoder.com/' . $coder->photoLink;?>">
+								<img alt="<?php echo $coder->handle;?>" src="<?php echo $photoLink;?>">
 							</figure>
 							<div class="info">
 								<div class="handle">
@@ -65,7 +74,7 @@ $coder = get_member_profile ( $userkey, $handle );
 								</div>
 							</div>
 						</div>
-						<blockquote class="coderQuote">“<?php echo $coder->quote;?>”</blockquote>
+						<blockquote class="coderQuote">“<?php echo $quote;?>”</blockquote>
 						<ul class="social">
 							<li><a class="gp" href="<?php echo get_option('gPlusURL'); ?>"></a></li>
 							<li><a class="mail" href="<?php echo get_option('linkedInURL'); ?>"></a></li>

@@ -65,7 +65,7 @@ a.blueLink:hover {
 		.blogCategoryWrapper a {
 			font-family:arial;
 			color:#666666;
-			font-size:14px;
+			font-size:15px;
 		}
 			/* blog content */
 			.blogTitle {
@@ -513,7 +513,7 @@ h3.popularPostTitle {
 		height:38px;
 		line-height:38px;
 		padding-left:50px;
-		font-size:14px;
+		font-size:15px;
 		color:#666666;
 	}
 	.subscribeTopWrapper .currentCatLink {
@@ -566,7 +566,7 @@ h3.popularPostTitle {
 }	
 	.downloadWidget .download {
 		color:#035977;
-		font-size:14px;
+		font-size:15px;
 		clear:both;
 		width:190px;
 		margin:10px auto 35px auto;
@@ -702,7 +702,7 @@ h3.popularPostTitle {
 			height:30px;
 		}
 		.blogMenuMobile a{
-			font-size:14px;
+			font-size:15px;
 			color:#666666;
 			line-height:30px;
 			float:left;
@@ -747,7 +747,7 @@ h3.popularPostTitle {
 		height:24px;
 		line-height:24px;
 		padding-left:30px;
-		font-size:14px;
+		font-size:15px;
 		color:#666666;
 	}
 	.subscribeTopWrapper .currentCatLink {

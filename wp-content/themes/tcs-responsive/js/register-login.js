@@ -260,7 +260,7 @@ $(function(){
 		
 		
 		
-		if(isValid){
+		if(isValid && $('#register a.btnSubmit').html() == 'Sign Up' ){
 			$('#register a.btnSubmit').html('Please Wait');
 			
 			$.post( ajaxUrl+'?action=post_register', { 

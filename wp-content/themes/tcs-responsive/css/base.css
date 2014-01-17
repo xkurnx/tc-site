@@ -15,8 +15,9 @@ body {
     line-height: 1.2em;
     /* set default font details */
     font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #666;
+    font-size: 15px;
+    color: #333;
+	font-weight:normal;
     -webkit-text-size-adjust:none;
     text-size-adjust:none;
 }
@@ -64,7 +65,7 @@ table {
 }
 input, textarea {
     color: #333;
-    font-size: 14px;
+    font-size: 15px;
     font-family: lato, Arial, Helvetica, sans-serif;
     outline: none;
     vertical-align: baseline;
@@ -214,7 +215,7 @@ em{
     line-height: 34px;
     width: 130px;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     border-radius: 6px;
     behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     position: relative;
@@ -435,7 +436,7 @@ em{
 #footer .container{
     overflow: visible;
     padding-top: 26px;
-    min-height: 175px;
+    min-height: 100px;
 }
 #footer .updates{    
     margin-bottom: 25px;
@@ -453,8 +454,7 @@ em{
     #footer nav li,
     #footer .rootNode li{
         min-height: 24px;
-        line-height: 24px;
-    
+        line-height: 24px;    
         font-size: 12px;
 }
     #footer nav a,
@@ -656,7 +656,7 @@ em{
 				height: 13px;
 				margin-top: 7px;
 				width: 8px;
-				background: url(../i/login-arrow.png) no-repeat;
+//				background: url(../i/login-arrow.png) no-repeat;
 				background-position: 0 0;
 				float: left;
 				margin-left: 4px;

@@ -2,17 +2,6 @@
 /* Media queries 
 -----------------------------------*/
 
-/* 1070px >= width
------------------------------*/
- @media (min-width: 1070px) {
-    #footer .updates .row{
-        margin-right: -30px;
-        width: 340px;
-    }
-    #footer .updates .email{
-        width: 223px;
-    }
-}
 /* width >= 1010px  
 -----------------------------*/
 @media (min-width: 1020px) {    
@@ -515,6 +504,10 @@ em{
         color: #fff;
     }
     
+    #footer .updates .email{
+        width: 193px;
+			}
+    
 #footer h4,
 #footer .rootNode > a{
     line-height: 38px;
@@ -528,79 +521,13 @@ em{
     #footer .rootNode > a{
         cursor: pointer;
     }
-#footer .connected{
-    float: none;
-}
-    #footer .social ul{
-        overflow: hidden;
-    } 
-        #footer .social ul li{
-            float: left;
-            margin-left: 28px;
-        }
-        #footer .social ul li:first-child{
-            margin-left: 0;
-        }
-        #footer .social ul li a{
-            display: inline-block;
-            text-align: left;
-            text-indent: -100px;
-            overflow: hidden;
-            height: 35px;
-            width: 35px;
-            background: url(../i/ico-social.png) no-repeat;
-            background-position: 0 0;            
-            -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
-        }
-        #footer .social ul li a:hover{
-            background-position: 0 -36px;
-        }
-        #footer .social ul li .tw{
-            background-position: 0 -100px;
-        }
-        #footer .social ul li .gp{
-            background-position: 0 -200px;
-        }
-        #footer .social ul li .in{
-            background-position: 0 -300px;
-        }
-        #footer .social ul li .tw:hover{
-            background-position: 0 -136px;
-        }
-        #footer .social ul li .gp:hover{
-            background-position: 0 -236px;
-        }
-        #footer .social ul li .in:hover{
-            background-position: 0 -336px;
-        }
-        #footer .updates .row{
-            overflow: hidden;
-        
-            width: auto;
-            position: relative;
-}
-        #footer .updates .email{
-            float: left;
-        
-            border-radius: 4px 0 0 4px;
-            width: 100%;
-            vertical-align: top;
-            color: #a1a1a1;
-            -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;
-            height: 32px;
-            padding-right: 110px;
-}
-        #footer .updates .btn{
-            float: none;
-            border-radius: 0 4px 4px 0;
-            height: 28px;
-        
-            line-height: 30px;
-            width: 104px;
-            vertical-align: top;
-            position: absolute;
-            right: 0;
-            top: 0;
-}
-
+    	#footer .footerContentSection, #footer .connected{
+				width: 100%;		
+			}
+			#footer .footerContentSection.twitter, #footer .connected{
+				margin-top: 20px;	
+			}
+			.headerTopRightMenu{
+				display: none;	
+			}
 }

@@ -15,9 +15,8 @@ $twitter = new TwitterAPIExchange($settings);
 $tweets = json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());
 
 $blog_posts_args = array(
-	'posts_per_page'   => 3,
+	'posts_per_page'   => 2,
 	'offset'           => 0,
-	'category'         => '2',
 	'orderby'          => 'post_date',
 	'order'            => 'DESC',
 	'post_type'        => 'blog',
@@ -69,9 +68,9 @@ $blog_posts = get_posts( $blog_posts_args );
 		<div class="footerContentSection aboutTopCoder">
 			<div class="title">About topcoder</div>
 			<div class="footerContent">
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				The topcoder community gathers the world’s experts in design, development and data science to work on interesting and challenging problems for fun and reward. We want to help topcoder members improve their skills, demonstrate and gain reward for their expertise, and provide the industry with objective insight on new and emerging technologies.
 			</div>
-			<a class="btn btnFooter" href="<?php bloginfo('wpurl')?>/aboutus">About Us</a>
+			<a class="btn btnFooter" href="<?php bloginfo('wpurl')?>/mission">About Us</a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -108,7 +107,7 @@ $blog_posts = get_posts( $blog_posts_args );
 			</br>
 			© 2014 topcoder. All Rights reserved.
 			</br>
-			<a href="/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Statement</a> | <a href="javascript:;" class="legalDisclaimerLink">Legal Disclaimer</a>
+			<a href="/community/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Policy</a> | <a href="/community/how-it-works/terms/" class="legalDisclaimerLink">Terms</a>
 			</section>
 		</div>
 		<div class="clear"></div>
@@ -540,40 +539,40 @@ $blog_posts = get_posts( $blog_posts_args );
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'https://www.topcoder.com/reg2/callback.action',
-    state:			'http://beta.topcoder.com/',
-    redirect_uri:   'http://beta.topcoder.com/'
+    state:			'http://www.topcoder.com/',
+    redirect_uri:   'http://www.topcoder.com/'
   });
  
   $('.signin-google').on('click', function() {
     auth0.login({
 		connection: 'google-oauth2',
-        state:      'http://beta.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
 	});
  
   $('.signin-facebook').on('click', function() {
     auth0.login({connection: 'facebook', 
-    state:      'http://beta.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-twitter').on('click', function() {
     auth0.login({connection: 'twitter', 
-    state:      'http://beta.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-github').on('click', function() {
     auth0.login({connection: 'github',
-    state:      'http://beta.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    state:      'http://www.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-etc').on('click', function() {
     auth0.login({connection: 'connection-name', 
-    state:      'http://beta.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-db').on('click', function() {
     auth0.login({
       connection: 'LDAP', 
-      state:      'http://beta.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+      state:      'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
       username: document.getElementById('username').value, 
       password: document.getElementById('password').value
     },

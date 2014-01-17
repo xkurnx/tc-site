@@ -72,7 +72,7 @@ img {
 .wp-caption .wp-caption-text,
 .wp-caption-dd {
 	color: #666666;
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: normal;
 	line-height: 18px;
 	margin-top:10px;
@@ -110,7 +110,7 @@ img {
 			background-position: 0 0;
 			color: #666666;
 			font-size: 30px;
-			font-family: "lato";
+			font-family: ""Source Sans Pro"";
 		}
 		.pageTitleWrapper .pageTitle h2.overviewPageTitle{
 			background-position: 0 0;
@@ -165,7 +165,7 @@ img {
 	.pageContent p{
 		line-height: 24px;
 		padding-bottom: 24px;
-		font-size: 14px;
+		font-size: 15px;
 	}
 	.pageContent strong{
 		font-weight: normal;
@@ -274,7 +274,7 @@ img {
 			-moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
 			display: block;
 			line-height: 18px;
-			font-size: 14px;
+			font-size: 15px;
 			color: #0071bc;
         }
 		.sideFindRelatedContent .relatedContentList li a.contentLink:hover {
@@ -305,7 +305,7 @@ img {
 	padding-bottom: 11px;
 }
 .sideQuote p.quoterName{
-	font-size: 14px;
+	font-size: 15px;
 	color: #0071bc;
 }
 /*Right side: Most Recent Challenges*/	
@@ -314,7 +314,7 @@ img {
 	line-height: 42px;
 	border-top: 1px solid #e7e7e7;
 	border-bottom: 1px solid #e7e7e7;
-	font-size: 14px;
+	font-size: 15px;
 	padding: 0 15px;
 }
 .sideMostRecentChallenges ul{

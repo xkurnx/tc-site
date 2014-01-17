@@ -337,6 +337,7 @@ function promo_register() {
 	);
 
 	register_post_type ( BLOG, $args );
+	add_post_type_support( BLOG, 'author' ); 
 }
 
 /* Case studies Module Post Type */
