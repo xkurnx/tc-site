@@ -87,7 +87,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 							<?php
 								wp_reset_query();
 								$args = "post_type=".BLOG;
-								$args .= "&s=$searchKey&posts_per_page=-1";
+								$args .= "&post_status=publish&s=$searchKey&posts_per_page=-1";
 								$wpQueryAll = query_posts($args);
 								$postCount = count($wpQueryAll);
 							?>
