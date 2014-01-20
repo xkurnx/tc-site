@@ -67,6 +67,10 @@
 	font-weight: bold;  
 }
 
+.challenge-detail.develop #stepBox .middleColumn table h3{
+	color: #228400; 
+}
+
 #stepBox .middleColumn table p{ 
 	font-size: 14px;
 	font-weight: bold;  
@@ -75,6 +79,10 @@
 #stepBox .middleColumn table .realibilityPara span{ 
 	color: #00AEFF;
 	font-size: 18px;
+}
+
+.challenge-detail.develop #stepBox .middleColumn table .realibilityPara span{ 
+	color: #228400;
 }
 
 #stepBox .middleColumn table .drPointsPara span{ 
@@ -110,6 +118,11 @@
     padding: 10px 13px;
 	height: 82px;
 }
+.challenge-detail.develop #stepBox .rightColumn .nextBox .nextBoxContent,
+.challenge-detail.develop #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
+    background:  #8ed25c;
+    border-color: #46b314;
+}
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
    padding: 10px 6px 10px 6px; 
 	height: 82px;
@@ -140,12 +153,18 @@
     margin-bottom: 5px;
 	
 }
+.challenge-detail.develop #stepBox .rightColumn .nextBox .nextDTitle, #stepBox .rightColumn .nextBox .CEDate { 
+		color: #47692e;
+	}
 #stepBox .rightColumn .nextBox .icoTime{
 	height: 43px;
 	display:block;
 	padding-left: 60px;
 	padding-top:10px;
 	background: url("../i/ico-time.png") no-repeat 0 0;
+}
+.challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime{
+	background: url("../i/ico-time-develop.png") no-repeat 0 0;
 }
 #stepBox .rightColumn .nextBox .timeLeft {
     color: #FFFFFE;
@@ -239,6 +258,10 @@
 	border-bottom: 1px solid #e7e7e7;
 	margin-bottom:10px;
 	padding-bottom:8px;
+}
+
+.challenge-detail.develop .tableWrap h1{
+	color: #228400;
 }
 
 .challenge-detail .tableWrap h2{
@@ -339,6 +362,9 @@
 		padding: 11px 10px;
 		text-transform: uppercase;
     }
+.challenge-detail.develop .columnSideBar h3{
+        color: #228400;
+    }
 /*.challenge-detail .columnSideBar ul{
 	transform:none!important;
 	transition:none!important;
@@ -371,6 +397,13 @@
         background: #ffb800 url("../i/question.png") no-repeat 3px 2px;
         text-decoration: none; 
         color: #fff; 
+}
+.challenge-detail.develop .reviewStyle p a.tooltip{
+    border-color: #47a911;
+    background: #64c51c url("../i/question-develop.png") no-repeat 3px 2px;
+}
+    .challenge-detail.develop .reviewStyle p a.tooltip:hover{
+        background-color: #64d51c;
 }
  
 
@@ -530,6 +563,14 @@
         background: #0096ff!important;
 }
 
+.challenge-detail.develop .btnAction{
+    background: #64c51c!important;
+    border-bottom: 4px solid #46b314!important;
+}
+    .challenge-detail.develop .btnAction:hover{
+        background: #46b314!important;
+}
+
 .challenge-detail .btnAction span{
 	float:left;
 	width: 21px;
@@ -544,7 +585,11 @@
 	background: url("../i/arrow-button.png") no-repeat 0 0;
 }
 
-.challenge-detail .btnAction strong{
+.challenge-detail.develop .btnAction span{
+	color: #64c51c;
+}
+
+.challenge-detail.develop .btnAction strong{
 	float:left;
 	height:100%;
 	width:77%;
@@ -611,6 +656,80 @@
 	color: #d1d1d1;	
 }
 
+#viewRegistrant table {
+	width: 100%;
+}
+#viewRegistrant table tr th{
+	background-color: #f1f1f1;
+	height: 35px;
+	padding-top: 12px;
+	font-size: 12px;
+}
+#viewRegistrant table tr td{
+	height: 30px;
+	padding-left: 10px;
+	padding-top: 12px;
+	font-size: 12px;
+}
+#viewRegistrant table tr.even td{
+	background-color: #f1f1f1;
+	border-top: 1px solid #e7e7e7;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+#viewRegistrant table tr .handleColumn{
+	width: 25%;
+}
+#viewRegistrant table tr td.handleColumn{
+	font-size: 14px;
+}
+#viewRegistrant table tr .ratingColumn{
+	width: 13%;
+	text-align: center;
+}
+#viewRegistrant table tr .reliabilityColumn{
+	width: 12%;
+	text-align: center;
+}
+#viewRegistrant table tr .regDateColumn{
+	width: 25%;
+	text-align: center;
+}
+#viewRegistrant table tr .subDateColumn{
+	width: 25%;
+	text-align: center;
+}
+
+.registrantSection{
+	padding: 15px 10px;
+	border: 1px solid #e7e7e7;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+.registrantSection .registrantSectionRow{
+	height: 24px;
+	line-height: 24px;
+}
+
+.registrantSection .registrantLabel{
+	width: 125px;
+	float: left;
+	font-size: 13px;
+}
+.registrantSection .registrantField{
+	float: left;
+	font-size: 13px;
+}
+.registrantSection .registrantHandle{
+	font-weight: bold;
+	font-size: 13px;
+}
+.designFirstTabNav ul{
+	width: 225px;
+}
+.designSecondTabNav ul{
+	width: 275px;
+}
 
 @media (max-width: 1019px) {
 	.challenge-detail .pageHeading h1{
@@ -680,6 +799,9 @@
 		padding-left: 35px;
 		padding-top: 10px;
 	}
+	.challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
+		background: url("../i/ico-time-develop-phone.png") no-repeat 0 10px;
+	}
 	#stepBox .rightColumn .nextBox .nextDTitle {  
 		font-size: 12px;
 		margin-bottom: 0px;
@@ -689,6 +811,7 @@
 		font-size: 9px;
 		margin-bottom: 5px;
 	}
+	
 	#stepBox .rightColumn .nextBox .timeLeft { 
 		font-size: 20px;
 		line-height: 30px;
@@ -817,5 +940,8 @@
 		clear:left;
 	}
 	
+	.challenge-detail #viewRegistrant.tableWrap{
+		padding-right: 0px;	
+	}
 	
 }

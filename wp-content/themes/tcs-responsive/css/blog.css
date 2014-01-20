@@ -198,7 +198,7 @@ a.blueLink:hover {
 		border-right-width: 0;
 	}
 	.searchBox .text {
-		width: 100%;
+		width: 98%;
 		height: 32px;
 		-webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;
 		padding-right: 65px;
@@ -396,6 +396,31 @@ h3.popularPostTitle {
 }
 
 /* blog item end */	
+	
+/* search result item */
+
+	.searchResultDescBox .postCategory{
+		background: url(../i/post-category.png) no-repeat center left;
+		padding-left: 25px;
+		line-height: 25px;
+		margin-bottom: 10px;
+	}
+	
+	.pageContent#searchPageContent h3{
+		padding: 20px 0 10px 0;
+		line-height: 30px;
+	}
+	.pageContent#searchPageContent .searchResultItem:first-child h3{
+		padding-top: 0px;
+	}
+	#searchPageContent .navigation{
+		margin-top: 35px;
+	}
+	#searchPageContent .navigation .next{
+		float: none;
+	}
+	
+/* search result item end */
 	
 /* social share */	
 .socialShare {

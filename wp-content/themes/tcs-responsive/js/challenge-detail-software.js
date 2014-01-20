@@ -1,7 +1,11 @@
 var sliderActive = false;
+var prizeSliderActive = false;
 var slider;
+var prizeSlider;
+var sliderClone;
 
 function createSlider() {
+	sliderClone = $('.columnSideBar .slider > ul:first-child').clone();
 	slider = jQuery('.columnSideBar .slider > ul:first-child').bxSlider({
 		minSlides: 1,
 		maxSlides: 1,
@@ -12,6 +16,18 @@ function createSlider() {
 	  });
 	  return true;
 }  
+			
+function createPrizeSlider() {
+	prizeSlider = $('.prizeSlider > ul:first-child').bxSlider({
+		minSlides: 1,
+		maxSlides: 1,
+		responsive: !ie7,
+		adaptiveHeight: false,
+        swipeThreshold: 40,
+        controls: false 
+	  });
+	  return true;
+}
 			
 //create slider if page is wide
 $(document).ready(function(){
@@ -24,33 +40,66 @@ $(document).ready(function(){
 		sliderActive = createSlider(); 
 		
 		$('#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent p:nth-child(3)').addClass('moveRight');
+		if($('.studio').length > 0){
+				updateDesignContestMobile();
+			}
+			// Hide deadline boxes on mobile view
+			updateDeadlineBoxMobile();
+			
+			$('.registrantsTable').not('.mobile').addClass('hide');
+			$('.registrantsTable.mobile').removeClass('hide');
+    } else {
+	    if($('.studio').length > 0){
+	    		updateDesignContest();
+	    	}
+	    	// Show deadline boxes
+	    	updateDeadlineBox();
+	    	
+	    	$('.registrantsTable').not('.mobile').removeClass('hide');
+				$('.registrantsTable.mobile').addClass('hide');
     }
 });
 
 //create/destroy slider based on width
 $(window).resize(function () {
  
-    if (window.innerWidth < 1019 && sliderActive == false) { 
-	
+    if (window.innerWidth < 1019) { 
+			if (sliderActive == false) {
 		$(".rightColumn").insertAfter('.leftColumn');
 		$('.grid-1-3').insertBefore('#contest-overview');
 		$('.scroll-pane').jScrollPane({ autoReinitialise: true }); 
+				sliderActive = createSlider();
+			}
+			if($('.studio').length > 0){
+					updateDesignContestMobile();
+			}
+			// Hide deadline boxes on mobile view
+			updateDeadlineBoxMobile();
         
-		sliderActive = createSlider();  
+			$('.registrantsTable').not('.mobile').addClass('hide');
+			$('.registrantsTable.mobile').removeClass('hide');
     }
  
-    if (window.innerWidth > 1019 && sliderActive == true){
+    if (window.innerWidth > 1019){
+    	if (sliderActive == true) {
 		$(".rightColumn").insertAfter('.middleColumn');
 		$('.grid-1-3').insertAfter('.rightSplit');
 		$('.scroll-pane').jScrollPane({ autoReinitialise: true }); 
 		
 		slider.destroySlider(); 
         sliderActive = false;
+				// Replace the destroyed slider with a previously cloned one 
+	    // Hack for a known bxslider bug: http://stackoverflow.com/questions/16283955/window-resize-with-bxslider-destroyed-breaks-style
+	    $('.slider > ul:first-child').replaceWith(sliderClone);
+			} 
+			 if($('.studio').length > 0){
+	    		updateDesignContest();
+	    	}
+	    	// Show deadline boxes
+	    	updateDeadlineBox();
 		
-		/*$('.slider > ul:first-child').removeAttr("style");
-		$('.slider li.slide').removeAttr("style");*/
-		 
-		
+	    	$('.registrantsTable').not('.mobile').removeClass('hide');
+				$('.registrantsTable.mobile').addClass('hide');
     } 
 });
 
@@ -132,6 +181,41 @@ function ieHack(){
     } 
 }
   
+function updateDeadlineBoxMobile(){
+	$('.deadlineBoxContent').addClass("hide");
+	$('.allDeadlineNextBoxContent').addClass('hide');
+	$('.nextDeadlineNextBoxContent').removeClass('hide');
+}
+
+function updateDeadlineBox(){
+	if($('.nextDeadlineNextBoxContent').hasClass('hide')){
+ 		$('.allDeadlinedeadlineBoxContent').removeClass("hide");
+ 	} else {
+		$('.nextDeadlinedeadlineBoxContent').removeClass("hide");
+	}
+}
+
+function updateDesignContestMobile(){
+	if(prizeSliderActive == false){
+		$('.prizeTable').addClass("hide");
+		$('.prizeSlider').removeClass("hide");
+		prizeSliderActive = createPrizeSlider();
+	}
+	$('.tabsWrap .tabNav').not('.mobile').addClass('hide');
+	$('.tabsWrap .tabNav.mobile').removeClass('hide');
+}
+
+function updateDesignContest(){
+	if(prizeSliderActive == true){
+		$('.prizeTable').removeClass("hide");
+   $('.prizeSlider').addClass("hide");
+   prizeSlider.destroySlider(); 
+   prizeSliderActive = false;
+	}
+	$('.tabsWrap .tabNav').not('.mobile').removeClass('hide');
+	$('.tabsWrap .tabNav.mobile').addClass('hide');
+} 
+  
    
 $(function(){ 
 	$('.scroll-pane').jScrollPane();
@@ -152,5 +236,17 @@ $(function(){
 		$(".allDeadlineNextBoxContent").addClass("hide");
 		$(".nextDeadlineNextBoxContent").removeClass("hide");
 	}); 
+	
+	$(".morePayments.active").click(function(){
+		if($(this).hasClass("closed")){
+			$(".morePayments.active").removeClass("closed");
+			$(".morePayments.active").addClass("open");
+			$(".additionalPrizes").removeClass("hide");
+		} else {
+			$(".morePayments.active").removeClass("open");
+			$(".morePayments.active").addClass("closed");
+			$(".additionalPrizes").addClass("hide");
+		}
+	});
 	
 }); 

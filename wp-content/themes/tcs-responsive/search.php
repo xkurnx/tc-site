@@ -3,6 +3,18 @@
  * Template Name: Search Blog
  */
 ?>
+<?php 
+if ( strpos($_SERVER["REQUEST_URI"],'search') !== false ):
+	$pageNumber = 1;
+	if(preg_match("/\/page\/(\d+)\/?(\?s=.*)?$/", $_SERVER["REQUEST_URI"])){
+		$pageNumber = preg_replace('/(.*?)\/page\/(\d+)\/?(\?s=.*)?$/', '\2', $_SERVER["REQUEST_URI"]);
+	}
+	$searchKey = $_GET["s"];
+	include ('search-results.php');
+?>
+<?php 
+else:
+?>
 <?php
 
 get_header ();
@@ -15,7 +27,7 @@ $currPage = (int) get_query_var ( 'page' ) != "" ? (int) get_query_var ( 'page' 
 $postPerPage = get_option("posts_per_page") == "" ? 5 : get_option("posts_per_page");
 $siteURL = site_url ();
 
-$blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the TopCoder-CloudSpokes Blog" : get_option("blog_page_title");
+$blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder Blog" : get_option("blog_page_title");
 ?>
 
 <script type="text/javascript">
@@ -205,3 +217,6 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the TopCoder-
 		</article>
 		<!-- /#mainContent -->
 <?php get_footer(); ?>
+<?php 
+endif;
+?>

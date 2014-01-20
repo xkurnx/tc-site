@@ -55,6 +55,7 @@ $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
 $contest = get_contest_detail('',$contestID, $contestType);
+$registrants = $contest->registrants;
 #print_r($contest);
 ?>
 
@@ -65,7 +66,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 	$postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
 ?>
 
-<div class="content challenge-detail" >
+<div class="content challenge-detail <?php if($contestType != 'design') {echo 'develop';} ?>" >
 	<div id="main">
 	
 	<div class="container">
@@ -81,8 +82,8 @@ $contest = get_contest_detail('',$contestID, $contestType);
                              	<?php 
 								if ( $contestType != 'design' ):
 								?>								
-									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Contest</strong></a>
-									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ProjectDetail&pj=<?php echo $contestID ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
+									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ViewRegistration&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Contest</strong></a>
+									<a class="btn btnAction" href="https://software.topcoder.com/review/actions/UploadContestSubmission.do?method=uploadContestSubmission&pid=<?php echo $contestID ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
 								<?php
 								else:
 								?>
@@ -554,11 +555,13 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											if ( $contestType != 'design' ):
 										  ?>
 											<li><a href="#contest-overview" class="active link">Details</a></li>
+											<li><a href="#viewRegistrant" class="link">Registrants</a></li>
 											<li><a href="#winner" class="link">Results</a></li>
 											<?php 
 											else:
 											?>
 											<li><a href="#contest-overview" class="active link">Details</a></li>
+											<li><a href="#viewRegistrant" class="link">Registrants</a></li>
 											<?php 
 											if ( strpos($contest->currentPhaseName,'Submission') !== FALSE ):
 										  ?>
@@ -597,9 +600,14 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											?>
 										</ul>
 									</nav>
-									<nav class="tabNav firstTabNav mobile hide">
+									<nav class="tabNav firstTabNav designFirstTabNav mobile hide">
 										<ul>
-											<li><a href="#contest-overview" class="active link">Contest Details</a></li>
+											<li><a href="#contest-overview" class="active link">Details</a></li>
+											<li><a href="#viewRegistrant" class="link">Registrants</a></li>
+										</ul>
+									</nav>
+									<nav class="tabNav firstTabNav designSecondTabNav mobile hide">
+										<ul>
 											<?php 
 											if ( strpos($contest->currentPhaseName,'Submission') !== FALSE ):
 										  ?>
@@ -608,13 +616,10 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											else:
 											?>
 											<li><a href="#checkpoints" class="link">Checkpoints</a></li>
+											<li>
 											<?php
 											endif;
 											?>
-										</ul>
-									</nav>
-									<nav class="tabNav secondTabNav mobile hide">
-										<ul>
 											<?php 
 											if ( strpos($contest->currentPhaseName,'Submission') !== FALSE ):
 										  ?>
@@ -626,6 +631,8 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											<?php
 											endif;
 											?>
+											</li>
+											<li>
 											<?php 
 											if ( strpos($contest->currentPhaseName,'Submission') !== FALSE || strpos($contest->currentPhaseName,'Screening') !== FALSE || strpos($contest->currentPhaseName,'Review') !== FALSE ):
 										  ?>
@@ -637,6 +644,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											<?php
 											endif;
 											?>
+											</li>
 										</ul>
 									</nav>
 							  <div id="contest-overview" class="tableWrap tab">
@@ -842,6 +850,141 @@ $contest = get_contest_detail('',$contestID, $contestType);
 							 <?php
 								endif;
 								?>          
+<div id="viewRegistrant" class="tableWrap hide tab">
+ 
+  
+  <article>
+  <h1>REGISTRANTS</h1>
+  <table class="registrantsTable">
+		<thead>
+			<tr>
+				<th class="handleColumn">
+					<div>Handle</div>
+				</th>
+				<?php 
+				if ( $contestType != 'design' ):
+				?>							
+				<th class="ratingColumn">
+					<div>Rating</div>
+				</th>
+				<th class="reliabilityColumn">
+					<div>Reliability</div>
+				</th>
+				<?php
+				endif;
+				?>  
+				<th class="regDateColumn">
+					<div>Registration Date</div>	
+				</th>
+				<th class="subDateColumn">
+					<div>Submission Date</div>
+				</th>
+			</tr>	
+		</thead>
+		<tbody>
+			<?php
+			for ($i = 0; $i < count($registrants); $i++) :
+				$registrant = $registrants[$i];
+		 ?>
+		 <?php 
+		 	/*$registrant_details = get_raw_coder($registrant->handle);
+			$registrant_ratings = $registrant_details->ratingsSummary;
+
+			$registrant_color = $registrant_ratings[0]->colorStyle;
+
+			$registrant_max_rating = 'Not Rated';
+
+			
+
+			if (count ( $registrant_ratings ) > 0) {
+
+				foreach ( $registrant_ratings as $registrant_rating ) {
+
+					$cur_rating = $registrant_rating->rating;
+
+					if ($registrant_max_rating == 'Not Rated' || $registrant_max_rating < $cur_rating) {
+
+						$registrant_max_rating = $cur_rating;
+
+						$registrant_color = $registrant_rating->colorStyle;
+
+					}
+
+				}
+
+			}
+
+			if ($registrant_details->isPM) {
+
+				$registrant_color = "color: #FF9900";
+
+			}*/
+		 ?>
+			<tr class="<?php if($i % 2 == 1) { echo 'even'; } ?>">
+				<td class="handleColumn">
+					<span><?php echo $registrant->handle; ?></span>
+				</td>
+				<?php 
+				if ( $contestType != 'design' ):
+				?>
+				<td class="ratingColumn">
+					Not Rated
+				</td>
+				<td class="reliabilityColumn">
+					<?php echo $registrant->reliability; ?>			
+				</td>
+				<?php
+				endif;
+				?>
+				<td class="regDateColumn">
+					<?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST" ?>	
+				</td>
+				<td class="subDateColumn">
+					--		
+				</td>
+			</tr>
+			<?php endfor; ?> 
+		</tbody>
+	</table>
+  <div class="registrantsTable mobile hide">
+  	<?php
+			for ($i = 0; $i < count($registrants); $i++) :
+				$registrant = $registrants[$i];
+		?>
+  	<div class="registrantSection">
+			<div class="registrantSectionRow registrantHandle"><?php echo $registrant->handle; ?></div>
+			<?php 
+			if ( $contestType != 'design' ):
+			?>
+			<div class="registrantSectionRow">
+				<div class="registrantLabel">Rating:</div>
+				<div class="registrantField">Not Rated</div>
+				<div class="clear"></div>
+			</div>
+			<div class="registrantSectionRow">
+				<div class="registrantLabel">Reliability:</div>
+				<div class="registrantField"><?php echo $registrant->reliability; ?></div>
+				<div class="clear"></div>
+			</div>
+			<?php
+			endif;
+			?>
+			<div class="registrantSectionRow">
+				<div class="registrantLabel">Registration Date:</div>
+				<div class="registrantField"><?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST" ?></div>
+				<div class="clear"></div>
+			</div>
+			<div class="registrantSectionRow">
+				<div class="registrantLabel">Submission Date:</div>
+				<div class="registrantField">--</div>
+				<div class="clear"></div>
+			</div>
+  	</div>
+  	<?php endfor; ?>
+  </div>
+  </article>
+  
+</div>
                               <div id="winner" class="tableWrap hide tab">
 										 
                                          

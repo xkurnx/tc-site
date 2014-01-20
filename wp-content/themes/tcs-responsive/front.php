@@ -3,6 +3,22 @@
  * Template Name: Home
  */
 ?>
+<?php 
+if ( strpos($_SERVER["REQUEST_URI"],'blog') !== false ):
+	include ('page-blog.php');
+?>
+<?php 
+elseif ( strpos($_SERVER["REQUEST_URI"],'search') !== false ):
+	$pageNumber = 1;
+	if(preg_match("/\/page\/(\d+)\/?(\?s=.*)?$/", $_SERVER["REQUEST_URI"])){
+		$pageNumber = preg_replace('/(.*?)\/page\/[1-9]+\/?/', '\2', $_SERVER["REQUEST_URI"]);
+	}
+	$searchKey = $_GET["s"];
+	include ('search-results.php');
+?>
+<?php 
+else:
+?>
 <?php get_header(); ?>
 <?php 
 global $activity;
@@ -73,3 +89,7 @@ global $activity;
 		<?php endwhile;  endif; wp_reset_query(); ?>
 
 <?php get_footer(); ?>
+
+<?php 
+endif;
+?>

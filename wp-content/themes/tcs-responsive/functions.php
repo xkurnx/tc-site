@@ -154,6 +154,7 @@ function tcapi_query_vars($query_vars) {
 	$query_vars [] = 'tab';
 	$query_vars [] = 'list';
 	$query_vars [] = 'contestType';
+	$query_vars [] = 'pageNumber';
 	return $query_vars;
 }
 add_filter ( 'query_vars', 'tcapi_query_vars' );
@@ -194,6 +195,13 @@ add_rewrite_rule ( '^'.MEMBER_PROFILE_PERMALINK.'/([^/]*)/?([^/]*)$', 'index.php
 
 // challenges
 add_rewrite_rule( '^challenges/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]', 'top');
+
+// Blog search
+//add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
+
+// Search results
+add_rewrite_rule('^search/?$', 'index.php?', 'top');
+
 /* flush */
 flush_rewrite_rules ();
 

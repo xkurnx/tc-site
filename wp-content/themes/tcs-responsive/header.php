@@ -161,14 +161,12 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						<div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
 						<div class="clear"></div>
 					</div>
-<!--
 					<div class="separator beforeSearch"></div>
 					<div class="headerTopRightMenuLink search last">
 						<div class="icon"></div>
-						<div class="text"><a href="javascript:;">Search</a></div>
+						<div class="text"><a href="/search">Search</a></div>
 						<div class="clear"></div>
 					</div>
--->
 					<div class="clear"></div>
 				</div>
 				<div class="clear"></div>
