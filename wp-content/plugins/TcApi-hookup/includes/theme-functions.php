@@ -46,6 +46,16 @@ function get_member_statistics($handle, $track){
 	return $TCHOOK_plugin->tcapi_get_member_stats($handle, $track);
 }
 
+function get_member_achievements($userKey, $handle){
+	global $TCHOOK_plugin;
+	return $TCHOOK_plugin->tcapi_get_member_achievements($userKey, $handle);
+}
+
+function get_forum_posts(){
+	global $TCHOOK_plugin;
+	return $TCHOOK_plugin->tcapi_get_forum_posts();
+}
+
 function get_json_from_url( $url ){
 	global $TCHOOK_plugin;
 	return $TCHOOK_plugin->get_json_from_url( $url );

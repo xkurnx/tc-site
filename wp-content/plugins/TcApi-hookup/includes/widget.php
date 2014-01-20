@@ -195,7 +195,8 @@ class Tops_Rank_Widget extends WP_Widget {
 				?>
 				<tr>
 					<td><?php echo $row->rank;?></td>
-					<td class="colHandle"><span class="coderTextRed"><?php echo $row->handle;?></span></td>
+<!--					<td class="colHandle"><span class="coderTextRed"><?php echo $row->handle;?></span></td> -->
+					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderText<?php echo $row->color;?>"><?php echo $row->handle;?></a></td>
 					<td><?php echo $row->rating;?></td>
 				</tr>
 			<?php endforeach; ?>
@@ -244,7 +245,7 @@ class Tops_Rank_Widget extends WP_Widget {
 <section class="starsOfMonth">
 	<div class="somInner">
 		<h2>
-			Stars of the Month <small class="month"><?php echo get_option ( 'som' );?></small>
+			topcoders of the Month <small class="month"><?php echo get_option ( 'som' );?></small>
 		</h2>
 		<div class="starProfiles grid">
 		<?php
@@ -259,6 +260,8 @@ class Tops_Rank_Widget extends WP_Widget {
 				the_post ();
 				$postId = $post->ID;
 				$handle = get_post_meta ( $postId, "Handle", true );
+				$ratingColor = "";				
+				$ratingColor = "color:".get_post_meta ( $postId, "Rating Color", true );
 				$handleLink = get_post_meta ( $postId, "Handle Link", true );
 				$handleLink = $handleLink == "" ? "javascript:;" : $handleLink;
 				$contestLink = get_post_meta ( $postId, "Contest Link", true );
@@ -266,7 +269,6 @@ class Tops_Rank_Widget extends WP_Widget {
 				$userkey = get_option ( 'api_user_key' );
 			#	$data = get_member_profile ( $userkey, $handle );
 			#	$arrRating = $data->ratingsSummary;
-				$ratingColor = "";
 				$rating = 0;
 				for($i = 0; $i < count ( $arrRating ); $i ++) {
 					if ($arrRating [$i]->rating > $rating) {

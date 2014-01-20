@@ -1,7 +1,7 @@
 <?php
 function post_register_controller(){
 	global $_POST;
-	$url = "http://api.topcoder.com/v2/develop/users";
+	$url = "https://api.topcoder.com/v2/users";
 	$response = wp_remote_post( $url, array(
 	'method' => 'POST',
 	'timeout' => 45,
@@ -170,14 +170,16 @@ add_action ( 'wp_ajax_nopriv_get_copilot_stats', 'get_copilot_stats_controller' 
 function get_active_contests_ajax($userKey = '', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
 	$contestType = str_replace ( " ", "+", $contestType );
 	$contestType = str_replace ( "-", "/", $contestType );
+	$listType = ( $contestType == 'data/marathon' or  $contestType == 'data/srm' ) ? "active":"Open";
 	// $url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=ACTIVE&type=" . $contestType . "&pageSize=10000";	
-	$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=Active&pageIndex=".$page."&pageSize=".$post_per_page;
-	#echo $url;
+	$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	
 	if ($contestType == "") {
 		// $url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=ACTIVE&pageSize=10000";
 		//$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=Active&pageIndex=1&pageSize=50&sortColumn=contestName&sortOrder=asc";
-		$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=Active&pageIndex=".$page."&pageSize=".$post_per_page;
+		$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
 	}
+	#echo $url;
 	if ($sortOrder) {
 		$url .= "&sortOrder=$sortOrder";
 	}

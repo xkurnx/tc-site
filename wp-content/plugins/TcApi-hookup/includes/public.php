@@ -345,17 +345,59 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	
 	/* member stastics  */
 	function tcapi_get_member_stats($handle, $track){
-		$url = "http://api.topcoder.com/v2/$track/statistics/$handle";
+//		$url = "http://api.topcoder.com/v2/$track/statistics/$handle";
+		$url = "http://api.topcoder.com/v2/users/$handle/statistics/$track";
+//		$url = "http://api.topcoder.com/v2/users/petr/statistics/data/srm";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' )
+				//'timeout' => get_option ( 'request_timeout' )
+				'timeout' => 20
 		);
 		$response = wp_remote_get ( $url, $args );
+		
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
 		if ($response ['response'] ['code'] == 200) {
 			return json_decode( $response ['body']);
+		}
+		return "Error in processing request";
+	}
+	
+	/* member achievements  */
+	function tcapi_get_member_achievements($userKey = '', $handle= ''){
+		$url = "http://api.topcoder.com/rest/statistics/" . $handle . "/achievements?user_key=" . $userKey;
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
+		
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request or Member dosen't exist";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$coder_achievements = json_decode ( $response ['body'] );
+			return $coder_achievements;
+		}
+		return "Error in processing request";
+	}
+	
+	/* forum posts  */
+	function tcapi_get_forum_posts(){
+		// Old Forum Posts API
+		$url = "http://apps.topcoder.com/forums/?module=RSS&categoryID=13";
+		$response = wp_remote_get ( $url, array() );
+		
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$body = wp_remote_retrieve_body($response);
+			$xml  = simplexml_load_string($body);
+			// Convert to JSON as the new API will respond with JSON
+			$json = json_encode(new SimpleXMLElement($xml->asXML(), LIBXML_NOCDATA));
+			return json_decode($json);
 		}
 		return "Error in processing request";
 	}
