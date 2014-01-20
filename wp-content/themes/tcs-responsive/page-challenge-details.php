@@ -107,7 +107,7 @@ $contest = get_contest_detail('',$contestID, $contestType);
                              	<table class="prizeTable"> 
                                   <tbody><tr>
                                   		<?php 
-																								if ( $contestType != 'design' ):
+																								if ( $contestType != 'design' && $contest->challengeType != "Code" ):
 																								?>
                                     <td class="fifty">
                                     	<h2>1st PLACE</h2>
@@ -285,7 +285,12 @@ $contest = get_contest_detail('',$contestID, $contestType);
                                   		<?php 
 																								if ( $contestType != 'design' ):
 																								?>
-                                    <td>
+                                    <td 
+                                    	<?php
+                                    		//Adjust the colspan for CODE challenge type since the 5 prizes add more columns 
+                                			if ( $contest->challengeType == "Code" ) echo 'colspan="2"'; 
+                                		?> 
+                                    	>
                                     	<p class="realibilityPara">Reliability Bonus 
 
 											<?php
@@ -301,7 +306,13 @@ $contest = get_contest_detail('',$contestID, $contestType);
 											?>
                                     	</p>
                                     </td>
-                                    <td>
+                                    <td 
+                                    	<?php
+                                    		//Adjust the colspan for CODE challenge type since the 5 prizes add more columns 
+                                			if ( $contest->challengeType == "Code" ) echo 'colspan="3"'; 
+                                		?> 
+                                    	>
+                                    
                                     	<p class="drPointsPara">DR Points <span><?php echo $contest->digitalRunPoints;?></span></p>
                                     </td>
                                     <?php 
@@ -639,9 +650,18 @@ $contest = get_contest_detail('',$contestID, $contestType);
                              
 									<article id="technologies">
 										<h1>Technologies</h1>
-    									<ul>
-    									<li><strong>Tech</strong></li>
-    									</ul>
+										<?php 
+											
+											echo '<ul>';
+											if (!empty($contest->technology)){
+											  	foreach( $contest->technology as $value ){
+													echo '<li><strong>' . $value . '</li></strong>';
+											  	}
+											} else {
+												echo '<li><strong>Not Specified</li></strong>';
+											}
+										  	echo '</ul>';
+										?>  
 									</article>
 
 <h3>Final Submission Guidelines</h3>
