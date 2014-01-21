@@ -29,6 +29,13 @@ function createPrizeSlider() {
 	  return true;
 }
 			
+function getAnchor(url)
+{
+    var index = url.lastIndexOf('#');
+    if (index != -1)
+        return url.substring(index);
+}
+			
 //create slider if page is wide
 $(document).ready(function(){
     if (window.innerWidth < 1019) {
@@ -58,6 +65,7 @@ $(document).ready(function(){
 	    	$('.registrantsTable').not('.mobile').removeClass('hide');
 				$('.registrantsTable.mobile').addClass('hide');
     }
+			$('a[href="' + getAnchor(location.href) + '"]').click();
 });
 
 //create/destroy slider based on width
