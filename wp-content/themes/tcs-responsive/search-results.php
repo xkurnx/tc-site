@@ -18,7 +18,7 @@ get_header ();
 		</div>
 
 		<div class="searchBox container">
-			<form id="formSearch" action="http://cloudspokes.staging.wpengine.com/search" method="GET">
+			<form id="formSearch" action="/search" method="GET">
 				<input type="text" name="s" class="text isBlured">
 				<input type="submit" style="display:none">
 				<a class="btn" href="javascript:$('#formSearch').submit();">Search</a>

@@ -101,7 +101,9 @@ $(document).ready(function() {
 			$(".subscribeBox .errorInput").html("Email is invalid email format!");
 		}
 		else {
-			$.ajax({
+			$(".subscribeBox form").submit();
+			
+			/* $.ajax({
 				type: "POST",
 				context: this,
 				url: ajaxUrl,
@@ -117,6 +119,7 @@ $(document).ready(function() {
 					alert('error');
 				}
 			});
+			*/
 		}
 	});
 })

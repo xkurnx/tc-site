@@ -410,7 +410,11 @@ class Subscribe_widget extends WP_Widget {
 		<div class="subscribeBox">
 			<h3><?php echo $title;?></h3>
 			<div class="group">
-				<input type="text" class="text isBlured subscribeInput" placeholder="Enter Your Email Address : " />
+				<form action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect" method="POST" name="FeedBlitz_0fd529537e2d11e392f6002590771251">
+				<input type="text" name="EMAIL" class="text isBlured subscribeInput" placeholder="Enter Your Email Address : " />
+				<input type="hidden" value="34610190" name="PUBLISHER">
+				<input type="hidden" value="926643" name="FEEDID">
+				</form>
 				<span class="errorInput"></span>
 				<p class="subscribeSuccess">Thanks for subscription our blog</p>
 			</div>
