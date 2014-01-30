@@ -279,7 +279,6 @@ img {
         }
 		.sideFindRelatedContent .relatedContentList li a.contentLink:hover {
 			color: #FFB800;
-			text-shadow: 0 0 3px #ffdaa2;
         }
 			.sideFindRelatedContent .relatedContentList li a:hover .contentThumb{
 				box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -288,7 +287,7 @@ img {
 			display: block;
 			line-height: 15px;
 			padding: 4px 0 3px 0;
-			font-size: 12px;
+			font-size: 14px;
 			color: #828282;
 			font-weight: 300;
         }
