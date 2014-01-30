@@ -131,7 +131,7 @@ $siteURL = site_url ();
 			<?php if ($paged !='all'){?>
 			<div class="dataChanges container">
 				<div class="lt">
-					<a class="btn" href="<?php echo get_site_url().'/case-studies/page/all';?>">Show All</a>
+				<!-- <a class="btn" href="<?php echo get_site_url().'/case-studies/page/all';?>">Show All</a> -->
 				</div>
 				<div class="rt">
 					<?php
