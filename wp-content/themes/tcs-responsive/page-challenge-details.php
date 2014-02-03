@@ -56,6 +56,7 @@ $contestID = get_query_var('contestID');
 $contestType = $_GET['type'];
 $contest = get_contest_detail('',$contestID, $contestType);
 $registrants = $contest->registrants;
+$documents = $contest->Documents;
 #print_r($contest);
 ?>
 
@@ -1150,7 +1151,12 @@ $registrants = $contest->registrants;
                    <div class="slideBox">
                		     <h3>Downloads:</h3>                                
                    	  	<div class="inner">
-																<p>None</p>                   	  	
+																<?php
+																for ($i = 0; $i < count($documents); $i++) :
+																	$document = $documents[$i];
+															 ?>
+															 <p><a href="<?php echo $document->url; ?>"><?php echo $document->documentName; ?></a></p>
+															 <?php endfor; ?>      	  	
                    	  	</div>
                    </div>                          
 										</li>
@@ -1240,5 +1246,37 @@ $registrants = $contest->registrants;
 						<!-- /.rightSplit -->   
                     </article>
 		<!-- /#mainContent -->
-		
-<?php get_footer('tooltip'); ?>
+
+
+	<div onmouseout="hideTooltip('FinalReview')" onmouseover="enterTooltip('FinalReview')" class="tip reviewStyleTip tipFinalReview" style="display: none;">
+    <div class="inner">
+        <div class="tipHeader">
+            <h2>Final Review</h2>
+        </div>
+        <div class="tipBody">
+            <a href="javascript:;">Community Review Board</a> performs a thorough review based on scorecards.
+        </div>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+    </div>
+    <div class="shadow"></div>
+</div>
+
+<div onmouseout="hideTooltip('Approval')" onmouseover="enterTooltip('Approval')" class="tip reviewStyleTip tipApproval" style="display: none;">
+    <div class="inner">
+        <div class="tipHeader">
+            <h2>Approval</h2>
+        </div>
+        <div class="tipBody">
+            Customer has final opportunity to sign-off on the delivered assets.
+        </div>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+    </div>
+    <div class="shadow"></div>
+</div>	
+<?php get_footer('challenge-detail-tooltipx'); ?>

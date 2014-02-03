@@ -73,7 +73,9 @@
 
 #stepBox .middleColumn table p{ 
 	font-size: 14px;
-	font-weight: bold;  
+	font-weight: bold;
+	padding-bottom: 2px;
+	padding-top: 2px;
 }
 
 #stepBox .middleColumn table .realibilityPara span{ 
@@ -589,7 +591,7 @@
 	color: #64c51c;
 }
 
-.challenge-detail.develop .btnAction strong{
+.challenge-detail .btnAction strong{
 	float:left;
 	height:100%;
 	width:77%;
@@ -630,7 +632,7 @@
 	font-size: 18px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
-	height: 90px;
+	height: 82px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label{
 	width: 113px;
@@ -651,6 +653,8 @@
 }
 #stepBox .middleColumn.studio table p{
 	font-size: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 #stepBox .middleColumn table .noPrize h2, #stepBox .middleColumn table .noPrize h3{
 	color: #d1d1d1;	
@@ -728,7 +732,7 @@
 	width: 225px;
 }
 .designSecondTabNav ul{
-	width: 275px;
+	width: 290px;
 }
 
 @media (max-width: 1019px) {
@@ -760,7 +764,7 @@
 		float:none;
 		display:block;
 		margin: 0 auto;
-		width:119px;
+		width:150px;
 	}
 	#stepBox .rightColumn{
 		float:right;
@@ -808,7 +812,7 @@
 	}
 	
 	#stepBox .rightColumn .nextBox .CEDate { 
-		font-size: 9px;
+		font-size: 12px;
 		margin-bottom: 5px;
 	}
 	
@@ -943,5 +947,10 @@
 	.challenge-detail #viewRegistrant.tableWrap{
 		padding-right: 0px;	
 	}
-	
+	#stepBox .rightColumn .nextBox .nextBoxContent, #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 22px;
+		padding-bottom: 22px;
+	}
 }

@@ -84,28 +84,40 @@
         margin-left: 10px;
     }
     .aboutCoder .social a{
-        height: 35px;
-        width: 35px;
+        height: 54px;
+					 width: 45px;
         background: url(../i/ico-social-alt.png) no-repeat;
         background-position: 0 0;
         display: inline-block;
-        border-radius: 18px;
         behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     }
-    .aboutCoder .social a:hover{        
-        box-shadow: 0 0 10px #fff;
+    .aboutCoder .social a{
+    			-webkit-transition: none;
+					transition: none;
     }
     .aboutCoder .social .fb{
-        background-position: 0 -120px;
+        background-position: 0 0px;
+    }
+    .aboutCoder .social .fb:hover{
+        background-position: -68px 0px;
     }
     .aboutCoder .social .mail{
-        background-position: 0 -40px;
+        background-position: 0 -125px;
+    }
+    .aboutCoder .social .mail:hover{
+        background-position: -68px -125px;
     }
     .aboutCoder .social .tw{
-        background-position: 0 -80px;
+        background-position: 0 -63px;
+    }
+    .aboutCoder .social .tw:hover{
+        background-position: -68px -63px;
     }
     .aboutCoder .social .gp{
-        background-position: 0 0;
+        background-position: 0 -188px;
+    }
+    .aboutCoder .social .gp:hover{
+        background-position: -68px -188px;
     }
 /* switchBtns */
 .switchBtns{

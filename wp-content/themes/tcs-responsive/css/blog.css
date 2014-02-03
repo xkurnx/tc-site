@@ -284,6 +284,73 @@ a.blueLink:hover {
 	margin-left:10px;
 }
 
+.shareVia .shareButton {
+	background-image: url(../i/ico-social-blog-detail.png);
+	width: 40px;
+	height: 40px;
+}
+
+.shareVia .shareButton {
+	-webkit-transition: none;
+	transition: none;
+}
+
+.shareVia .shareButton.small {
+	background-image: url(../i/ico-social-blog-main.png);
+	width: 22px;
+	height: 23px;
+}
+
+.shareVia .shareButton.small.shareMail {
+	background-position: 0 0;
+}
+.shareVia .shareButton.small.shareMail:hover {
+	background-position: -44px 0px;
+}
+.shareVia .shareButton.small.shareFb {
+	background-position: 0 -27px;
+}
+.shareVia .shareButton.small.shareFb:hover {
+	background-position: -44px -27px;
+}
+.shareVia .shareButton.small.shareTw {
+	background-position: 0 -53px;
+}
+.shareVia .shareButton.small.shareTw:hover {
+	background-position: -44px -53px;
+}
+.shareVia .shareButton.small.shareGPlus {
+	background-position: 0 -76px;
+}
+.shareVia .shareButton.small.shareGPlus:hover {
+	background-position: -44px -76px;
+}
+
+.shareVia .shareButton.shareMail {
+	background-position: 0 0;
+}
+.shareVia .shareButton.shareMail:hover {
+	background-position: -63px 0px;
+}
+.shareVia .shareButton.shareFb {
+	background-position: 0 -125px;
+}
+.shareVia .shareButton.shareFb:hover {
+	background-position: -63px -125px;
+}
+.shareVia .shareButton.shareTw {
+	background-position: 0 -63px;
+}
+.shareVia .shareButton.shareTw:hover {
+	background-position: -63px -63px;
+}
+.shareVia .shareButton.shareGPlus {
+	background-position: 0 -188px;
+}
+.shareVia .shareButton.shareGPlus:hover {
+	background-position: -63px -188px;
+}
+
 /* share via end */
 
 			
