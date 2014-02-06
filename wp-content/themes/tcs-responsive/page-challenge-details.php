@@ -722,36 +722,35 @@ $documents = $contest->Documents;
 								else:
 								?> 
 <article id="contestOverview">
-<!-- 
+
 <article id="contestSummary">
 	<h1>CONTEST SUMMARY</h1>
- <p class="paragraph"></p><p>AppStream is a new “application streaming as a service” product from Amazon (currently in private beta) that provides the functionality to run an application in EC2 and stream the video and audio output to an end-user’s device. Developers will be able to write software once and run it via AppStream&nbsp;to instantly and securely deliver the experience to computers, tablets, phones, and televisions with an Internet connection. The service allows graphically-intense and resource-intense applications to run on low-end and low-performance devices, enabling developers to reach new customers without having to constrain their application design to the device, port across platforms or protect from piracy.</p>
+		 <p class="paragraph"></p><p><?php echo $contest->introduction;?></p>
 
-<p>We have <a href="http://community.topcoder.com/tc?module=ProjectDetail&amp;pj=30036206" target="_blank">another contest</a> to build a prototype for AppStream but for this contest we want your best ideas for using AppStream.</p>
-<p></p>
-
-        <p class="paragraph1">Please read the contest specification carefully and watch the forums for any
+        <p class="paragraph1"><b>Please read the contest specification carefully and watch the forums for any
                     questions or feedback concerning this contest. It is important that you monitor any updates
                     provided by the client or Studio Admins in the forums. Please post any questions you might have for
-                    the client in the forums.</p>
+                    the client in the forums.</b></p>
 </article>
 
 <article id="studioTournamentFormat">
-	<h1>STUDIO TOURNAMENT FORMAT</h1>
- <p class="paragraph">This Studio competition will be run as a two-round tournament with a total prize purse of
-                $#,###.</p>
+	<h1>CHALLENGE FORMAT</h1>
+ <p class="paragraph">This competition will be run as a two-round challenge.</p>
 
-                
+<!--                
 	                <span class="subTitle">Round One (1)</span>
-	                <p class="paragraph"></p><p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span style="line-height: 1.6em;">Please submit your ideas in a text or Word document. Provide as much supporting information as possible. &nbsp;Supporting information can be in any format you would like to include. For example, screenshots, videos, websites, etc.</span></p>
+	                <p class="paragraph"></p><p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span style="line-height: 1.6em;">...</span></p>
 <p></p>
 	
 	                <span class="subTitle">Round Two (2)</span>
-	                <p class="paragraph"></p><p><span style="color: rgb(64, 64, 64); font-size: 13px;">Please submit your ideas in a text or Word document. Provide as much supporting information as possible. &nbsp;Supporting information can be in any format you would like to include. For example, screenshots, videos, websites, etc.</span></p>
+	                <p class="paragraph"></p><p><span style="color: rgb(64, 64, 64); font-size: 13px;">...</span></p>
+
+-->
 <p></p>
                 
 
                 <h6 class="smallTitle red">Regarding the Rounds:</h6>
+<p></p>
 
                 <ul class="red">
                     <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
@@ -762,10 +761,10 @@ $documents = $contest->Documents;
                         screening for a small mistake in Round 1, you may still be eligible to submit to Round 2.</li>
                     <li>Every competitor with a passing Round 1 submission can submit to Round 2, even if they didn't
                         win a Checkpoint prize. </li>
-                    <li><a href="http://community.topcoder.com/studio/types-of-competitions/multi-round-competitions-mini-tournaments/">Learn more here</a>.</li>
+                    <li><a href="http://help.topcoder.com/design/submitting-to-a-design-challenge/multi-round-checkpoint-design-challenges/">Learn more here</a>.</li>
                 </ul>
 </article>
--->
+
 <article id="fullDescription">
 	<h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 	<p><?php echo $contest->detailedRequirements;?></p>
