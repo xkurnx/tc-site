@@ -1149,8 +1149,19 @@ $registrants = $contest->registrants;
                    <div class="slideBox">
                		     <h3>Downloads:</h3>                                
                    	  	<div class="inner">
-																<p>None</p>                   	  	
-                   	  	</div>
+				<?php 
+					echo '<ul>';
+					if (!empty($contest->Documents)){
+						foreach( $contest->Documents as $value ){
+							$document = $value;
+							echo '<li><a href="' . $document->url . '">' . $document->documentName . '</a></li>';
+						}
+					} else {
+						echo '<li><strong>None</li></strong>';
+					}
+					echo '</ul>';
+				?>  
+				</div>
                    </div>                          
 										</li>
 										<li class="slide">
