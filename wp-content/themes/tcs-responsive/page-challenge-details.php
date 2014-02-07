@@ -656,7 +656,22 @@ $documents = $contest->Documents;
                                 <h1>Challenge Overview</h1>
 									<p><?php echo $contest->detailedRequirements;?></p>
 
-                             
+									<article id="platforms">
+										<h1>Platforms</h1>
+										<?php 
+											
+											echo '<ul>';
+											if (!empty($contest->platforms)){
+											  	foreach( $contest->platforms as $value ){
+													echo '<li><strong>' . $value . '</li></strong>';
+											  	}
+											} else {
+												echo '<li><strong>Not Specified</li></strong>';
+											}
+										  	echo '</ul>';
+										?>  
+									</article>              
+									
 									<article id="technologies">
 										<h1>Technologies</h1>
 										<?php 
