@@ -1240,15 +1240,7 @@ $documents = $contest->Documents;
                    <div class="slideBox">
                		     <h3>Submission Limit:</h3>                                
                    	  	<div class="inner">
-																<p>
-                
-                    
-                        <strong>Unlimited</strong>
-                    
-                    
-                    
-                
-            </p>                   	  	
+														<p><strong><?php echo $contest->submissionLimit;?></strong></p>                   	  	
                    	  	</div>
                    </div>                          
 										</li>
