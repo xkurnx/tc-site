@@ -752,15 +752,12 @@ $documents = $contest->Documents;
 	<h1>CHALLENGE FORMAT</h1>
  <p class="paragraph">This competition will be run as a two-round challenge.</p>
 
-<!--                
 	                <span class="subTitle">Round One (1)</span>
-	                <p class="paragraph"></p><p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span style="line-height: 1.6em;">...</span></p>
-<p></p>
+	                <p class="paragraph"></p><p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span style="line-height: 1.6em;"><?php echo $contest->round1Introduction;?></span></p>
 	
 	                <span class="subTitle">Round Two (2)</span>
-	                <p class="paragraph"></p><p><span style="color: rgb(64, 64, 64); font-size: 13px;">...</span></p>
+	                <p class="paragraph"></p><p><span style="color: rgb(64, 64, 64); font-size: 13px;"><?php echo $contest->round2Introduction;?></span></p>
 
--->
 <p></p>
                 
 
