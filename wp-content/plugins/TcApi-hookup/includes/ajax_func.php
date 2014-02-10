@@ -104,28 +104,12 @@ function get_past_contest_ajax_controller() {
 
 add_action ( 'wp_ajax_get_past_contest', 'get_past_contest_ajax_controller' );
 add_action ( 'wp_ajax_nopriv_get_past_contest', 'get_past_contest_ajax_controller' );
-function get_review_opportunities_ajax_controller() {
-	$userkey = get_option ( 'api_user_key' );
-	$contest_type = $_GET ['contest_type'];
-	$page = get_query_var ( 'pages' );
-	$post_per_page = get_option ( 'contest_per_page' );
-	$sortColumn = $_GET ['sortColumn'];
-	$sortOrder = $_GET ['sortOrder'];
-	
-	$contest_list = get_review_opportunities_ajax ( $userkey, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder );
-	if ($contest_list->data != null) {
-		echo json_encode ( $contest_list->data );
-	}
-	die ();
-}
 
-add_action ( 'wp_ajax_get_review_opportunities', 'get_review_opportunities_ajax_controller' );
-add_action ( 'wp_ajax_nopriv_get_review_opportunities', 'get_review_opportunities_ajax_controller' );
 function get_member_profile_ajax_controller() {
 	$userkey = get_option ( 'api_user_key' );
 	$handle = $_GET ["handle"];
 	
-	$memberProfile = get_member_profile ( $userkey, $handle );
+	$memberProfile = get_member_profile ( $handle );
 	if ($memberProfile != null) {
 		echo json_encode ( $memberProfile );
 	}
@@ -233,39 +217,10 @@ function get_past_contests_ajax($userKey = '', $contestType = '', $page = 1, $po
 	return "Error in processing request";
 }
 
-// returns review opportunities
-function get_review_opportunities_ajax($userKey = '', $contestType = '', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
-	$contestType = str_replace ( " ", "+", $contestType );
-	$url = "http://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&type=" . $contestType . "&pageSize=10000";
-	$args = array (
-			'httpversion' => get_option ( 'httpversion' ),
-			'timeout' => get_option ( 'request_timeout' ) 
-	);
-	if ($contestType == "") {
-		$url = "http://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&pageSize=10000";
-	}
-	if ($sortOrder) {
-		$url .= "&sortOrder=$sortOrder";
-	}
-	if ($sortColumn) {
-		$url .= "&sortColumn=$sortColumn";
-	}
-	$response = wp_remote_get ( $url, $args );
-	
-	if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
-		return "Error in processing request";
-	}
-	if ($response ['response'] ['code'] == 200) {
-		$active_contest_list = json_decode ( $response ['body'] );
-		return $active_contest_list;
-	}
-	return "Error in processing request";
-}
-
 // returns member profile
-function get_member_profile($userKey = '', $handle = '') {
+function get_member_profile($handle = '') {
 	#echo $userKey;
-	$url = "http://api.topcoder.com/rest/statistics/" . $handle . "?user_key=" . $userKey;
+	$url = "http://api.topcoder.com/v2/users/" . $handle;
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
@@ -378,3 +333,210 @@ function get_contest_info($contestID = '') {
 /**
  * End of load data functioning 
  */ 
+ 
+ 
+/**
+ * Challenges changes from "TopCoder Website - Challenges Pages - Wordpress Theme Build" Contest 
+ */ 
+add_action ( 'wp_ajax_get_challenges', 'get_challenges_ajax_controller' );
+add_action ( 'wp_ajax_nopriv_get_challenges', 'get_challenges_ajax_controller' );
+function get_challenges_ajax_controller() {
+	$userkey = get_option ( 'api_user_key' );
+	$contest_type = $_GET ['contest_type'];
+	$page = $_GET['pageIndex'];
+	$listType = $_GET['listType'];
+	$post_per_page = $_GET ['pageSize'];
+	$sortColumn = $_GET ['sortColumn'];
+	$sortOrder = $_GET ['sortOrder'];
+	$challengeType = urlencode($_GET ['challengeType']);
+	$startDate = $_GET ['startDate'] ;
+	$endDate = $_GET ['endDate'] ;
+	
+	$contest_list = get_challenges_ajax ( $listType, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder,$challengeType,$startDate,$endDate );
+
+	if ($contest_list->data != null) {
+		echo json_encode ( $contest_list );
+	}
+	die ();
+} 
+ 
+function get_challenges_ajax($listType = 'Active', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '', $challengeType = '', 
+							$startDate='', $endDate=''
+	) {
+
+	$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	
+	if ($contestType == "") {
+		$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	}
+	//echo $url;
+	if ($sortOrder) {
+		$url .= "&sortOrder=$sortOrder";
+	}
+	if ($sortColumn) {
+		$url .= "&sortColumn=$sortColumn";
+	}
+	if ($challengeType) {
+		$url .= "&challengeType=$challengeType";
+	}
+	if ($startDate) {
+		$url .= "&submissionEndDate.startDate=$startDate";
+	}
+	if ($endDate) {
+		$url .= "&submissionEndDate.endDate=$endDate";
+	}
+
+	$args = array (
+			'httpversion' => get_option ( 'httpversion' ),
+			'timeout' => get_option ( 'request_timeout' )
+	);
+	$response = wp_remote_get ( $url, $args );
+
+	if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+		return "Error in processing request";
+	}
+	if ($response ['response'] ['code'] == 200) {
+
+		//print $response ['body'];
+		$active_contest_list = json_decode($response['body']);
+		return $active_contest_list;
+	}
+	
+	return "Error in processing request";
+}
+
+
+ 
+/**
+ * Review opportunities changes from "TopCoder Website - Challenges Pages - Wordpress Theme Build" Contest 
+ */ 
+ 
+add_action ( 'wp_ajax_get_review_opportunities', 'get_review_opportunities_ajax_controller' );
+add_action ( 'wp_ajax_nopriv_get_review_opportunities', 'get_review_opportunities_ajax_controller' );
+function get_review_opportunities_ajax_controller() {
+	$userkey = get_option ( 'api_user_key' );
+	$contest_type = $_GET ['contest_type'];
+	$page = $_GET['pageIndex'];
+	$listType = $_GET['listType'];
+	$post_per_page = $_GET ['pageSize'];
+	$sortColumn = $_GET ['sortColumn'];
+	$sortOrder = $_GET ['sortOrder'];
+	$challengeType = urlencode($_GET ['challengeType']);
+	
+	$contest_list = get_review_opportunities_ajax ( $listType, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder, $challengeType );
+	if ($contest_list->data != null) {
+		echo json_encode ( $contest_list );
+	}
+	die ();
+} 
+ 
+function get_review_opportunities_ajax($listType = 'Active', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '', $challengeType = '') {
+
+	$url = "http://api.topcoder.com/v2/".$contestType."/reviewOpportunities?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	
+	if ($contestType == "") {
+		$url = "http://api.topcoder.com/v2/".$contestType."/reviewOpportunities?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	}
+	//echo $url;
+	if ($sortOrder) {
+		$url .= "&sortOrder=$sortOrder";
+	}
+	if ($sortColumn) {
+		$url .= "&sortColumn=$sortColumn";
+	}
+	if ($challengeType) {
+		$url .= "&challengeType=$challengeType";
+	}
+	$args = array (
+			'httpversion' => get_option ( 'httpversion' ),
+			'timeout' => get_option ( 'request_timeout' )
+	);
+	$response = wp_remote_get ( $url, $args );
+
+	if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+		return "Error in processing request";
+	}
+	if ($response ['response'] ['code'] == 200) {
+
+		//print $response ['body'];
+		$active_contest_list = json_decode($response['body']);
+		return $active_contest_list;
+	}
+	
+	return "Error in processing request";
+}
+
+/**
+ * Get Active Challenges Data List
+ */ 
+ 
+add_action ( 'wp_ajax_get_active_data_challenges', 'get_active_data_ajax_controller' );
+add_action ( 'wp_ajax_nopriv_get_active_data_challenges', 'get_active_data_ajax_controller' );
+function get_active_data_ajax_controller() {
+	$userkey = get_option ( 'api_user_key' );
+	$page = $_GET['pageIndex'];
+	$post_per_page = $_GET ['pageSize'];
+	$sortColumn = $_GET ['sortColumn'];
+	$sortOrder = $_GET ['sortOrder'];
+	
+	$contest_list = get_data_challenges_ajax ( $page, $post_per_page, $sortColumn, $sortOrder );
+	if ($contest_list->data != null) {
+		echo json_encode ( $contest_list );
+	}
+	die ();
+} 
+ 
+function get_data_challenges_ajax($page = 1, $post_per_page = 1, $sortColumn = '', $sortOrder = '') {
+
+	$url = "http://api.topcoder.com/v2/data/srm/challenges?pageIndex=".$page."&pageSize=".$post_per_page;
+	//echo $url;
+
+	$args = array (
+			'httpversion' => get_option ( 'httpversion' ),
+			'timeout' => get_option ( 'request_timeout' )
+	);
+	$responseSrm = wp_remote_get ( $url, $args );
+
+	if (is_wp_error ( $responseSrm ) || ! isset ( $responseSrm ['body'] )) {
+		return "Error in processing request";
+	}
+	
+	$urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=".$page."&pageSize=".$post_per_page;
+
+	$args = array (
+			'httpversion' => get_option ( 'httpversion' ),
+			'timeout' => get_option ( 'request_timeout' )
+	);
+	$responseMarathon = wp_remote_get ( $urlMarathon, $args );
+
+	/* merge the srm and marathon */
+	if ($responseMarathon ['response'] ['code'] == 200) {
+		
+		$srmData = json_decode($responseSrm['body']);
+		if($srmData->data!=null) {
+			$marathonData = json_decode($responseMarathon['body']);
+
+			if($marathonData->data!=null) 
+			foreach($marathonData->data as $row) {
+				$srmData->data[count($srmData)+1] = array( 
+										"name"=>$row->fullName,
+										"startDate"=>$row->startDate
+							);
+			}
+		}
+		
+
+	}
+	
+	if ($responseSrm ['response'] ['code'] == 200) {
+
+		return $srmData;
+	}
+	
+	return "Error in processing request";
+}
+
+
+
+
+

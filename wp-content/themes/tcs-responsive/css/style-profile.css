@@ -21,8 +21,7 @@
         height: auto;
         width: 200px;
         max-width: 200px;
-    
-        min-height: 209px;
+		min-height: 210px;
 }
     .aboutCoder .coderPicWrap{
         float: left;
@@ -225,9 +224,8 @@
         margin-bottom: 5px;
 }
     .algoLayout .head{
-        border: 1px solid #e7e7e7;
-    
         border-right: none;
+					border-bottom: 1px solid #e7e7e7;
 }
     .algoLayout .badges{
         position: absolute;
@@ -312,27 +310,36 @@
     }
     .algoLayout .ratingViews .chartWrap{
         padding-top: 60px;
-        height: 350px;
+        height: 400px;
     }
     .algoLayout .ratingViews .chart{
-        height: 350px;
+        height: 400px;
     }
+    .highcharts-container, .highcharts-container svg, .algoLayout .ratingViews .chart, .chartWrap{
+				padding-bottom: 10px;    	
+    	}
+    	.highcharts-container svg{
+				height: 410px!important;	
+    	}
     .algoLayout .ratingViews .subTrackTab{
         min-height: 493px;
     }
-    .algoLayout .ratingViews .tabNav ul{
+    .algoLayout .tabNav ul{
         overflow: hidden;
     }
-    .algoLayout .ratingViews .tabNav li{
+    .algoLayout .tabNav li{
         float: left;
         width: 153px;
         text-align: center;
         background: #d2d2d2;
     }
-    .algoLayout .ratingViews .tabNav li:first-child{
+    .algoLayout .tabNav li:first-child{
         width: 156px;
     }
-    .algoLayout .ratingViews .tabNav li a{
+    #algorithm.algoLayout .tabNav li{
+        width: 384px;
+    }
+    .algoLayout .tabNav li a{
         height: 50px;
         line-height: 50px;
         color: #fff;
@@ -342,15 +349,70 @@
         background-repeat: no-repeat;
         background-color: #d2d2d2;
         background-position: 50% -10px;
+        -moz-transition: none; -webkit-transition: none; transition: none;
+        font-size: 15px;
     }    
-    .algoLayout .ratingViews .tabNav li a:hover{
+    .algoLayout .tabNav li a:hover{
         background-color: #ffae00;
     }
-    .algoLayout .ratingViews .tabNav li a.isActive,
-    .algoLayout .ratingViews .tabNav li a.isActive:hover{
+    .algoLayout .tabNav li a.isActive,
+    .algoLayout .tabNav li a.isActive:hover{
         background-color: #ffae00;
-        background-position: 50% 0;
+        background-position: 50% 100%;
     }
+    .algoLayout .tabNav li.conceptualization{
+    		width: 76px;
+    	}
+    	.algoLayout .tabNav li.specification{
+    		width: 52px;
+    	}
+    	.algoLayout .tabNav li.design{
+    		width: 81px;
+    	}
+    	.algoLayout .tabNav li.design a{
+    		line-height: 17px;
+      padding-top: 9px;
+      height: 41px;
+    	}
+    	.algoLayout .tabNav li.development{
+    		width: 47px;
+    	}
+    	.algoLayout .tabNav li.assembly-competition{
+    		width: 84px;
+    	}
+    	.algoLayout .tabNav li.test-suites{
+    		width: 59px;
+    	}
+    	.algoLayout .tabNav li.test-suites a{
+    		line-height: 17px;
+      padding-top: 9px;
+      height: 41px;
+    	}
+    	.algoLayout .tabNav li.test-scenarios{
+    		width: 83px;
+    	}
+    	.algoLayout .tabNav li.test-scenarios a{
+    		line-height: 17px;
+      padding-top: 9px;
+      height: 41px;
+    	}
+    	.algoLayout .tabNav li.ui-prototype-competition{
+    		width: 78px;
+    	}
+    	.algoLayout .tabNav li.ui-prototype-competition a{
+    		line-height: 17px;
+      padding-top: 9px;
+      height: 41px;
+    	}
+    	.algoLayout .tabNav li.ria-build{
+    		width: 54px;
+    	}
+    	.algoLayout .tabNav li.content-creation{
+    		width: 72px;
+    	}
+    	.algoLayout .tabNav li.reporting{
+    		width: 83px;
+    	}
     
 /* forumPosts */
 .forumPosts{

@@ -91,8 +91,8 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 	
 	// returns member profile details
-	public function get_member_profile($userKey = '', $handle = '') {
-		$url = "http://api.topcoder.com/rest/statistics/" . $handle . "?user_key=" . $userKey;
+	public function get_member_profile($handle = '') {
+		$url = "http://api.topcoder.com/v2/users/" . $handle;
 		echo $url;
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
@@ -277,14 +277,12 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	// handle shortcode
 	function tcapi_get_raw_coder($handle = "") {
 		$handle = clean_pre ( $handle );
-		$userKey = get_option ( 'api_user_key' );
-		return get_member_profile ( $userKey, $handle );
+		return get_member_profile ( $handle );
 	}
 		
 	function tcapi_get_coder($atts, $handle = "") {
 		$handle = clean_pre ( $handle );
-		$userKey = get_option ( 'api_user_key' );
-		$coder_profile = get_member_profile ( $userKey, $handle );
+		$coder_profile = get_member_profile ( $handle );
 		$coder_ratings = $coder_profile->ratingsSummary;
 		$coder_handle = $coder_profile->handle;
 		
@@ -364,9 +362,27 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		return "Error in processing request";
 	}
 	
+	/* member chart statistics  */
+	function tcapi_get_member_chart_stats($handle, $track, $contestType){
+		$url = "http://api.topcoder.com/v2/$track/statistics/$handle/$contestType";
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 20
+		);
+		$response = wp_remote_get ( $url, $args );
+		
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			return json_decode( $response ['body']);
+		}
+		return "Error in processing request";
+	}
+	
 	/* member achievements  */
-	function tcapi_get_member_achievements($userKey = '', $handle= ''){
-		$url = "http://api.topcoder.com/rest/statistics/" . $handle . "/achievements?user_key=" . $userKey;
+	function tcapi_get_member_achievements($handle= ''){
+		$url = "http://api.topcoder.com/v2/users/" . $handle;
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => 30
