@@ -856,7 +856,12 @@ var app = {
 				/*
 				* generate table row for contest type Marathon
 				*/			
-            	$('.contestName', row).html('<i></i>' + rec.fullName);
+//            	$('.contestName', row).html('<i></i>' + rec.fullName);
+            	
+            	$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+				
+				$trackName = 'marathon';
+				row.addClass('track-' + trackName);            	
 				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -866,7 +871,9 @@ var app = {
 				if (rec.round1EndDate == null || rec.round1EndDate == "") {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
+//				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
+				$('.lEndRound', row).html("");
+				$('.vEndRound', row).html("");
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
