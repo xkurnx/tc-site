@@ -88,7 +88,7 @@ $blog_posts = get_posts( $blog_posts_args );
 			</section>
 			<section class="updates">
 				<div class="row">
-					<form id="emailForm" method="post" action="http://www.topcoder.com/newsletter/" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
+					<form id="emailForm" onsubmit="return newsletter_check(this)" name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST" action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
 						<input type="email" class="email" name="EMAIL" placeholder="Your email address" maxlength="64" />
 						<input name="FEEDID" type="hidden" value="926643" /> 
 						<input name="PUBLISHER" type="hidden" value="34610190" />
@@ -118,7 +118,18 @@ $blog_posts = get_posts( $blog_posts_args );
 	<!-- /.content -->
 	</div>
 	<!-- /#wrapper -->		
-<?php wp_footer(); ?>
+<?php 
+if( !is_page_template('page-challenges.php') &&
+	!is_page_template('page-challenges-active.php') &&
+	!is_page_template('page-challenges-bugrace.php') &&
+	!is_page_template('page-challenges-data.php') &&
+	!is_page_template('page-challenges-past.php') &&
+	!is_page_template('page-challenges-review.php') 
+  )  
+{
+	wp_footer(); 
+}
+?>
 
 
 <div id="bgModal"></div><!-- background modal -->
@@ -531,8 +542,23 @@ $blog_posts = get_posts( $blog_posts_args );
 			</form><!-- END .form login -->
 		</div>
 	</div><!-- END #login -->
-
-
+	
+	<div id="typeTooltip" class="tooltip hide"><div class="inner">
+		<header></header>
+		<div class="data">
+			<p class="contestTy"></p>
+		</div>
+		<div class="arrow"></div>
+	</div>
+	</div><!-- /.tooltip -->
+	<div id="winnerTooltip" class="tooltip hide"><div class="inner">
+		<header></header>
+		<div class="data">
+			<div class="winnerInfo"></div>
+		</div>
+		<div class="arrow alt"></div>
+	</div>
+	</div><!-- /.tooltip -->
 
 <script>
   var auth0 = new Auth0({
@@ -589,7 +615,7 @@ $blog_posts = get_posts( $blog_posts_args );
 
 
 
-
+</div>
 
 
 

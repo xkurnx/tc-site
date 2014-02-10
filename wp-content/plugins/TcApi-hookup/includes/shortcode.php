@@ -160,10 +160,9 @@ function get_member_basic_data_shortcode($atts, $content = null) {
 	if($width!="") {
 		$mainDivWidth = $width!="" ? "width:".$width."px;" : "";
 	}
-	$userKey = get_option( 'api_user_key' );
-	$data = get_member_profile($userKey,$content);
+	$data = get_member_profile($content);
 	$memberSince = substr($data->memberSince,0,10);
-	$arrRating = $data->ratingsSummary;
+	$arrRating = $data->ratingSummary;
 	$ratingColor="";
 	$rating=0;
 	for($i=0;$i<count($arrRating);$i++) {

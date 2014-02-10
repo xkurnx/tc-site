@@ -73,9 +73,7 @@
 
 #stepBox .middleColumn table p{ 
 	font-size: 14px;
-	font-weight: bold;
-	padding-bottom: 2px;
-	padding-top: 2px;
+	font-weight: bold;  
 }
 
 #stepBox .middleColumn table .realibilityPara span{ 
@@ -392,7 +390,7 @@
     width: 12px;
     text-align: center; 
     border-radius: 3px;
-    behavior: url(./css/PIE.htc);
+    behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     position: relative;
 }
     .reviewStyle p a.tooltip:hover{
@@ -489,6 +487,10 @@
 	padding-left:12px;
 	font-size:13px; 
 	background: url("../i/bullet-orange.png") no-repeat 0 7px;
+}
+
+.columnSideBar {
+	font-size: 13px;
 }
 
 .forumFeed .inner{
@@ -591,7 +593,7 @@
 	color: #64c51c;
 }
 
-.challenge-detail .btnAction strong{
+.challenge-detail.develop .btnAction strong{
 	float:left;
 	height:100%;
 	width:77%;
@@ -632,7 +634,7 @@
 	font-size: 18px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
-	height: 82px;
+	height: 90px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label{
 	width: 113px;
@@ -653,8 +655,6 @@
 }
 #stepBox .middleColumn.studio table p{
 	font-size: 12px;
-	padding-top: 2px;
-	padding-bottom: 2px;
 }
 #stepBox .middleColumn table .noPrize h2, #stepBox .middleColumn table .noPrize h3{
 	color: #d1d1d1;	
@@ -732,7 +732,7 @@
 	width: 225px;
 }
 .designSecondTabNav ul{
-	width: 290px;
+	width: 275px;
 }
 
 @media (max-width: 1019px) {
@@ -764,7 +764,7 @@
 		float:none;
 		display:block;
 		margin: 0 auto;
-		width:150px;
+		width:119px;
 	}
 	#stepBox .rightColumn{
 		float:right;
@@ -812,7 +812,7 @@
 	}
 	
 	#stepBox .rightColumn .nextBox .CEDate { 
-		font-size: 12px;
+		font-size: 9px;
 		margin-bottom: 5px;
 	}
 	
@@ -947,10 +947,5 @@
 	.challenge-detail #viewRegistrant.tableWrap{
 		padding-right: 0px;	
 	}
-	#stepBox .rightColumn .nextBox .nextBoxContent, #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
-		padding-left: 5px;
-		padding-right: 5px;
-		padding-top: 22px;
-		padding-bottom: 22px;
-	}
+	
 }
