@@ -1130,8 +1130,8 @@ var app = {
 			/*
 			* generate table row for contest type Marathon
 			*/	
-
-            $('.contestName', con).html('<i></i>' + rec.fullName);
+            //$('.contestName', con).html('<i></i>' + rec.fullName);
+            $('.contestName', con).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 				
 			if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1142,6 +1142,7 @@ var app = {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
 			$('.vEndRound', con).html(app.formatDate2(new Date(rec.endDate)));
+			$('.vEndRound', con).html("");  //Hide his for now
 			
 			if (con.endDate == null || con.endDate == "") {
                 con.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1149,28 +1150,28 @@ var app = {
 			$('.vEndDate', con).html(app.formatDate2(new Date(rec.endDate)));
 			
 			if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA"; //dummy data
 				}
-            $('.cgTLeft', con).html('<i></i>' + rec.timeLeft.replace(/ days/g, 'd').replace(/ Hours/g, 'hr').replace(/ Minutes/g, 'min'));
+            $('.cgTLeft', con).html('<i></i>' + ((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + 'd');
             if (rec.isEnding === "true") {
                 $('.cgTLeft', con).addClass('imp');
             }
-			
+            			
 			if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
-            $('.cgPur', con).html('<i></i> $' + numberWithCommas(rec.prize.sum()));
+            $('.cgPur', con).html('<i></i> $' + numberWithCommas(0));
 			
-			if (rec.registrants == null || rec.registrants == "") {
-					rec.registrants = "10"; //dummy data
+			if (rec.numRegistrants == null || rec.numRegistrants == "") {
+					rec.numRegistrants = "NA"; //dummy data
 				}
             $('.cgReg', con).html('<i></i>' + rec.numRegistrants);
 			
-			if (rec.submissions == null || rec.submissions == "") {
-					rec.submissions = "10"; //dummy data
+			if (rec.numSubmissions == null || rec.numSubmissions == "") {
+					rec.numSubmissions = "NA"; //dummy data
 				}
             $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
-            		
+            
 		}else if(ajax.data["contest_type"]=="design"){	
             
             $('.contestName', con).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '</a>');
