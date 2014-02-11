@@ -35,12 +35,13 @@ $(document).ready(function(){
 					}
 					$('.userDetails .coder').attr('style', 'color: '+color);
 					var userPofileUrl = wpUrl+'/member-profile/'+handle;
-					$('.userDetails').prepend('<a class="tc_coder coder" href="'+userPofileUrl+'" style="color:'+color+'">'+handle+'</a>');
+					$('.userWidget .userDetails').prepend('<a class="tc_coder coder" href="'+userPofileUrl+'" style="color:'+color+'">'+handle+'</a>');
 					$('.myProfileLink, .profileLink').attr('href', userPofileUrl);
 					$('.userDetails .country').text(data['country']);
 					$('.userDetails .memberSince').text(data['memberSince'].split(" ")[0].split(".")[2]);
 					$('.userDetails .memberEarning').text("$"+data['overallEarning']);
 				});
+				$('#navigation, .sidebarNav').removeClass('newUser');
 			});
 			
 			// Clear local tcsso cookie on logout

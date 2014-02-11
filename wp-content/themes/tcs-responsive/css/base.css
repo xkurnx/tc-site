@@ -368,18 +368,6 @@ em{
     .btnMyAcc.isActive i{
         background-position: 0 -12px;              
     }
-#navigation .noReg{
-    display: none;
-}
-#navigation.newUser .onReg{
-    display: none;
-}
-#navigation.newUser .noReg{
-    display: block;
-}
-#navigation.newUser .noReg.hide{
-    display: none;
-}
 /* Page Title
 ---------------------------*/
 .pageTitleWrapper {
