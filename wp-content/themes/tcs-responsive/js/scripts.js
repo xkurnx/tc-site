@@ -534,6 +534,9 @@ var app = {
 				case "Conceptualization":
 					trackName = "c";
 					break;		
+				case "Marathon":
+					trackName = "mm";
+					break;		
 				
             }
 		return trackName;
@@ -627,8 +630,7 @@ var app = {
 						"position": "static"
 					});
 				}
-				caseItem.slideUp(500, function(){
-					caseItem.hide()
+				caseItem.hide(0, function(){
 					$(".jsShowCaseDetails").removeClass("isShow");
 					$(".caseDetailItem").hide();
 					if (ie7) {
@@ -639,6 +641,8 @@ var app = {
 							"visibility": ""
 						});
 					}
+					var scrollTopValue = $("html").data("scrollTop");
+					$('html, body').animate({scrollTop: scrollTopValue+"px"}, 500);
 				});
 			});
 			
@@ -649,6 +653,7 @@ var app = {
             });
 			
 			$(".jsShowCaseDetails").click(function(){
+				var linkCase = $(this);
 				if ($(this).hasClass("isShow")){
 					$(".jsCloseCaseDetails:visible").trigger("click");
 				}else{
@@ -671,14 +676,29 @@ var app = {
 							"position": "relative"
 						});
 					}
-					detailItem.stop().slideDown(800, function(){
-						if (ie7) {
-							$('.btn', detailItem).css({
-								"visibility": ""
-							});
-						}
-					});		
-					$(".caseDetailItem", gridItem).eq(0).stop().slideDown(800);	
+					if(detailsWrapper.is(":visible")){
+						detailItem.stop().slideDown(800, function(){
+							if (ie7) {
+								$('.btn', detailItem).css({
+									"visibility": ""
+								});
+							}
+							var offset = linkCase.offset();
+							var scrollTopValue = $(document).scrollTop();
+							$("html").data("scrollTop", scrollTopValue);
+							var totalScrollTopValue = offset.top+linkCase.outerHeight()+14;
+							//alert(totalScrollTopValue)
+							$('html, body').animate({scrollTop: totalScrollTopValue+"px"}, 500);
+						});		
+					}else{
+						$(".caseDetailItem", gridItem).eq(0).stop().slideDown(800, function(){
+							var offset = linkCase.offset();
+							var scrollTopValue = $(document).scrollTop();
+							$("html").data("scrollTop", scrollTopValue);
+							var totalScrollTopValue = offset.top+linkCase.outerHeight();
+							$('html, body').animate({scrollTop: totalScrollTopValue+"px"}, 500);
+						});		
+					}
 				}
 			});
 			
@@ -860,7 +880,7 @@ var app = {
             	
             	$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 				
-				$trackName = 'marathon';
+				$trackName = 'mm';
 				row.addClass('track-' + trackName);            	
 				
 				if (rec.startDate == null || rec.startDate == "") {
@@ -874,6 +894,7 @@ var app = {
 //				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
 				$('.lEndRound', row).html("");
 				$('.vEndRound', row).html("");
+
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -881,24 +902,25 @@ var app = {
 				$('.vEndDate', row).html(app.formatDate2(rec.endDate));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA"; //dummy data
 				}
-				$('.colTLeft', row).html(rec.timeLeft);
+				$('.colTLeft', row).html(secondsToString(rec.timeRemaining));
+
 				
 				if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
 				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
 				if (rec.registrants == null || rec.registrants == "") {
-					rec.registrants = "10"; //dummy data
+					rec.registrants = "NA"; //dummy data
 				}
-				$('.colReg', row).html(rec.registrants);
+				$('.colReg', row).html(rec.numberOfRegistrants);
 				
 				if (rec.submissions == null || rec.submissions == "") {
-					rec.submissions = "10"; //dummy data
+					rec.submissions = "NA"; //dummy data
 				}
-				$('.colSub', row).html(rec.submissions);
+				$('.colSub', row).html(rec.numberOfSubmissions);
 
 			}else if(ajax.data["contest_type"]=="design"){
 				
@@ -1082,6 +1104,8 @@ var app = {
             var con = $(blueprints.challengeGridBlock).clone();
 			var trackName = ajax.data["contest_type"].split('-')[0];
 			con.addClass('track-'+trackName);
+			
+			
 		if(ajax.data["contest_type"]=="data-srm" ){	
 
 			/*
@@ -1152,7 +1176,7 @@ var app = {
 			if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "NA"; //dummy data
 				}
-            $('.cgTLeft', con).html('<i></i>' + ((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + 'd');
+            $('.cgTLeft', con).html('<i></i>' + ((new Number(rec.timeRemaining)) / 60 / 60 / 24).toPrecision(1).toString() + 'd');
             if (rec.isEnding === "true") {
                 $('.cgTLeft', con).addClass('imp');
             }
@@ -1165,13 +1189,13 @@ var app = {
 			if (rec.numRegistrants == null || rec.numRegistrants == "") {
 					rec.numRegistrants = "NA"; //dummy data
 				}
-            $('.cgReg', con).html('<i></i>' + rec.numRegistrants);
+            $('.cgReg', con).html('<i></i>' + rec.numberOfRegistrants);
 			
 			if (rec.numSubmissions == null || rec.numSubmissions == "") {
 					rec.numSubmissions = "NA"; //dummy data
 				}
-            $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
-            
+            $('.cgSub', con).html('<i></i>' + rec.numberOfSubmissions);
+            		
 		}else if(ajax.data["contest_type"]=="design"){	
             
             $('.contestName', con).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '</a>');
@@ -1325,7 +1349,7 @@ var app = {
 				/*
 				* generate table row for contest type Marathon
 				*/			
-            	$('.contestName', row).html('<i></i>' + rec.fullName);
+	            $('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1336,19 +1360,21 @@ var app = {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
 				$('.vEndRound', row).html(app.formatDate2(new Date(rec.round1EndDate)));
-				
+				$('.lEndRound', row).html("");
+				$('.vEndRound', row).html("");
+									
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
 				$('.vEndDate', row).html(app.formatDate2(new Date(rec.endDate)));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA days"; //dummy data
 				}
-				$('.colTLeft', row).html(rec.timeLeft);
+				$('.colTLeft', row).html(((new Number(rec.timeRemaining)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
 				
 				if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
 				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
