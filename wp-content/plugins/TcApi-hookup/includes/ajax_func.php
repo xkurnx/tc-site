@@ -44,8 +44,7 @@ add_action ( 'wp_ajax_nopriv_post_register', 'post_register_controller' );
 
 function post_login_controller(){
 	global $_POST;
-	$url = "http://api.topcoder.com/v2/users/";
-	#$url = "http://api.topcoder.com/v2/develop/challenges/30036134";
+	$url = "https://api.topcoder.com/v2/users/";
 	$arg = array(
 	'method' => 'POST',
 	'headers' => array("Content-Type: application/json"),
@@ -171,13 +170,10 @@ function get_active_contests_ajax($userKey = '', $contestType = 'design', $page 
 	$contestType = str_replace ( " ", "+", $contestType );
 	$contestType = str_replace ( "-", "/", $contestType );
 	$listType = ( $contestType == 'data/marathon' or  $contestType == 'data/srm' ) ? "active":"Open";
-	// $url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=ACTIVE&type=" . $contestType . "&pageSize=10000";	
-	$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+	$url = "https://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
 	
 	if ($contestType == "") {
-		// $url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=ACTIVE&pageSize=10000";
-		//$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=Active&pageIndex=1&pageSize=50&sortColumn=contestName&sortOrder=asc";
-		$url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
+		$url = "https://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
 	}
 	#echo $url;
 	if ($sortOrder) {
@@ -207,13 +203,13 @@ function get_active_contests_ajax($userKey = '', $contestType = 'design', $page 
 // returns past contest list
 function get_past_contests_ajax($userKey = '', $contestType = '', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
 	$contestType = str_replace ( " ", "+", $contestType );
-	$url = "http://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&pageSize=10000";
+	$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&pageSize=10000";
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
 	);
 	if ($contestType == "") {
-		$url = "http://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&pageSize=10000";
+		$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&pageSize=10000";
 	}
 	if ($sortOrder) {
 		$url .= "&sortOrder=$sortOrder";
@@ -236,13 +232,13 @@ function get_past_contests_ajax($userKey = '', $contestType = '', $page = 1, $po
 // returns review opportunities
 function get_review_opportunities_ajax($userKey = '', $contestType = '', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
 	$contestType = str_replace ( " ", "+", $contestType );
-	$url = "http://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&type=" . $contestType . "&pageSize=10000";
+	$url = "https://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&type=" . $contestType . "&pageSize=10000";
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
 	);
 	if ($contestType == "") {
-		$url = "http://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&pageSize=10000";
+		$url = "https://api.topcoder.com/rest/reviewOpportunities?user_key=" . $userKey . "&pageSize=10000";
 	}
 	if ($sortOrder) {
 		$url .= "&sortOrder=$sortOrder";
@@ -265,7 +261,7 @@ function get_review_opportunities_ajax($userKey = '', $contestType = '', $page =
 // returns member profile
 function get_member_profile($userKey = '', $handle = '') {
 	#echo $userKey;
-	$url = "http://api.topcoder.com/rest/statistics/" . $handle . "?user_key=" . $userKey;
+	$url = "https://api.topcoder.com/rest/statistics/" . $handle . "?user_key=" . $userKey;
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
@@ -285,7 +281,7 @@ function get_member_profile($userKey = '', $handle = '') {
 
 // returns achievements data
 function get_user_achievements($userKey = '', $handle = '') {
-	$url = "http://api.topcoder.com/rest/statistics/$handle/achievements?user_key=" . $userKey;
+	$url = "https://api.topcoder.com/rest/statistics/$handle/achievements?user_key=" . $userKey;
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
@@ -304,7 +300,7 @@ function get_user_achievements($userKey = '', $handle = '') {
 
 // returns copilot stats
 function get_copilot_stats($userKey = '', $handle = '') {
-	$url = "http://api.topcoder.com/rest/statistics/copilots/$handle/contests?user_key=" . $userKey;
+	$url = "https://api.topcoder.com/rest/statistics/copilots/$handle/contests?user_key=" . $userKey;
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
@@ -327,10 +323,10 @@ function get_top_rank($userKey = '', $contestType = 'Algorithm') {
 	
 	switch($contestType){
 		case "develop":
-			$url = "http://api.topcoder.com/v2/develop/statistics/tops/development?rankType=rank";
+			$url = "https://api.topcoder.com/v2/develop/statistics/tops/development?rankType=rank";
 		break;
 		case "data":
-			$url = "http://api.topcoder.com/v2/data/srm/statistics/tops";
+			$url = "https://api.topcoder.com/v2/data/srm/statistics/tops";
 		break;	
 	
 	}
@@ -359,7 +355,7 @@ function get_top_rank($userKey = '', $contestType = 'Algorithm') {
  * Start of load data functioning
  */
 function get_contest_info($contestID = '') {
-	$url = "http://api.topcoder.com/v2/software/contests/$contestID";
+	$url = "https://api.topcoder.com/v2/software/contests/$contestID";
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
