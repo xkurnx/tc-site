@@ -9,7 +9,6 @@
 	overflow:hidden;
 }
 
-
  .challenge-detail .pageHeading h2{
 	font-size: 14px;
 	line-height: 30px;
@@ -128,20 +127,19 @@
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
    padding: 6px; 
-	height: 82px;
+	height: 90px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent p {
     color: #FFFFFE;
     font-size: 12px;
     margin-bottom: 5px;
 } 
-
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent label {
     display: block;
     float: left;
     font-weight: bold;
     text-align: left;
-    width: 115px;
+    width: 155px;
 }  
 #stepBox .rightColumn .nextBox .nextDTitle {
     color: #0081a3;
@@ -394,7 +392,7 @@
     width: 12px;
     text-align: center; 
     border-radius: 3px;
-    behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
+    behavior: url(./css/PIE.htc);
     position: relative;
 }
     .reviewStyle p a.tooltip:hover{
@@ -496,7 +494,6 @@
 .columnSideBar {
 	font-size: 13px;
 }
-
 .forumFeed .inner{
 	padding-bottom: 10px!important;
 }
@@ -641,7 +638,7 @@
 	height: 90px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label{
-	width: 140px;
+	width: 155px;
 }
 .challenge-detail .tabNav span.inactive{
 	color: #aaa;
@@ -740,6 +737,44 @@
 	width: 275px;
 }
 
+/* addthis.com styles */
+.addthis_32x32_style .addthis_button_print .at300bs,
+.addthis_32x32_style .addthis_button_facebook .at300bs,
+.addthis_32x32_style .addthis_button_twitter .at300bs,
+.addthis_32x32_style .addthis_button_email .at300bs,
+.addthis_32x32_style .addthis_button_google .at300bs,
+#toolbox .addthis_32x32_style .at15nc.at300bs.at15t_print,
+#toolbox .addthis_32x32_style .at15nc.at300bs.at15t_facebook,
+#toolbox .addthis_32x32_style .at15nc.at300bs.at15t_twitter,
+#toolbox .addthis_32x32_style .at15nc.at300bs.at15t_email,
+#toolbox .addthis_32x32_style .at15nc.at300bs.at15t_google {
+	background: url("../i/share-buttons.png") no-repeat left;
+}
+.addthis_32x32_style .at15t_print,
+#main .addthis_32x32_style .at15t_print{
+	background-position: 0 -122px!important;
+}
+.addthis_32x32_style .at15t_facebook,
+#main .addthis_32x32_style .at15t_facebook{
+	background-position: 0 0!important;
+}
+.addthis_32x32_style .at15t_twitter,
+#main .addthis_32x32_style .at15t_twitter{
+	background-position: 0 -80px!important;
+}
+.addthis_32x32_style .at15t_email,
+#main .addthis_32x32_style .at15t_email{
+	background-position: 0 -40px!important;
+}
+.addthis_32x32_style .at15t_google,
+#main .addthis_32x32_style .at15t_google{
+	background-position: 0 -122px!important;
+}
+.addthis_counter{
+	-webkit-transition: none;
+	transition: none;
+}
+
 @media (max-width: 1019px) {
 	.challenge-detail .pageHeading h1{
 		font-size:18px;
@@ -812,12 +847,12 @@
 		background: url("../i/ico-time-develop-phone.png") no-repeat 0 10px;
 	}
 	#stepBox .rightColumn .nextBox .nextDTitle {  
-		font-size: 12px;
+		font-size: 16px;
 		margin-bottom: 0px;
 	}
 	
 	#stepBox .rightColumn .nextBox .CEDate { 
-		font-size: 9px;
+		font-size: 14px;
 		margin-bottom: 5px;
 	}
 	

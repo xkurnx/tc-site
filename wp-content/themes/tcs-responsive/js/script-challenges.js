@@ -1196,15 +1196,19 @@ appChallenges = {
 	
 	//format time left
 	formatTimeLeft: function(timeleft) {
-		var oneDayInSecond = 86400;
-		var day =  Math.floor(timeleft / oneDayInSecond);
-		var hour = Math.floor(timeleft / 3600);
-		var minute = Math.floor(timeleft / 60);
-		if(day>0) return day+" day"+(day>1?"s":"");
-		if(hour>0) return hour+" hours"+(hour>1?"s":"");
-		if(minute>0) return minute+" minutes"+(minute>1?"s":"");
-		else return "";
-        return timeleft;
+		var numdays = Math.floor(seconds / 86400);
+		var numhours = Math.floor((seconds % 86400) / 3600);
+		var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+		var numseconds = ((seconds % 86400) % 3600) % 60;
+		var style = "";
+		if ( numdays == 0 && numhours <= 2 ){
+			style="color:red";
+		}	
+		if (isNaN(numhours)){
+			return "<em style='font-size:14px;'>not available</em>";
+		}
+		return "<span style='font-size:14px;"+style+"'>"+( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" )+"</span>";
+
     },
 	
 	//get contest link url
