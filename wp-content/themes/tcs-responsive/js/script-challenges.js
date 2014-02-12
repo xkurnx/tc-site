@@ -761,7 +761,7 @@ appChallenges = {
 
 				var startDate = app.formatDateChallenges(rec.startDate);
 				var totalCompetitors = rec.totalCompetitors;
-				var numSubmissions = rec.divIITotalSolutionsSubmitted;
+				var numSubmissions = rec.numberOfSubmissions;
 				
 				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName + '</a>');
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
