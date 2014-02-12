@@ -435,8 +435,8 @@ select{
 .tcoTable tr.inTCO.hasTCOIco .colCh a{
         min-height: 80px;
 }
-	#tcoTableAllContest .colCh a{
-        width: 280px;
+.tcoTable .colCh a{
+   width: 270px;
 		padding-left:66px;
 		color: #666;
 	}
@@ -450,7 +450,7 @@ select{
 		height:36px;
 		padding:0px;
 	}
-	#tcoTableAllContest .colCh a:hover img.allContestIco {
+	.colCh a:hover img.allContestIco {
 		box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 	}	
 
@@ -541,12 +541,8 @@ select{
         top: 0;
         left: 15px;
         background: url(../i/tco/tco-arrow.png) no-repeat;
-        background-position: 0 10px;       
-        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;  
+        background-position: 0 10px;
         padding-bottom: 8px;
-    }
-    .contestGrid .cgCh a:hover img{
-        background-position: 0 100%;
     }
 	#gridAll .cgCh a:hover img{
        background-position: 0 10px;   
@@ -561,7 +557,7 @@ select{
 		height:36px;
 		padding:0px;
 	}
-	#gridAll .cgCh a:hover img.allContestIco {
+	.cgCh a:hover img.allContestIco {
 		box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 	}	
     .contestGrid .cgTime{

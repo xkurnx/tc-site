@@ -737,7 +737,7 @@ appChallenges = {
 			},
 			error: function(data) {
 				$('.loading').hide();
-				$('tbody', table).html(null);
+				//$('tbody', table).html(null);
 				alert("Data not found!"); 
 			}
 		});
@@ -761,6 +761,7 @@ appChallenges = {
 				var numSubmissions = rec.divIITotalSolutionsSubmitted;
 				
 				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.name);
+				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");				
 				$('.vEndRound', row).html(startDate);
 				$('.colReg', row).html('<a href="javascript:;">'+totalCompetitors+'</a>');
 				$('.colSub', row).html(numSubmissions);
@@ -847,6 +848,7 @@ appChallenges = {
 				con.addClass(trackName);
 				var contestName = rec.name.length > 60 ? rec.name.substr(0, 61) + '...' : rec.name;
 				$('.contestName', con).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + contestName);
+				$('.contestName', con).parents(".inTCO").addClass("hasTCOIco");				
 				$('.vStartDate', con).html(startDate);
 				$('.cgReg', con).html('<i></i>' + totalCompetitors);
 				$('.cgSub', con).html('<i></i>' + numSubmissions);
@@ -945,11 +947,14 @@ appChallenges = {
             /*
 				* generate table row for design contest type
 				*/
-            $('.contestName', row).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName);
-            if (rec.challengeType == "Wireframes") {
-                $('.contestName', row).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName);
-            }
-            
+				var icoTrack = "ico-track-design.png";
+				var tcoFlag = "tco-flag-design.png";
+				if(!app.isDesignContest(rec.challengeType)){
+					icoTrack = "ico-track-develop.png";
+					tcoFlag = "tco-flag-develop.png";
+				}
+      $('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/'+icoTrack+'" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/'+tcoFlag+'" />');
+      $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
 			$('.colCh a', row).attr("href",contestLinkUrl);
 			
             $('.tipC', row).html(rec.challengeType);
@@ -1009,11 +1014,15 @@ appChallenges = {
             
             
             con.addClass('track-' + trackName);
-            
-            $('.contestName', con).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName.substr(0, 61) + '...');
-            if (rec.challengeType == "Wireframes") {
-                $('.contestName', con).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName.substr(0, 61) + '...');
-            }
+            var icoTrack = "ico-track-design.png";
+								var tcoFlag = "tco-flag-design.png";
+								if(!app.isDesignContest(rec.challengeType)){
+									icoTrack = "ico-track-develop.png";
+									tcoFlag = "tco-flag-develop.png";
+								}
+
+            $('.contestName', con).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/'+icoTrack+'" />' + rec.challengeName.substr(0, 61) + '...' + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/'+tcoFlag+'" />');
+								$('.contestName', con).parents(".inTCO").addClass("hasTCOIco");
 			$('.colCh a', con).attr("href",contestLinkUrl);
 			 
 			$('.tipC', con).html(rec.challengeType);
@@ -1065,11 +1074,15 @@ appChallenges = {
 			/*
 			 * generate table row for design past contest type
 			*/
-            $('.contestName', row).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName);
-            if (rec.type == "Wireframes") {
-                $('.contestName', row).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName);
-            }
             
+            var icoTrack = "ico-track-design.png";
+								var tcoFlag = "tco-flag-design.png";
+								if(!app.isDesignContest(rec.challengeType)){
+									icoTrack = "ico-track-develop.png";
+									tcoFlag = "tco-flag-develop.png";
+								}
+								$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/'+icoTrack+'" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/'+tcoFlag+'" />');
+								$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
 			$('.colCh a', row).attr("href",contestLinkUrl);
             $('.colType .tipC', row).html(rec.challengeType);
             
@@ -1122,7 +1135,8 @@ appChallenges = {
             /*
 				* generate table row for design past contest type
 				*/
-            $('.contestName', row).html('<img alt="" class="itco" src="'+stylesheet_dir+'/i/tco/tco14.png" />' + rec.challengeName);           
+      $('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/tco-flag-develop.png" />');           
+				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
 			$('.tipC', row).html(rec.challengeType);
             $('.colPay', row).html("$" + app.formatCur(purse));
             $('.colTP', row).html(20);
