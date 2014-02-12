@@ -173,13 +173,17 @@ var app = {
         });
 
         // tab navs
-        $('.tabNav a').on(ev, function() {
+        $('.tabNav:not(.algoLayout .tabNav) a').on(ev, function() {
             var id = $(this).attr('href');
             $('.tab', $(this).closest('.tabsWrap')).hide();
             $(id).fadeIn();
             $('.active', $(this).closest('nav')).removeClass('active');
             $(this).addClass('active');
             return false;
+        });
+        $('.algoLayout .tabNav a').on(ev, function() {
+        			$('.algoLayout .tabNav a').removeClass('isActive');
+            $(this).addClass('isActive');
         });
     },
     
@@ -631,6 +635,7 @@ var app = {
 					});
 				}
 				caseItem.hide(0, function(){
+					caseItem.hide()
 					$(".jsShowCaseDetails").removeClass("isShow");
 					$(".caseDetailItem").hide();
 					if (ie7) {
@@ -642,7 +647,7 @@ var app = {
 						});
 					}
 					var scrollTopValue = $("html").data("scrollTop");
-					$('html, body').animate({scrollTop: scrollTopValue+"px"}, 500);
+					$('html, body').animate({scrollTop: scrollTopValue+"px"});
 				});
 			});
 			
@@ -1349,7 +1354,7 @@ var app = {
 				/*
 				* generate table row for contest type Marathon
 				*/			
-	            $('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+            	$('.contestName', row).html('<i></i>' + '<a href=http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '>' + rec.fullName + '</a>');
 				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1366,7 +1371,7 @@ var app = {
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndDate', row).html(app.formatDate2(new Date(rec.endDate)));
+				$('.vEndDate', row).html('--');
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "NA days"; //dummy data
