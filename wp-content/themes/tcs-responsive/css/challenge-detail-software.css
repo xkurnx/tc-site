@@ -9,6 +9,7 @@
 	overflow:hidden;
 }
 
+
  .challenge-detail .pageHeading h2{
 	font-size: 14px;
 	line-height: 30px;
@@ -73,7 +74,7 @@
 
 #stepBox .middleColumn table p{ 
 	font-size: 14px;
-	font-weight: bold;
+	font-weight: bold;  
 	padding-bottom: 2px;
 	padding-top: 2px;
 }
@@ -126,7 +127,7 @@
     border-color: #46b314;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent {
-   padding: 10px 6px 10px 6px; 
+   padding: 6px; 
 	height: 82px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent p {
@@ -134,6 +135,7 @@
     font-size: 12px;
     margin-bottom: 5px;
 } 
+
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent label {
     display: block;
     float: left;
@@ -392,7 +394,7 @@
     width: 12px;
     text-align: center; 
     border-radius: 3px;
-    behavior: url(./css/PIE.htc);
+    behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     position: relative;
 }
     .reviewStyle p a.tooltip:hover{
@@ -489,6 +491,10 @@
 	padding-left:12px;
 	font-size:13px; 
 	background: url("../i/bullet-orange.png") no-repeat 0 7px;
+}
+
+.columnSideBar {
+	font-size: 13px;
 }
 
 .forumFeed .inner{
@@ -632,15 +638,14 @@
 	font-size: 18px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
-	height: 82px;
+	height: 90px;
 }
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label{
-	width: 113px;
+	width: 140px;
 }
 .challenge-detail .tabNav span.inactive{
 	color: #aaa;
 	cursor: default;
-	font-size: 16px;
 	margin: 0 10px;
 }
 .morePayments{
@@ -732,7 +737,7 @@
 	width: 225px;
 }
 .designSecondTabNav ul{
-	width: 290px;
+	width: 275px;
 }
 
 @media (max-width: 1019px) {
@@ -764,7 +769,7 @@
 		float:none;
 		display:block;
 		margin: 0 auto;
-		width:150px;
+		width:180px;
 	}
 	#stepBox .rightColumn{
 		float:right;
@@ -812,7 +817,7 @@
 	}
 	
 	#stepBox .rightColumn .nextBox .CEDate { 
-		font-size: 12px;
+		font-size: 9px;
 		margin-bottom: 5px;
 	}
 	

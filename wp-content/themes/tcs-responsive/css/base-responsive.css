@@ -407,16 +407,6 @@ em{
         #navigation #mainNav .root{
             display: none;
         }
-        
-    #navigation .noReg{
-        display: none;
-    }
-    #navigation.newUser .onReg{
-        display: none;
-    }
-    #navigation.newUser .noReg{
-        display: block;
-    }
     
     .userWidget{
         top: 36px;

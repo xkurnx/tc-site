@@ -250,10 +250,16 @@ $srmClnge->series [] = array (
 
 
 <div id="algorithm" class="tab algoLayout">
+	<nav class="tabNav">
+		<ul>
+			<li><a href="javascript:;" class="isActive">Algorithm</a></li>
+			<li><a href="javascript:;">Marathon Matches</a></li>
+		</ul>
+	</nav>
 	<div class="ratingInfo">
 		<header class="head">
 			<div class="trackNRating">
-				<h4 class="trackName">Algorithm Competitions</h4>
+				<h4 class="trackName">Data Science Competitions</h4>
 				<div class="rating"><?php echo $coder->rating;?></div>
 				<div class="lbl">Rating</div>
 			</div>
@@ -309,15 +315,6 @@ $srmClnge->series [] = array (
 						</script>
 						</div>
 					</div>
-					<nav class="tabNav">
-						<ul>
-							<li><a href="javascript:;" class="isActive">SRM</a></li>
-							<li><a href="javascript:;">Marathon</a></li>
-							<li><a href="javascript:;">Architecture</a></li>
-							<li><a href="javascript:;">Development</a></li>
-							<li><a href="javascript:;">Prototype</a></li>
-						</ul>
-					</nav>
 				</div>
 				<!-- /.subTrackTabs -->
 			</div>
@@ -484,15 +481,6 @@ $srmClnge->series [] = array (
 						</div>
 						<!-- /.tableView -->
 					</div>
-					<nav class="tabNav">
-						<ul>
-							<li><a href="javascript:;" class="isActive">SRM</a></li>
-							<li><a href="javascript:;">Marathon</a></li>
-							<li><a href="javascript:;">Architecture</a></li>
-							<li><a href="javascript:;">Development</a></li>
-							<li><a href="javascript:;">Prototype</a></li>
-						</ul>
-					</nav>
 				</div>
 				<!-- /.subTrackTabs -->
 			</div>

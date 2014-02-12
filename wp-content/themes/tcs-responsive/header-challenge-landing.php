@@ -54,8 +54,8 @@ $auth0 = new Auth0(array(
 <title><?php bloginfo('name'); ?><?php wp_title(' - ', true, 'left'); ?></title>
 <meta name="description" content="">
 <meta name="author" content="" >
-
-	<?php wp_head(); ?>	
+	
+	<?php //wp_head(); ?>	
 	<script type="text/javascript">
 		var wpUrl = "<?php bloginfo('wpurl')?>";
 		var ajaxUrl = wpUrl+"/wp-admin/admin-ajax.php";		
@@ -64,10 +64,9 @@ $auth0 = new Auth0(array(
    	<script id="auth0" src="https://sdk.auth0.com/auth0.js#client=<?php echo auth0_client_id;?>"></script>
 
 	<script src="https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js"></script>
-	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
 
-
-<?php get_template_part('header.assets'); ?>
+<?php get_template_part('header.assets.challenge.landing'); ?>
   </head>
 
 <body>
@@ -89,7 +88,6 @@ $cookie = $_COOKIE["tcsso"];
 $cookie_parts = explode( "|", $cookie);
 $user_id = $cookie_parts[0];
 $tc_token = $cookie_parts[1];
-$user_id  = ""; // force empty to ensure not using PHP to read Cookie
 
 #$url = "http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=".$user_id."&json=true";
 #$response = get_json_from_url ( $url );
@@ -126,7 +124,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 		<nav class="sidebarNav mainNav onMobi <?php echo $user; ?>">
 		 <ul class="root"><?php wp_nav_menu ( $nav );	?>
 <!--			 <li class="notLogged"><a href="javascript:;" class="actionLogin"><i></i>Log In</a></li> -->
-			 <li class="notLogged"><a href="javascript:;" class="btnRegister"><i></i>REGISTER</a></li>
+			 <li class="notLogged"><a href="javascript:;"><i></i>REGISTER</a></li>
 			 <li class="userLi isLogged">
 				<div class="userInfo">
 					<div class="userPic">
@@ -138,7 +136,6 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						<a href="<?php bloginfo('wpurl');?>/member-profile/<?php echo $coder->handle;?>" class="link myProfileLink">My Profile</a>
 						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">My TopCoder </a>
 						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">Account Settings </a>	
-						<a href="javascript:;" class="actionLogout">Log Out</a>
 					</div>
 				</div>
 			</li>
@@ -194,7 +191,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						<a href="javascript:;" class="onMobi noReg linkLogin actionLogin">Log In</a>
 				<?php endif; ?>
 -->				
-				<div class="userDetailsWrapper hide">
+				<div class="userDetailsWrapper <?php if ( $user_id == '' ) { echo 'hide';} ?>">
 				<span class="btnAccWrap noReg"><a href="javascript:;" class="btn btnAlt btnMyAcc">
 						My Account<i></i>
 					</a></span>
@@ -219,10 +216,9 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 					</div>
 				</div>
 				</div>
-				<a class="onMobi noReg linkLogin actionLogin" href="javascript:;">Log In</a>
+				<?php if ( $user_id == '' ) : ?>
 				<span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Register</a> </span>
-				
-				
+				<?php endif; ?>
 				<!-- /.userWidget -->	
 			</div>
 		</header>

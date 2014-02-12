@@ -70,6 +70,7 @@ var coder = {
 			$('.ratingViews #graphView').hide();
 			$('.ratingViews #tabularView').hide();
 			$('.ratingViews '+id).fadeIn();
+			$(window).resize();
 			e.preventDefault();
 			$('.isActive',$(this).closest('.viewSwitch')).removeClass('isActive');
 			$(this).addClass('isActive');

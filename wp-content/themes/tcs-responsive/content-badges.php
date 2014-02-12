@@ -66,9 +66,14 @@ $achievements = array(
 	"Solved Hard Div1 Problem in SRM" => false,
 	"Digital Run Winner" => false,
 	"Digital Run Top Five" => false,
-	"Two Hundred Successful Challenges" => false
+	"Two Hundred Successful Challenges" => false,
+	"First SRM Room Win (Any Division)" => false,
+	"Five SRM Room Wins (Any Division)" => false,
+	"Twenty SRM Room Wins (Any Division)" => false,
+	"Fifty SRM Room Wins (Any Division)" => false,
+	"One Hundred SRM Room Wins (Any Division)" => false
 );
-$coder_achievements = get_member_achievements ( get_option ( 'api_user_key' ), $handle );
+$coder_achievements = get_member_achievements ($handle)->Achievements;
 foreach($coder_achievements as $achievement){
 	$achievements[$achievement->description] = true;
 }
@@ -79,6 +84,9 @@ foreach($coder_achievements as $achievement){
 	</div>
 	<div class="groupBadge Rated-SRMs <?php if($achievements['First Rated Algorithm Competition']==false){echo 'hide';} ?>">
 		<span class="subBadge Rated-SRMs-1 <?php if($achievements['First Rated Algorithm Competition']){echo 'selected';} ?>"></span><span class="subBadge Rated-SRMs-5 <?php if($achievements['Five Rated Algorithm Competitions']){echo 'selected';} ?>"></span><span class="subBadge Rated-SRMs-25 <?php if($achievements['Twenty Five Rated Algorithm Competitions']){echo 'selected';} ?>"></span><span class="subBadge Rated-SRMs-100 <?php if($achievements['One Hundred Rated Algorithm Competitions']){echo 'selected';} ?>"></span><span class="subBadge Rated-SRMs-300 <?php if($achievements['Three Hundred Rated Algorithm Competitions']){echo 'selected';} ?>"></span>
+	</div>
+	<div class="groupBadge SRM-Room-Wins" <?php if($achievements['First SRM Room Win (Any Division)']==false){echo 'hide';} ?>>
+		<span class="subBadge SRM-Room-Wins-1 <?php if($achievements['First SRM Room Win (Any Division)']){echo 'selected';} ?>"></span><span class="subBadge SRM-Room-Wins-5 <?php if($achievements['Five SRM Room Wins (Any Division)']){echo 'selected';} ?>"></span><span class="subBadge SRM-Room-Wins-20 <?php if($achievements['Twenty SRM Room Wins (Any Division)']){echo 'selected';} ?>"></span><span class="subBadge SRM-Room-Wins-50 <?php if($achievements['Fifty SRM Room Wins (Any Division)']){echo 'selected';} ?>"></span><span class="subBadge SRM-Room-Wins-100 <?php if($achievements['One Hundred SRM Room Wins (Any Division)']){echo 'selected';} ?>"></span>
 	</div>
 	<div class="groupBadge Solved-SRM-Problems <?php if($achievements['First Solved Algorithm Problem']==false){echo 'hide';} ?>">
 		<span class="subBadge Solved-SRM-Problems-1 <?php if($achievements['First Solved Algorithm Problem']){echo 'selected';} ?>"></span><span class="subBadge Solved-SRM-Problems-10 <?php if($achievements['Ten Solved Algorithm Problems']){echo 'selected';} ?>"></span><span class="subBadge Solved-SRM-Problems-50 <?php if($achievements['Fifty Solved Algorithm Problems']){echo 'selected';} ?>"></span><span class="subBadge Solved-SRM-Problems-200 <?php if($achievements['Two Hundred Solved Algorithm Problems']){echo 'selected';} ?>"></span><span class="subBadge Solved-SRM-Problems-500 <?php if($achievements['Five Hundred Solved Algorithm Problems']){echo 'selected';} ?>"></span>

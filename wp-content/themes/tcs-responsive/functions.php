@@ -152,6 +152,7 @@ function tcapi_query_vars($query_vars) {
 	$query_vars [] = 'handle';
 	$query_vars [] = 'slug';
 	$query_vars [] = 'tab';
+	$query_vars [] = 'ct';
 	$query_vars [] = 'list';
 	$query_vars [] = 'contestType';
 	$query_vars [] = 'pageNumber';
@@ -187,6 +188,7 @@ add_rewrite_rule ( '^'.MEMBER_PROFILE_PERMALINK.'/([^/]*)/?([^/]*)$', 'index.php
 // Blog Category
 //add_rewrite_rule ( '^'.BLOG_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=blog-page&slug=$matches[1]', 'top' );
 //add_rewrite_rule ( '^'.BLOG_PERMALINK.'/([^/]*)/page/([0-9]*)/?$', 'index.php?pagename=blog-page&slug=$matches[1]&page=$matches[2]', 'top' );
+add_rewrite_rule ( '^'.ACTIVE_CHALLENGES_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=challenges&contest_type=$matches[1]', 'top' );
 
 // Case studies Category
 //add_rewrite_rule ( '^'.CASE_STUDIES_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=case-studies&slug=$matches[1]', 'top' );
@@ -198,6 +200,19 @@ add_rewrite_rule( '^challenges/([^/]*)/?$', 'index.php?pagename=challenge-detail
 
 // Blog search
 //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
+// Active Challenges
+add_rewrite_rule( '^active-challenges/data/?$', 'index.php?pagename=data&contest_type=$matches[1]', 'top');
+add_rewrite_rule( '^active-challenges/([^/]*)/?$', 'index.php?pagename=active-challenges&contest_type=$matches[1]', 'top');
+
+// Past Challenges
+add_rewrite_rule( '^past-challenges/([^/]*)/?$', 'index.php?pagename=past-challenges&contest_type=$matches[1]', 'top');
+
+// Review Challenges
+add_rewrite_rule( '^review-opportunities/([^/]*)/?$', 'index.php?pagename=review-opportunities&contest_type=$matches[1]', 'top');
+add_rewrite_rule( '^review-opportunity/([^/]*)/([^/]*)/?$', 'index.php?pagename=review-opportunity-details&contest_type=$matches[1]&contestID=$matches[2]', 'top');
+
+// Bug Races
+add_rewrite_rule( '^bug-races/([^/]*)/?$', 'index.php?pagename=bug-races&contest_type=$matches[1]', 'top');
 
 // Search results
 add_rewrite_rule('^search/?$', 'index.php?', 'top');
@@ -665,11 +680,6 @@ function themeoptions_page() {
 		<h3>TopCoder API settings</h3>
 		<table width="100%">
 			<tr>
-				<?php $field = 'api_user_key'; ?>
-				<td width="150"><label for="<?php echo $field; ?>">API user key <i>(Enter TopCoder API user key)</i>:</label></td>
-				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
-			</tr>
-			<tr>
 				<?php $field = 'forumPostPerPage'; ?>
 				<td width="150"><label for="<?php echo $field; ?>">Forum post per page:</label></td>
 				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
@@ -738,7 +748,21 @@ function themeoptions_page() {
 			</tr>
 		</table>
 		<br />
-
+		
+		<h3>Challenge Pages Configuration</h3>
+		<table width="100%">
+			<tr>
+				<?php $field = 'tcoTooltipTitle'; ?>
+				<td width="150"><label for="<?php echo $field; ?>">TCO Tooltip Title:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+			<tr>
+				<?php $field = 'tcoTooltipMessage'; ?>
+				<td><label for="<?php echo $field; ?>">TCO Tooltip Message:</label></td>
+				<td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
+			</tr>
+		</table>
+		<br />	
 		<p>
 			<input type="submit" name="submit" value="Update Options" class="button button-primary" />
 		</p>
@@ -759,12 +783,14 @@ if (is_admin () && isset ( $_GET ['activated'] ) && $pagenow == 'themes.php') {
 	update_option ( 'twitterURL', 'http://www.twitter.com/topcoder' );
 	update_option ( 'linkedInURL', 'http://www.youtube.com/topcoderinc' );
 	update_option ( 'gPlusURL', 'https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts' );
+	
+	update_option ( 'tcoTooltipTitle', 'TCO-14' );
+	update_option ( 'tcoTooltipMessage', 'Eligible for TCO14' );
 }
 
 // Update options function
 function themeoptions_update() {
 	// Other Options
-	update_option ( 'api_user_key', $_POST ['api_user_key'] );
 	update_option ( 'case_studies_per_page', $_POST ['case_studies_per_page'] );
 	update_option ( 'forumPostPerPage', $_POST ['forumPostPerPage'] );
 	
@@ -782,6 +808,11 @@ function themeoptions_update() {
 	update_option ( 'twConsumerSecret', $_POST ['twConsumerSecret'] );
 	update_option ( 'twAccessToken', $_POST ['twAccessToken'] );
 	update_option ( 'twAccessTokenSecret', $_POST ['twAccessTokenSecret'] );
+	
+	// Challenges Page
+	update_option ( 'tcoTooltipTitle', $_POST ['tcoTooltipTitle'] );
+	update_option ( 'tcoTooltipMessage', $_POST ['tcoTooltipMessage'] );
+
 }
 // END OF THEME OPTIONS SUPPORT
 

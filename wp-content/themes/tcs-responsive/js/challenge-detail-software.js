@@ -25,12 +25,11 @@ function createPrizeSlider() {
 		responsive: !ie7,
 		adaptiveHeight: false,
         swipeThreshold: 40,
-        controls: false,
-        infiniteLoop: false
+        controls: false 
 	  });
 	  return true;
 }
-			
+
 function getAnchor(url)
 {
     var index = url.lastIndexOf('#');
@@ -158,11 +157,11 @@ var tooltipTimeout;
 
 function showTooltip(source, num) {
     getElementsByClassName('tip' + num)[0].style.display = 'block';
-    getElementsByClassName('tip' + num)[0].style.top = source.getBoundingClientRect().top + (document.documentElement.scrollTop || document.body.scrollTop) - 105  + 'px';
+    getElementsByClassName('tip' + num)[0].style.top = source.getBoundingClientRect().top + (document.documentElement.scrollTop || document.body.scrollTop) + 2 + 'px';
     if(hasClass(getElementsByClassName('tip' + num)[0], 'reviewStyleTip')) {
-        getElementsByClassName('tip' + num)[0].style.left = source.getBoundingClientRect().left + (document.documentElement.scrollLeft || document.body.scrollLeft) - 215 + 'px';
+        getElementsByClassName('tip' + num)[0].style.left = source.getBoundingClientRect().left + (document.documentElement.scrollLeft || document.body.scrollLeft) - 210 + 'px';
     } else {
-        getElementsByClassName('tip' + num)[0].style.left = source.getBoundingClientRect().left + (document.documentElement.scrollLeft || document.body.scrollLeft) - 37 + 'px';
+        getElementsByClassName('tip' + num)[0].style.left = source.getBoundingClientRect().left + (document.documentElement.scrollLeft || document.body.scrollLeft) + 32 + 'px';
     }
 }
 

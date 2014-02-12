@@ -21,8 +21,7 @@ if ($tab == "algo") {
 	$track = "design";
 }
 
-$userkey = get_option ( 'api_user_key' );
-$coder = get_member_profile ( $userkey, $handle );
+$coder = get_member_profile ($handle);
 #print_r($coder);
 
 ?>
@@ -40,7 +39,7 @@ $coder = get_member_profile ( $userkey, $handle );
 if ( $coder->photoLink != '')
 $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 else
-$photoLink = 'http://local.topcoder.com/reviewer/tc-cs/wp-content/themes/tcs-responsive/i/no-photo.png';
+$photoLink = 'http://www.topcoder.com/wp-content/uploads/2014/02/no-photo1.png';
 
 $quote = ($coder->quote == '' ) ? "Member of the world's largest global competitive community. ": $coder->quote;
 
@@ -70,7 +69,7 @@ $quote = ($coder->quote == '' ) ? "Member of the world's largest global competit
 								</div>
 								<div class="memberSince">
 									<label>Total Earnings :</label>
-									<div class="val"><?php echo '$'.$coder->overallEarning;?></div>
+									<div class="val"><?php echo $coder->overallEarning ? '$'.$coder->overallEarning : "$0";?></div>
 								</div>
 							</div>
 						</div>
