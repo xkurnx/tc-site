@@ -247,6 +247,9 @@ $postId = $post->ID;
 					</div>
 				</div>
 				<!-- /.searchFilter -->
+				<br/>Coming Soon
+				<!-- Coming Soon
+				
 				<div id="tableView" class=" viewTab">
 					<div class="tableWrap tcoTableWrap">						
 						<table class="dataTable tcoTable centeredTable reviewTable">
@@ -278,6 +281,7 @@ $postId = $post->ID;
 						</table>
 					</div>
 				</div>
+				-->
 				<!-- /#tableView -->
 				
 				<div class="dataChanges">

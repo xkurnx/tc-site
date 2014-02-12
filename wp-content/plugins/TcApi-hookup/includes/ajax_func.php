@@ -484,8 +484,8 @@ function get_active_data_ajax_controller() {
  
 function get_data_challenges_ajax($page = 1, $post_per_page = 1, $sortColumn = '', $sortOrder = '') {
 
-	$url = "http://api.topcoder.com/v2/data/srm/challenges?pageIndex=".$page."&pageSize=".$post_per_page;
-	//echo $url;
+	$url = "http://api.topcoder.com/v2/data/marathon/challenges?pageIndex=".$page."&pageSize=".$post_per_page;
+	#echo $url;
 
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),

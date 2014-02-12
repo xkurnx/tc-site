@@ -73,7 +73,7 @@ $documents = $contest->Documents;
 	<div class="container">
 					<header class="pageHeading aboutPage">
 						<h1><?php echo $contest->challengeName;?></h1>
-                        <h2>CONTEST TYPE: <span><?php echo $contest->challengeType;?></span></h2>
+                        <h2>CHALLENGE TYPE: <span><?php echo $contest->challengeType;?></span></h2>
 					</header>
                     
                     <div id="stepBox"> 
@@ -83,12 +83,12 @@ $documents = $contest->Documents;
                              	<?php 
 								if ( $contestType != 'design' ):
 								?>								
-									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ViewRegistration&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Contest</strong></a>
+									<a class="btn btnAction" href="http://community.topcoder.com/tc?module=ViewRegistration&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Challenge</strong></a>
 									<a class="btn btnAction" href="https://software.topcoder.com/review/actions/UploadContestSubmission.do?method=uploadContestSubmission&pid=<?php echo $contestID ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
 								<?php
 								else:
 								?>
-									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>1</span> <strong>Register For This Contest</strong></a>
+									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>1</span> <strong>Register For This Challenge</strong></a>
 									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>2</span> <strong>Submit Your Entries</strong></a>
 									<a class="btn btnAction" href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID  ;?>"><span>3</span> <strong>View Your Submission</strong></a>
 								<?php
@@ -784,7 +784,7 @@ $documents = $contest->Documents;
 
 <article id="stockPhotography">
 	<h1>STOCK PHOTOGRAPHY</h1>
-	<p>Stock photography is not allowed in this contest. All submitted elements must be designed solely by you.<br>
+	<p>Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
   <a href="http://topcoder.com/home/studio/the-process/copyright-questions/">See this page for more details.</a></p>
 </article>
 
@@ -816,7 +816,7 @@ $documents = $contest->Documents;
 <article id="winnerselection">
         <h1>Winner Selection</h1>
         <p>
-            Submissions are viewable to the client as they are entered into the contest. Winners are selected by the
+            Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
             client and are chosen solely at the Client's discretion.
         </p>
 </article>
@@ -1193,7 +1193,7 @@ $documents = $contest->Documents;
                    	  	<div class="inner">
                 <ul>
 		    <b>Your Design Files:</b><br>
-                    <li>1. Look for instructions in this contest regarding what files to provide.
+                    <li>1. Look for instructions in this challenge regarding what files to provide.
                     </li>
                     <li>2. Place your submission files into a "Submission.zip" file.</li>
                     <li>3. Place all of your source files into a "Source.zip" file.</li>
@@ -1206,7 +1206,7 @@ $documents = $contest->Documents;
 		<p><strong>Fonts:</strong><br> All fonts within your design must be declared when you submit. DO NOT <a style="white-space:nowrap;">include any font files in your submission</a><a style="white-space:nowrap;"> <br>or source files. </a><a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read the font policy here</a>.
                 </p>
 
-		<p><strong>Screening:</strong><br>All submissions are screened for eligibility before the contest holder picks winners. Don't let your hard work go to waste.<br> <a href="http://community.topcoder.com/studio/the-process/screening/">Learn more about how to pass screening here</a>.
+		<p><strong>Screening:</strong><br>All submissions are screened for eligibility before the challenge holder picks winners. Don't let your hard work go to waste.<br> <a href="http://community.topcoder.com/studio/the-process/screening/">Learn more about how to pass screening here</a>.
 		</p>
 
 		<p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Forums</a>.
@@ -1244,15 +1244,34 @@ $documents = $contest->Documents;
                    	  	</div>
                    </div>                          
 										</li>
+								   <?php
+										endif;
+										?>
+										<li class="slide"> 
+	               <div class="slideBox">
+	                  <h3>Share:</h3>
+	                  <div class="inner">
+	                  	<!-- AddThis Button BEGIN -->
+														<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+														<a class="addthis_button_preferred_1"></a>
+														<a class="addthis_button_preferred_2"></a>
+														<a class="addthis_button_preferred_3"></a>
+														<a class="addthis_button_preferred_4"></a>
+														<a class="addthis_button_compact"></a>
+														<a class="addthis_counter addthis_bubble_style"></a>
+														</div>
+														<script type="text/javascript">var addthis_config = {"data_track_addressbar":true}; var addthis_share = { url: location.href, title: "<?php echo $contest->challengeName;?>" }</script>
+														<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
+														<!-- AddThis Button END -->
+													</div>
+              		</div>                           
+										</li>
 										<li class="slide">
                    <div class="slideBox">
                    &nbsp;
                    <br/>
                    </div>                         
 										</li>
-								   <?php
-										endif;
-										?>  
 									</ul>
 								</div>
                             

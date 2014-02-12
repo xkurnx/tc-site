@@ -4,7 +4,7 @@ var sortOrder = "";
 
 /** 
  * Challenges function 
- * Author: evilkyro1965
+challenge
  */
 appChallenges = {
     init: function() {
@@ -410,7 +410,8 @@ appChallenges = {
 			contestType=="Wireframes" ||
 			contestType=="Idea Generation" ||
 			contestType=="Print\/Presentation" ||
-			contestType=="Banners\/Icons" ) 
+			contestType=="Banners\/Icons" ||
+			contestType=="Application Front-End Design" ) 
 		{		
 			return true;
 		}
@@ -425,7 +426,6 @@ appChallenges = {
 		param.action = ajaxAction;
 		param.pageIndex = pageIndex;
 		param.pageSize = postPerPage;
-		
 		$.ajax({
 			url: ajaxUrl,
 			data: param,
@@ -454,7 +454,7 @@ appChallenges = {
 			error: function(data) {
 				$('.loading').hide();
 				$('tbody', table).html(null);
-				alert("Data not found!"); 
+				alert("Ops.. Data not found!"); 
 			}
 		});
     },	
@@ -480,10 +480,13 @@ appChallenges = {
 				$('.colReg', row).html('<a href="javascript:;">'+rec.totalCompetitors+'</a>');				
 			}
 			else {
-				$('.contestName', row).html(rec.name); 
-				$('.colType', row).html("Marathon");
-				$('.colR1start', row).html(rec.startDate);
-				$('.colReg', row).html("");
+				//$('.contestName', row).html(rec.fullName); 
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName );           
+			
+			//	$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+ 				$('.colType', row).html("Marathon");
+				$('.colR1start', row).html(app.formatDateChallenges(rec.startDate));
+				$('.colReg', row).html(rec.numberOfRegistrants);
 			}
 			
             $('tbody', table).append(row);
@@ -760,10 +763,16 @@ appChallenges = {
 				var totalCompetitors = rec.totalCompetitors;
 				var numSubmissions = rec.divIITotalSolutionsSubmitted;
 				
-				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.name);
-				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");				
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName + '</a>');
+				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
+				$('.contestName', row).attr('href','http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId);
+				
+				//$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+ 				//$('.colReg', row).html(rec.numberOfRegistrants);
+				
+				
 				$('.vEndRound', row).html(startDate);
-				$('.colReg', row).html('<a href="javascript:;">'+totalCompetitors+'</a>');
+				$('.colReg', row).html('<a href="javascript:;">'+rec.numberOfRegistrants+'</a>');
 				$('.colSub', row).html(numSubmissions);
 				
 				$('tbody', table).append(row);
@@ -972,8 +981,8 @@ appChallenges = {
             }
 
             $('.colPur', row).html("$" + app.formatCur(purse));
-            
-            $('.colPhase', row).html(rec.currentPhaseName);
+			
+			$('.colPhase', row).html(rec.currentPhaseName);
             
             $('.colReg', row).html('<a href="'+contestLinkUrl+'#viewRegistrant">'+rec.numRegistrants+'</a>');
             
@@ -1095,6 +1104,15 @@ appChallenges = {
             $('.colPur', row).html("$" + purse);
             
             $('.colPhase', row).html(rec.currentStatus);
+			
+			/* tmp solution */
+			if(app.isDesignContest(rec.challengeType)){			
+				$('.winBages', row).html('<a href="http://studio.topcoder.com/?module=ViewContestResults&ct='+rec.challengeId+'">View Winners</a>');
+			}
+			else{
+				$('.winBages', row).html('<a href=http://community.topcoder.com/tc?module=ProjectDetail&pj='+rec.challengeId+'">View Winners</a>');
+			}
+			$('.moreWin', row).hide();
             
             $('.colReg', row).html('<a href="'+contestLinkUrl+'#viewRegistrant">'+rec.numRegistrants+'</a>');
             
@@ -1105,9 +1123,7 @@ appChallenges = {
                 $('.colAccessLevel', row).removeClass('public').addClass('private');
             }
             
-			/*
-				Edited by: evilkyro1965
-			*/
+			
             
             
             $('tbody', table).append(row);
@@ -1135,7 +1151,7 @@ appChallenges = {
             /*
 				* generate table row for design past contest type
 				*/
-      $('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/tco-flag-develop.png" />');           
+			$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/tco-flag-develop.png" />');           
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
 			$('.tipC', row).html(rec.challengeType);
             $('.colPay', row).html("$" + app.formatCur(purse));
@@ -1195,16 +1211,20 @@ appChallenges = {
     },
 	
 	//format time left
-	formatTimeLeft: function(timeleft) {
-		var oneDayInSecond = 86400;
-		var day =  Math.floor(timeleft / oneDayInSecond);
-		var hour = Math.floor(timeleft / 3600);
-		var minute = Math.floor(timeleft / 60);
-		if(day>0) return day+" day"+(day>1?"s":"");
-		if(hour>0) return hour+" hours"+(hour>1?"s":"");
-		if(minute>0) return minute+" minutes"+(minute>1?"s":"");
-		else return "";
-        return timeleft;
+	formatTimeLeft: function(seconds) {
+		var numdays = Math.floor(seconds / 86400);
+		var numhours = Math.floor((seconds % 86400) / 3600);
+		var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+		var numseconds = ((seconds % 86400) % 3600) % 60;
+		var style = "";
+		if ( numdays == 0 && numhours <= 2 ){
+			style="color:red";
+		}	
+		if (isNaN(numhours)){
+			return "<em style='font-size:14px;'>not available</em>";
+		}
+		return "<span style='font-size:14px;"+style+"'>"+( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" )+"</span>";
+
     },
 	
 	//get contest link url
@@ -1214,7 +1234,6 @@ appChallenges = {
 }
 
 /**  
- * Author: evilkyro1965
  */
 var challengesBP = {
 	tabAll: '<tr class="inTCO">\

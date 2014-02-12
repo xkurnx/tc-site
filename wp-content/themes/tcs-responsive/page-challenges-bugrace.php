@@ -284,7 +284,7 @@ $postId = $post->ID;
 				</div>
 				<!-- /.instructions -->
 			<?php endif; ?>	
-				
+				<br/>Coming Soon<!-- coming soon 
 				<div id="tableView" class=" viewTab">
 					<div class="tableWrap tcoTableWrap">
 						<table class="dataTable tcoTable centeredTable reviewTable f2fTable">
@@ -305,6 +305,7 @@ $postId = $post->ID;
 					</div>
 				</div>
 				<!-- /#tableView -->
+				
 				
 				<div class="dataChanges">
 					<div class="lt">
