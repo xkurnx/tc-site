@@ -410,7 +410,8 @@ appChallenges = {
 			contestType=="Wireframes" ||
 			contestType=="Idea Generation" ||
 			contestType=="Print\/Presentation" ||
-			contestType=="Banners\/Icons" ) 
+			contestType=="Banners\/Icons" ||
+			contestType=="Application Front-End Design" ) 
 		{		
 			return true;
 		}
@@ -479,10 +480,12 @@ appChallenges = {
 				$('.colReg', row).html('<a href="javascript:;">'+rec.totalCompetitors+'</a>');				
 			}
 			else {
-				$('.contestName', row).html(rec.fullName); 
-				$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+				//$('.contestName', row).html(rec.fullName); 
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName );           
+			
+			//	$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
  				$('.colType', row).html("Marathon");
-				$('.colR1start', row).html(rec.startDate);
+				$('.colR1start', row).html(app.formatDateChallenges(rec.startDate));
 				$('.colReg', row).html(rec.numberOfRegistrants);
 			}
 			
@@ -1148,7 +1151,7 @@ appChallenges = {
             /*
 				* generate table row for design past contest type
 				*/
-      $('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/tco-flag-develop.png" />');           
+			$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="'+stylesheet_dir+'/i/tco-flag-develop.png" />');           
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
 			$('.tipC', row).html(rec.challengeType);
             $('.colPay', row).html("$" + app.formatCur(purse));
