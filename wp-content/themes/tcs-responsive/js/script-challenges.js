@@ -4,7 +4,7 @@ var sortOrder = "";
 
 /** 
  * Challenges function 
- * Author: evilkyro1965
+challenge
  */
 appChallenges = {
     init: function() {
@@ -425,7 +425,6 @@ appChallenges = {
 		param.action = ajaxAction;
 		param.pageIndex = pageIndex;
 		param.pageSize = postPerPage;
-		
 		$.ajax({
 			url: ajaxUrl,
 			data: param,
@@ -454,7 +453,7 @@ appChallenges = {
 			error: function(data) {
 				$('.loading').hide();
 				$('tbody', table).html(null);
-				alert("Data not found!"); 
+				alert("Ops.. Data not found!"); 
 			}
 		});
     },	
@@ -480,10 +479,11 @@ appChallenges = {
 				$('.colReg', row).html('<a href="javascript:;">'+rec.totalCompetitors+'</a>');				
 			}
 			else {
-				$('.contestName', row).html(rec.name); 
-				$('.colType', row).html("Marathon");
+				$('.contestName', row).html(rec.fullName); 
+				$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+ 				$('.colType', row).html("Marathon");
 				$('.colR1start', row).html(rec.startDate);
-				$('.colReg', row).html("");
+				$('.colReg', row).html(rec.numberOfRegistrants);
 			}
 			
             $('tbody', table).append(row);
@@ -760,10 +760,16 @@ appChallenges = {
 				var totalCompetitors = rec.totalCompetitors;
 				var numSubmissions = rec.divIITotalSolutionsSubmitted;
 				
-				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.name);
-				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");				
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
+	
+				
+				//$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+ 				//$('.colReg', row).html(rec.numberOfRegistrants);
+				
+				
 				$('.vEndRound', row).html(startDate);
-				$('.colReg', row).html('<a href="javascript:;">'+totalCompetitors+'</a>');
+				$('.colReg', row).html('<a href="javascript:;">'+rec.numberOfRegistrants+'</a>');
 				$('.colSub', row).html(numSubmissions);
 				
 				$('tbody', table).append(row);
@@ -972,8 +978,8 @@ appChallenges = {
             }
 
             $('.colPur', row).html("$" + app.formatCur(purse));
-            
-            $('.colPhase', row).html(rec.currentPhaseName);
+			
+			$('.colPhase', row).html(rec.currentPhaseName);
             
             $('.colReg', row).html('<a href="'+contestLinkUrl+'#viewRegistrant">'+rec.numRegistrants+'</a>');
             
@@ -1095,6 +1101,10 @@ appChallenges = {
             $('.colPur', row).html("$" + purse);
             
             $('.colPhase', row).html(rec.currentStatus);
+			
+			/* tmp solution */
+			$('.winBages', row).html('<a href="http://studio.topcoder.com/?module=ViewContestResults&ct='+rec.challengeId+'">View Winners</a>');
+			$('.moreWin', row).hide();
             
             $('.colReg', row).html('<a href="'+contestLinkUrl+'#viewRegistrant">'+rec.numRegistrants+'</a>');
             
@@ -1105,9 +1115,7 @@ appChallenges = {
                 $('.colAccessLevel', row).removeClass('public').addClass('private');
             }
             
-			/*
-				Edited by: evilkyro1965
-			*/
+			
             
             
             $('tbody', table).append(row);
@@ -1195,7 +1203,7 @@ appChallenges = {
     },
 	
 	//format time left
-	formatTimeLeft: function(timeleft) {
+	formatTimeLeft: function(seconds) {
 		var numdays = Math.floor(seconds / 86400);
 		var numhours = Math.floor((seconds % 86400) / 3600);
 		var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -1218,7 +1226,6 @@ appChallenges = {
 }
 
 /**  
- * Author: evilkyro1965
  */
 var challengesBP = {
 	tabAll: '<tr class="inTCO">\
