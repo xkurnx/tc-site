@@ -1348,12 +1348,12 @@ var app = {
 				if (rec.round1EndDate == null || rec.round1EndDate == "") {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndRound', row).html(app.formatDate2(new Date(rec.round1EndDate)));
+				$('.vEndRound', row).html('--');
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndDate', row).html('--');
+				$('.vEndDate', row).html(app.formatDate2(new Date(rec.endDate)));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data
