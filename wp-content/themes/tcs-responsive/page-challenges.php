@@ -50,12 +50,12 @@ $postId = $post->ID;
 					</a><span class="arrow"></span>
 				</div>
 				<div class="grid-3-1 track trackSD<?php if($contest_type=="develop") echo " isActive"; ?>" >
-					<a href="<?php echo $activeDevlopChallengesLink;?>"><i></i>Software Development Challenges
+					<a href="<?php echo $activeDevlopChallengesLink;?>"><i></i>Development Challenges
 					</a><span class="arrow"></span>
 				</div>
 				<div class="grid-3-1 track trackAn<?php if($contest_type=="data") echo " isActive"; ?>" >
 					<a href="<?php echo $activeDataChallengesLink;?>">
-						<i></i>Algorithm &amp; Big Data Challenges
+						<i></i>Data Science Challenges
 					</a><span class="arrow"></span>
 				</div>
 			</div>
