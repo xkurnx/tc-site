@@ -173,13 +173,17 @@ var app = {
         });
 
         // tab navs
-        $('.tabNav a').on(ev, function() {
+        $('.tabNav:not(.algoLayout .tabNav) a').on(ev, function() {
             var id = $(this).attr('href');
             $('.tab', $(this).closest('.tabsWrap')).hide();
             $(id).fadeIn();
             $('.active', $(this).closest('nav')).removeClass('active');
             $(this).addClass('active');
             return false;
+        });
+        $('.algoLayout .tabNav a').on(ev, function() {
+        			$('.algoLayout .tabNav a').removeClass('isActive');
+            $(this).addClass('isActive');
         });
     },
     
@@ -627,7 +631,7 @@ var app = {
 						"position": "static"
 					});
 				}
-				caseItem.slideUp(500, function(){
+				caseItem.hide(0, function(){
 					caseItem.hide()
 					$(".jsShowCaseDetails").removeClass("isShow");
 					$(".caseDetailItem").hide();
@@ -639,6 +643,8 @@ var app = {
 							"visibility": ""
 						});
 					}
+					var scrollTopValue = $("html").data("scrollTop");
+					$('html, body').animate({scrollTop: scrollTopValue+"px"});
 				});
 			});
 			
@@ -671,14 +677,29 @@ var app = {
 							"position": "relative"
 						});
 					}
-					detailItem.stop().slideDown(800, function(){
-						if (ie7) {
-							$('.btn', detailItem).css({
-								"visibility": ""
-							});
-						}
-					});		
-					$(".caseDetailItem", gridItem).eq(0).stop().slideDown(800);	
+					if(detailsWrapper.is(":visible")){
+						detailItem.stop().slideDown(800, function(){
+							if (ie7) {
+								$('.btn', detailItem).css({
+									"visibility": ""
+								});
+							}
+							var offset = linkCase.offset();
+							var scrollTopValue = $(document).scrollTop();
+							$("html").data("scrollTop", scrollTopValue);
+							var totalScrollTopValue = offset.top+linkCase.outerHeight()+14;
+							//alert(totalScrollTopValue)
+							$('html, body').animate({scrollTop: totalScrollTopValue+"px"}, 500);
+						});		
+					}else{
+						$(".caseDetailItem", gridItem).eq(0).stop().slideDown(800, function(){
+							var offset = linkCase.offset();
+							var scrollTopValue = $(document).scrollTop();
+							$("html").data("scrollTop", scrollTopValue);
+							var totalScrollTopValue = offset.top+linkCase.outerHeight();
+							$('html, body').animate({scrollTop: totalScrollTopValue+"px"}, 500);
+						});		
+					}
 				}
 			});
 			
@@ -1317,7 +1338,7 @@ var app = {
 				/*
 				* generate table row for contest type Marathon
 				*/			
-            	$('.contestName', row).html('<i></i>' + rec.fullName);
+            	$('.contestName', row).html('<i></i>' + '<a href=http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '>' + rec.fullName + '</a>');
 				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1332,7 +1353,7 @@ var app = {
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndDate', row).html(app.formatDate2(new Date(rec.endDate)));
+				$('.vEndDate', row).html('--');
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
 					rec.timeLeft = "3 days"; //dummy data

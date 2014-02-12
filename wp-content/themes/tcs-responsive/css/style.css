@@ -795,15 +795,18 @@
                 transition-duration: 0.2s;
                 cursor: pointer;
 }
-        .dataTable .trackSD .colCh a i{
+        .dataTable .trackSD .colCh a i,
+        .dataTable .track-develop .colCh a i{
             background-position: 0 0;
             background-color: #7ab800; 
         }
-        .dataTable .trackUX .colCh a i{
+        .dataTable .trackUX .colCh a i,
+        .dataTable .track-design .colCh a i{
             background-position: 0 -50px;
             background-color: #00add0; 
         }
-        .dataTable .trackAn .colCh a i{
+        .dataTable .trackAn .colCh a i,
+        .dataTable .track-data .colCh a i{
             background-position: 0 -100px;
             background-color: #ffae00; 
         }
