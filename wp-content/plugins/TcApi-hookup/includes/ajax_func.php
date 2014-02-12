@@ -187,13 +187,13 @@ function get_active_contests_ajax($userKey = '', $contestType = 'design', $page 
 // returns past contest list
 function get_past_contests_ajax($userKey = '', $contestType = '', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
 	$contestType = str_replace ( " ", "+", $contestType );
-	$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&pageSize=10000";
+	$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&pageSize=1000";
 	$args = array (
 			'httpversion' => get_option ( 'httpversion' ),
 			'timeout' => get_option ( 'request_timeout' ) 
 	);
 	if ($contestType == "") {
-		$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&pageSize=10000";
+		$url = "https://api.topcoder.com/v2/develop/challenges?user_key=" . $userKey . "&listType=PAST&pageSize=1000";
 	}
 	if ($sortOrder) {
 		$url .= "&sortOrder=$sortOrder";
