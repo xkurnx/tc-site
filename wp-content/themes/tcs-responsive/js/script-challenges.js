@@ -760,9 +760,9 @@ appChallenges = {
 				var totalCompetitors = rec.totalCompetitors;
 				var numSubmissions = rec.divIITotalSolutionsSubmitted;
 				
-				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName + '</a>');
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
-	
+				$('.contestName', row).attr('href','http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId);
 				
 				//$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
  				//$('.colReg', row).html(rec.numberOfRegistrants);
