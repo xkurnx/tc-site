@@ -1110,7 +1110,7 @@ appChallenges = {
 				$('.winBages', row).html('<a href="http://studio.topcoder.com/?module=ViewContestResults&ct='+rec.challengeId+'">View Winners</a>');
 			}
 			else{
-				$('.winBages', row).html('<a href=http://community.topcoder.com/tc?module=ProjectDetail&pj='+rec.challengeId+'">View Winners</a>');
+				$('.winBages', row).html('<a href="http://community.topcoder.com/tc?module=ProjectDetail&pj='+rec.challengeId+'">View Winners</a>');
 			}
 			$('.moreWin', row).hide();
             
