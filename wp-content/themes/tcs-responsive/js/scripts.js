@@ -173,17 +173,13 @@ var app = {
         });
 
         // tab navs
-        $('.tabNav:not(.algoLayout .tabNav) a').on(ev, function() {
+        $('.tabNav a').on(ev, function() {
             var id = $(this).attr('href');
             $('.tab', $(this).closest('.tabsWrap')).hide();
             $(id).fadeIn();
             $('.active', $(this).closest('nav')).removeClass('active');
             $(this).addClass('active');
             return false;
-        });
-        $('.algoLayout .tabNav a').on(ev, function() {
-        			$('.algoLayout .tabNav a').removeClass('isActive');
-            $(this).addClass('isActive');
         });
     },
     
@@ -265,6 +261,61 @@ var app = {
 					});
 				});
 			});
+		}
+    
+    },
+	/*
+	 * community design,development,data-marathon page functions
+	 * --------------------------------------------------------------
+	 */
+    communityLanding: {
+        init: function() { 
+            // list partial challenges table data
+				app.communityLanding.getAllPartialContests(ajax.postPerPage);            
+			
+            $('.dataChanges .viewAll').on(ev, function() {
+                ajax.data["pageIndex"] = 1;
+                app.communityLanding.getAllPartialContests(100);   
+               
+                $('.rt', $(this).closest('.dataChanges')).hide();
+                $(this).parent().hide();
+                app.ie7Fix2();
+            });
+			
+			/* table short */
+			$('.dataTable.challenges thead th').click(function(){
+				if($(this).hasClass('disabled')){ return false;}
+				var shortCol = $(this).text().toLowerCase();
+				shortCol = shortCol.replace(' ','');
+				if(shortCol==""){return false;}
+				
+				ajax.data["sortColumn"] = shortCol;
+				if($(this).hasClass('asc')){
+					ajax.data["sortOrder"] = 'desc';
+					$(this).removeClass('asc');
+				}else{
+					ajax.data["sortOrder"] = 'asc';
+					$(this).addClass('asc');
+				}
+				/* build url and requtest data using ajax */
+				//if(conType==null || conType==""){
+					app.communityLanding.getAllPartialContests(5);       
+				
+			});
+        },			
+		
+		getAllPartialContests: function(nRecords){
+			/*
+			* get all contests data
+			*/	
+			if(contest_track=="algorithm") {
+				app.getPartialContests(ajaxUrl,$('.challenges'), nRecords, 'data-marathon',false, function(){
+					app.getPartialContests(ajaxUrl,$('.challenges'), nRecords, 'data-srm',false);
+				});
+			}
+			else {
+				app.getPartialContests(ajaxUrl,$('.challenges'), nRecords, contest_track,false, function(){});
+			}
 		}
     
     },
@@ -877,7 +928,6 @@ var app = {
 				$('.colSub', row).html(rec.submissions);
 
 			}else if(ajax.data["contest_type"]=="data-marathon"){
-
 				/*
 				* generate table row for contest type Marathon
 				*/			
