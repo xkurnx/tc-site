@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/profileBadges.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/register-login.css" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/blog-base.css" />
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/community-landing.css" />
 
 
 
@@ -70,6 +71,6 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/challenge-detail-software.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js" type="text/javascript"></script>
-
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.column-1.0.js" type="text/javascript"></script>
 
 
