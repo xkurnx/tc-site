@@ -464,26 +464,42 @@ if( !is_page_template('page-challenges.php') &&
 					<span class="valid"></span>
 				</p>
 				
-				<p class="row planToCompete">
-					<label>Planning to compete?</label>
-						<span class="options">
-							<span class="animeMan manBlue"></span>
-							<span class="checkBox"><input type="checkbox" />In Design</span>
-							
-							<span class="animeMan manGreen"></span>					
-							<span class="checkBox"><input type="checkbox" />In Development</span>
-							
-							<span class="animeMan manYellow"></span>
-							<span class="checkBox"><input type="checkbox" />In Data(Algorithm)</span>
-							
-							<span class="animeMan manGrey"></span>
-							<span class="checkBox"><input type="checkbox" />Not sure yet</span>
-							<span class="clear"></span>
-						</span>
-						<div class="clear"></div>
-			 </p>
+				<p class="row lSpace">
+					<label><input type="checkbox">I agree to the <a target="_blank" href="/customers/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/customers/how-it-works/privacy-policy/">privacy policy</a>*</label>
+					<span class="err1">You must agree to the terms</span>
+					<span class="err2">You must agree to the terms</span>
+				</p>
 				
 			</form><!-- END .form register -->
+			<h3>Planning to compete?</h3>
+			<div class="options">
+				<div class="person blue">
+					<label>
+						<span class="checkBox"><input type="checkbox" />I'm a designer</span>
+						<span class="animeMan manBlue"><span class="manBlueHover animeManHover"></span></span>
+						
+					</label>
+				</div><!-- END .person -->
+				<div class="person green">
+					<label>
+						<span class="checkBox"><input type="checkbox" />I'm a developer</span>
+						<span class="animeMan manGreen"><span class="manGreenHover animeManHover"></span></span>					
+					</label>
+				</div><!-- END .person -->
+				<div class="person yellow">
+					<label>
+						<span class="checkBox"><input type="checkbox" />I'm a algorithmist</span>
+						<span class="animeMan manYellow"><span class="manYellowHover animeManHover"></span></span>
+					</label>
+				</div><!-- END .person -->
+				<div class="person grey">
+					<label>
+						<span class="checkBox"><input type="checkbox" />I'm a not sure yet</span>
+						<span class="animeMan manGrey"><span class="manGreyHover animeManHover"></span></span>
+					</label>
+				</div><!-- END .person -->
+				<div class="clear"></div>
+			</div>
 			<div class="clear"></div>
 			<p class="submitBtn">
 				<a href="javascript:;" class="btn btnSubmit">Sign Up</a>
@@ -544,79 +560,39 @@ if( !is_page_template('page-challenges.php') &&
 	</div>
 	</div><!-- /.tooltip -->
 
-
-
 <script>
-  var googleProvider = "google-oauth2";
-  var facebookProvider = "facebook";
-  var twitterProvider = "twitter";
-  var githubProvider = "github";
   var auth0 = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-    callbackURL:    'http://www.topcoder.com/?action=callback',
+    callbackURL:    'https://www.topcoder.com/reg2/callback.action',
     state:			'http://www.topcoder.com/',
     redirect_uri:   'http://www.topcoder.com/'
-  });
-  
-	auth0.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
-			var firstName = "" , lastName = "", handle = "", email = "";
-			if(profile.identities[0].connection === googleProvider || profile.identities[0].connection === facebookProvider){
-				firstName = profile.given_name;
-				lastName = profile.family_name;
-				handle = profile.nickname;
-				email = profile.email;
-			} else if(profile.identities[0].connection === twitterProvider){
-				var splitName = profile.name.split(" ");
-				firstName = splitName[0];
-				if(splitName.length > 1){
-					lastName = splitName[1];
-				}
-				handle = profile.screen_name;
-			} else if(profile.identities[0].connection === githubProvider){
-				var splitName = profile.name.split(" ");
-				firstName = splitName[0];
-				if(splitName.length > 1){
-					lastName = splitName[1];
-				}
-				handle = profile.nickname;
-				email = profile.email;
-			}
-     $("#registerForm .firstName").val(firstName);
-     $("#registerForm .lastName").val(lastName);
-     $("#registerForm .handle").val(handle);
-     $("#registerForm .email").val(email);
   });
  
   $('.signin-google').on('click', function() {
     auth0.login({
-		connection: googleProvider,
-        state:      'http://www.topcoder.com/',
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+		connection: 'google-oauth2',
+        state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
 	});
  
   $('.signin-facebook').on('click', function() {
-    auth0.login({connection: facebookProvider, 
-    state:      'http://www.topcoder.com/',
-    response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    auth0.login({connection: 'facebook', 
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-twitter').on('click', function() {
-    auth0.login({connection: twitterProvider, 
-    state:      'http://www.topcoder.com/',
-    response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    auth0.login({connection: 'twitter', 
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-github').on('click', function() {
-    auth0.login({connection: githubProvider,
-    state:      'http://www.topcoder.com/',
-    response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    auth0.login({connection: 'github',
+    state:      'http://www.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-etc').on('click', function() {
     auth0.login({connection: 'connection-name', 
-    state:      'http://www.topcoder.com/',
-    response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-db').on('click', function() {
@@ -640,7 +616,6 @@ if( !is_page_template('page-challenges.php') &&
 
 
 </div>
-
 
 
 
