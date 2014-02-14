@@ -465,7 +465,7 @@ if( !is_page_template('page-challenges.php') &&
 				</p>
 				
 				<p class="row lSpace">
-					<label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>*</label>
+					<label><input type="checkbox">I agree to the <a target="_blank" href="/customers/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/customers/how-it-works/privacy-policy/">privacy policy</a>*</label>
 					<span class="err1">You must agree to the terms</span>
 					<span class="err2">You must agree to the terms</span>
 				</p>
@@ -560,15 +560,16 @@ if( !is_page_template('page-challenges.php') &&
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'https://www.topcoder.com/reg2/callback.action',
-    state:			'http://beta.topcoder.com/',
-    redirect_uri:   'http://beta.topcoder.com/'
+    state:			'http://www.topcoder.com/',
+    redirect_uri:   'http://www.topcoder.com/'
   });
+
   var auth0Register = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-    callbackURL:    'http://beta.topcoder.com/?action=callback',
-    state:			'http://beta.topcoder.com/',
-    redirect_uri:   'http://beta.topcoder.com/'
+    callbackURL:    'http://www.topcoder.com/?action=callback',
+    state:			'http://www.topcoder.com/',
+    redirect_uri:   'http://www.topcoder.com/'
   });
   
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {

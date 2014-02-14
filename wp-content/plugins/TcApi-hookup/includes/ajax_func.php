@@ -18,7 +18,7 @@ function post_register_controller(){
 	'password' => $_POST['password']
 	),
 	'cookies' => array()
-    )
+	)
 );
 
 	$msg = json_decode($response['body']);
@@ -150,7 +150,7 @@ add_action ( 'wp_ajax_nopriv_get_copilot_stats', 'get_copilot_stats_controller' 
 */
 
 // returns active contest list
-function get_active_contests_ajax($userKey = '', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '') {
+function get_active_contests_ajax($userKey = '', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = 'submissionEndDate', $sortOrder = '') {
 $contestType = str_replace ( " ", "+", $contestType );
 $contestType = str_replace ( "-", "/", $contestType );
 $listType = ( $contestType == 'data/marathon' or $contestType == 'data/srm' ) ? "active":"Open";
@@ -342,7 +342,7 @@ $contest_type = $_GET ['contest_type'];
 $page = $_GET['pageIndex'];
 $listType = $_GET['listType'];
 $post_per_page = $_GET ['pageSize'];
-$sortColumn = $_GET ['sortColumn'];
+$sortColumn = ($_GET ['sortColumn']);
 $sortOrder = $_GET ['sortOrder'];
 $challengeType = urlencode($_GET ['challengeType']);
 $startDate = $_GET ['startDate'] ;
@@ -356,7 +356,7 @@ echo json_encode ( $contest_list );
 die ();
 }
  
-function get_challenges_ajax($listType = 'Active', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = '', $sortOrder = '', $challengeType = '',
+function get_challenges_ajax($listType = 'Active', $contestType = 'design', $page = 1, $post_per_page = 30, $sortColumn = "submissionEndDate", $sortOrder = 'desc', $challengeType = '',
 $startDate='', $endDate=''
 ) {
 
@@ -365,7 +365,12 @@ $url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listT
 if ($contestType == "") {
 $url = "http://api.topcoder.com/v2/".$contestType."/challenges?listType=".$listType."&pageIndex=".$page."&pageSize=".$post_per_page;
 }
-//echo $url;
+
+// set default value since failed using params;
+$sortColumn = ( $sortColumn == '' ) ? "submissionEndDate" : $sortColumn;
+$sortOrder = ( $sortOrder == '' ) ? "desc" : $sortOrder;
+ 
+
 if ($sortOrder) {
 $url .= "&sortOrder=$sortOrder";
 }
@@ -520,6 +525,14 @@ $srmData->data[count($srmData)+1] = array(
 );
 }
 }
+
+$urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=".$page."&pageSize=".$post_per_page;
+
+$args = array (
+'httpversion' => get_option ( 'httpversion' ),
+'timeout' => get_option ( 'request_timeout' )
+);
+$responseMarathon = wp_remote_get ( $urlMarathon, $args );
 
 
 }
