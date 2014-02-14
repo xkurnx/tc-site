@@ -268,9 +268,9 @@ $postId = $post->ID;
 						<table class="dataTable tcoTable">
 							<thead>
 								<tr>
-									<th class="colCh asc" data-placeholder="challengeName">Challenges<i></i></th>
+									<th class="colCh" data-placeholder="challengeName">Challenges<i></i></th>
 									<th class="colType" data-placeholder="challengeType">Type<i></i></th>
-									<th class="colTime noSort" data-placeholder="postingDate">Timeline<i></i></th>
+									<th class="colTime desc" data-placeholder="submissionEndDate">Timeline<i></i></th>
 									<th class="colPur noSort" data-placeholder="prize">Purse<i></i></th>
 									<th class="colPhase noSort" data-placeholder="currentPhase">Current Phase<i></i></th>
 									<th class="colReg noSort" data-placeholder="numRegistrants">Registrants<i></i></th>
