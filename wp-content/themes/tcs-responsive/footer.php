@@ -560,15 +560,15 @@ if( !is_page_template('page-challenges.php') &&
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'https://www.topcoder.com/reg2/callback.action',
-    state:			'http://www.topcoder.com/',
-    redirect_uri:   'http://www.topcoder.com/'
+    state:			'http://beta.topcoder.com/',
+    redirect_uri:   'http://beta.topcoder.com/'
   });
   var auth0Register = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-    callbackURL:    'http://www.topcoder.com/?action=callback',
-    state:			'http://www.topcoder.com/',
-    redirect_uri:   'http://www.topcoder.com/'
+    callbackURL:    'http://beta.topcoder.com/?action=callback',
+    state:			'http://beta.topcoder.com/',
+    redirect_uri:   'http://beta.topcoder.com/'
   });
   
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
