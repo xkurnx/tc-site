@@ -148,10 +148,10 @@ if( !is_page_template('page-challenges.php') &&
 		<div class="content">
 			<h2>Register Using An Existing Account</h2>
 			<div id="socials">
-				<a class="signin-facebook" href="#"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
-				<a class="signin-google" href="#"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
-				<a class="signin-twitter" href="#"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
-				<a class="signin-github" href="#"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
+				<a class="register-facebook" href="#"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
+				<a class="register-google" href="#"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
+				<a class="register-twitter" href="#"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
+				<a class="register-github" href="#"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
 				<p>Using an existing account is quick and easy.<br />Select the account you would like to use and we'll do the rest for you</p>
 				<div class="clear"></div>
 			</div><!-- END .socials -->
@@ -464,6 +464,11 @@ if( !is_page_template('page-challenges.php') &&
 					<span class="valid"></span>
 				</p>
 				
+				<p class="row lSpace">
+					<label><input type="checkbox">I agree to the <a target="_blank" href="/customers/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/customers/how-it-works/privacy-policy/">privacy policy</a>*</label>
+					<span class="err1">You must agree to the terms</span>
+					<span class="err2">You must agree to the terms</span>
+				</p>
 				<p class="row planToCompete">
 					<label>Planning to compete?</label>
 						<span class="options">
@@ -551,7 +556,14 @@ if( !is_page_template('page-challenges.php') &&
   var facebookProvider = "facebook";
   var twitterProvider = "twitter";
   var githubProvider = "github";
-  var auth0 = new Auth0({
+  var auth0Login = new Auth0({
+    domain:         'topcoder.auth0.com',
+    clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
+    callbackURL:    'https://www.topcoder.com/reg2/callback.action',
+    state:			'http://www.topcoder.com/',
+    redirect_uri:   'http://www.topcoder.com/'
+  });
+  var auth0Register = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'http://www.topcoder.com/?action=callback',
@@ -559,7 +571,7 @@ if( !is_page_template('page-challenges.php') &&
     redirect_uri:   'http://www.topcoder.com/'
   });
   
-	auth0.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
 			var firstName = "" , lastName = "", handle = "", email = "";
 			if(profile.identities[0].connection === googleProvider || profile.identities[0].connection === facebookProvider){
 				firstName = profile.given_name;
@@ -587,40 +599,60 @@ if( !is_page_template('page-challenges.php') &&
      $("#registerForm .handle").val(handle);
      $("#registerForm .email").val(email);
   });
- 
-  $('.signin-google').on('click', function() {
-    auth0.login({
+  
+  $('.register-google').on('click', function() {
+    auth0Register.login({
 		connection: googleProvider,
         state:      'http://www.topcoder.com/',
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
 	});
  
-  $('.signin-facebook').on('click', function() {
-    auth0.login({connection: facebookProvider, 
+  $('.register-facebook').on('click', function() {
+    auth0Register.login({connection: facebookProvider, 
     state:      'http://www.topcoder.com/',
     response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
-  $('.signin-twitter').on('click', function() {
-    auth0.login({connection: twitterProvider, 
+  $('.register-twitter').on('click', function() {
+    auth0Register.login({connection: twitterProvider, 
     state:      'http://www.topcoder.com/',
     response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
-  $('.signin-github').on('click', function() {
-    auth0.login({connection: githubProvider,
+  $('.register-github').on('click', function() {
+    auth0Register.login({connection: githubProvider,
     state:      'http://www.topcoder.com/',
     response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
+  $('.signin-google').on('click', function() {
+    auth0Login.login({
+		connection: 'google-oauth2',
+        state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+	});
+ 
+  $('.signin-facebook').on('click', function() {
+    auth0Login.login({connection: 'facebook', 
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+  });
+ 
+  $('.signin-twitter').on('click', function() {
+    auth0Login.login({connection: 'twitter', 
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+  });
+ 
+  $('.signin-github').on('click', function() {
+    auth0Login.login({connection: 'github',
+    state:      'http://www.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+  });
+ 
   $('.signin-etc').on('click', function() {
-    auth0.login({connection: 'connection-name', 
-    state:      'http://www.topcoder.com/',
-    response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+    auth0Login.login({connection: 'connection-name', 
+    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
   $('.signin-db').on('click', function() {
-    auth0.login({
+    auth0Login.login({
       connection: 'LDAP', 
       state:      'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
       username: document.getElementById('username').value, 

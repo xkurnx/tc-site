@@ -226,7 +226,7 @@ $(function(){
 			
 		});
 		
-		$('input:checkbox',frm).each(function(){
+		$('.lSpace input:checkbox',frm).each(function(){
 			if(!$(this).is(':checked')) {
 				$(this).closest('.row').find('.err1').show();
 				isValid = false;
