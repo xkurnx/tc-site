@@ -1,38 +1,38 @@
 <?php
 function post_register_controller(){
-global $_POST;
-$url = "https://api.topcoder.com/v2/users";
-$response = wp_remote_post( $url, array(
-'method' => 'POST',
-'timeout' => 45,
-'redirection' => 5,
-'httpversion' => '1.0',
-'blocking' => true,
-'headers' => array(),
-'body' => array(
-'firstName' => $_POST['firstName'],
-'lastName' => $_POST['lastName'],
-'handle' => $_POST['handle'],
-'country' => $_POST['country'],
-'email' => $_POST['email'],
-'password' => $_POST['password']
-),
-'cookies' => array()
-)
+	global $_POST;
+	$url = "https://api.topcoder.com/v2/users";
+	$response = wp_remote_post( $url, array(
+	'method' => 'POST',
+	'timeout' => 45,
+	'redirection' => 5,
+	'httpversion' => '1.0',
+	'blocking' => true,
+	'headers' => array(),
+	'body' => array( 
+	'firstName' => $_POST['firstName'], 
+	'lastName' => $_POST['lastName'],
+	'handle' => $_POST['handle'],
+	'country' => $_POST['country'],
+	'email' => $_POST['email'],
+	'password' => $_POST['password']
+	),
+	'cookies' => array()
+    )
 );
 
-$msg = json_decode($response['body']);
-$code = $response['response']['code'];
-#print_r($msg);
-$mm = "";
-if ( $msg->error )
-foreach ( $msg->error->details as $m ):
-$mm.= $m;
-endforeach;
-
-echo json_encode(array("code" => $code, "description" => $mm ));	
-exit;
-return "Error in processing request";
+	$msg = json_decode($response['body']);
+	$code = $response['response']['code'];
+	#print_r($msg);
+	$mm = "";
+	if ( $msg->error )
+	foreach ( $msg->error->details as $m ):
+		$mm.= $m;
+	endforeach;
+	
+	echo json_encode(array("code" => $code, "description" => $mm ));	
+	exit;
+	return "Error in processing request";
 
 
 }
@@ -386,7 +386,7 @@ $url .= "&submissionEndDate.startDate=$startDate";
 if ($endDate) {
 $url .= "&submissionEndDate.endDate=$endDate";
 }
-
+#echo $url;
 $args = array (
 'httpversion' => get_option ( 'httpversion' ),
 'timeout' => get_option ( 'request_timeout' )
@@ -525,14 +525,6 @@ $srmData->data[count($srmData)+1] = array(
 );
 }
 }
-
-$urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=".$page."&pageSize=".$post_per_page;
-
-$args = array (
-'httpversion' => get_option ( 'httpversion' ),
-'timeout' => get_option ( 'request_timeout' )
-);
-$responseMarathon = wp_remote_get ( $urlMarathon, $args );
 
 
 }

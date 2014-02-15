@@ -469,7 +469,6 @@ if( !is_page_template('page-challenges.php') &&
 					<span class="err1">You must agree to the terms</span>
 					<span class="err2">You must agree to the terms</span>
 				</p>
-<<<<<<< HEAD
 				<p class="row planToCompete">
 					<label>Planning to compete?</label>
 						<span class="options">
@@ -488,39 +487,8 @@ if( !is_page_template('page-challenges.php') &&
 						</span>
 						<div class="clear"></div>
 			 </p>
-=======
->>>>>>> master
 				
 			</form><!-- END .form register -->
-			<h3>Planning to compete?</h3>
-			<div class="options">
-				<div class="person blue">
-					<label>
-						<span class="checkBox"><input type="checkbox" />I'm a designer</span>
-						<span class="animeMan manBlue"><span class="manBlueHover animeManHover"></span></span>
-						
-					</label>
-				</div><!-- END .person -->
-				<div class="person green">
-					<label>
-						<span class="checkBox"><input type="checkbox" />I'm a developer</span>
-						<span class="animeMan manGreen"><span class="manGreenHover animeManHover"></span></span>					
-					</label>
-				</div><!-- END .person -->
-				<div class="person yellow">
-					<label>
-						<span class="checkBox"><input type="checkbox" />I'm a algorithmist</span>
-						<span class="animeMan manYellow"><span class="manYellowHover animeManHover"></span></span>
-					</label>
-				</div><!-- END .person -->
-				<div class="person grey">
-					<label>
-						<span class="checkBox"><input type="checkbox" />I'm a not sure yet</span>
-						<span class="animeMan manGrey"><span class="manGreyHover animeManHover"></span></span>
-					</label>
-				</div><!-- END .person -->
-				<div class="clear"></div>
-			</div>
 			<div class="clear"></div>
 			<p class="submitBtn">
 				<a href="javascript:;" class="btn btnSubmit">Sign Up</a>
@@ -581,8 +549,9 @@ if( !is_page_template('page-challenges.php') &&
 	</div>
 	</div><!-- /.tooltip -->
 
+
+
 <script>
-<<<<<<< HEAD
   var googleProvider = "google-oauth2";
   var facebookProvider = "facebook";
   var twitterProvider = "twitter";
@@ -595,16 +564,12 @@ if( !is_page_template('page-challenges.php') &&
     redirect_uri:   'http://www.topcoder.com/'
   });
   var auth0Register = new Auth0({
-=======
-  var auth0 = new Auth0({
->>>>>>> master
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-    callbackURL:    'https://www.topcoder.com/reg2/callback.action',
+    callbackURL:    'http://www.topcoder.com/?action=callback',
     state:			'http://www.topcoder.com/',
     redirect_uri:   'http://www.topcoder.com/'
   });
-<<<<<<< HEAD
   
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
 			var firstName = "" , lastName = "", handle = "", email = "";
@@ -658,28 +623,6 @@ if( !is_page_template('page-challenges.php') &&
     auth0Register.login({connection: githubProvider,
     state:      'http://www.topcoder.com/',
     response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
-=======
- 
-  $('.signin-google').on('click', function() {
-    auth0.login({
-		connection: 'google-oauth2',
-        state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
-	});
- 
-  $('.signin-facebook').on('click', function() {
-    auth0.login({connection: 'facebook', 
-    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
-  });
- 
-  $('.signin-twitter').on('click', function() {
-    auth0.login({connection: 'twitter', 
-    state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
-  });
- 
-  $('.signin-github').on('click', function() {
-    auth0.login({connection: 'github',
-    state:      'http://www.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
->>>>>>> master
   });
  
   $('.signin-google').on('click', function() {
@@ -704,11 +647,7 @@ if( !is_page_template('page-challenges.php') &&
   });
  
   $('.signin-etc').on('click', function() {
-<<<<<<< HEAD
     auth0Login.login({connection: 'connection-name', 
-=======
-    auth0.login({connection: 'connection-name', 
->>>>>>> master
     state:      'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
   });
  
@@ -733,6 +672,7 @@ if( !is_page_template('page-challenges.php') &&
 
 
 </div>
+
 
 
 
