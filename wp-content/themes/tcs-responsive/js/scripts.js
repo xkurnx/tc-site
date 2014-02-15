@@ -589,6 +589,9 @@ var app = {
 				case "Conceptualization":
 					trackName = "c";
 					break;		
+				case "Marathon":
+					trackName = "mm";
+					break;		
 				
             }
 		return trackName;
@@ -706,6 +709,7 @@ var app = {
             });
 			
 			$(".jsShowCaseDetails").click(function(){
+				var linkCase = $(this);
 				if ($(this).hasClass("isShow")){
 					$(".jsCloseCaseDetails:visible").trigger("click");
 				}else{
@@ -927,7 +931,12 @@ var app = {
 				/*
 				* generate table row for contest type Marathon
 				*/			
-            	$('.contestName', row).html('<i></i>' + rec.fullName);
+//            	$('.contestName', row).html('<i></i>' + rec.fullName);
+            	
+            	$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+				
+				$trackName = 'mm';
+				row.addClass('track-' + trackName);            	
 				
 				if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -937,7 +946,10 @@ var app = {
 				if (rec.round1EndDate == null || rec.round1EndDate == "") {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
-				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
+//				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
+				$('.lEndRound', row).html("");
+				$('.vEndRound', row).html("");
+
 				
 				if (rec.endDate == null || rec.endDate == "") {
                 rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -945,24 +957,25 @@ var app = {
 				$('.vEndDate', row).html(app.formatDate2(rec.endDate));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA"; //dummy data
 				}
-				$('.colTLeft', row).html(rec.timeLeft);
+				$('.colTLeft', row).html(secondsToString(rec.timeRemaining));
+
 				
 				if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
 				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				
 				if (rec.registrants == null || rec.registrants == "") {
-					rec.registrants = "10"; //dummy data
+					rec.registrants = "NA"; //dummy data
 				}
-				$('.colReg', row).html(rec.registrants);
+				$('.colReg', row).html(rec.numberOfRegistrants);
 				
 				if (rec.submissions == null || rec.submissions == "") {
-					rec.submissions = "10"; //dummy data
+					rec.submissions = "NA"; //dummy data
 				}
-				$('.colSub', row).html(rec.submissions);
+				$('.colSub', row).html(rec.numberOfSubmissions);
 
 			}else if(ajax.data["contest_type"]=="design"){
 				
@@ -1146,6 +1159,8 @@ var app = {
             var con = $(blueprints.challengeGridBlock).clone();
 			var trackName = ajax.data["contest_type"].split('-')[0];
 			con.addClass('track-'+trackName);
+			
+			
 		if(ajax.data["contest_type"]=="data-srm" ){	
 
 			/*
@@ -1194,8 +1209,8 @@ var app = {
 			/*
 			* generate table row for contest type Marathon
 			*/	
-
-            $('.contestName', con).html('<i></i>' + rec.fullName);
+            //$('.contestName', con).html('<i></i>' + rec.fullName);
+            $('.contestName', con).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 				
 			if (rec.startDate == null || rec.startDate == "") {
                 rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1206,6 +1221,7 @@ var app = {
                 rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
 				}
 			$('.vEndRound', con).html(app.formatDate2(new Date(rec.endDate)));
+			$('.vEndRound', con).html("");  //Hide his for now
 			
 			if (con.endDate == null || con.endDate == "") {
                 con.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1213,27 +1229,27 @@ var app = {
 			$('.vEndDate', con).html(app.formatDate2(new Date(rec.endDate)));
 			
 			if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA"; //dummy data
 				}
-            $('.cgTLeft', con).html('<i></i>' + rec.timeLeft.replace(/ days/g, 'd').replace(/ Hours/g, 'hr').replace(/ Minutes/g, 'min'));
+            $('.cgTLeft', con).html('<i></i>' + ((new Number(rec.timeRemaining)) / 60 / 60 / 24).toPrecision(1).toString() + 'd');
             if (rec.isEnding === "true") {
                 $('.cgTLeft', con).addClass('imp');
             }
-			
+            			
 			if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
-            $('.cgPur', con).html('<i></i> $' + numberWithCommas(rec.prize.sum()));
+            $('.cgPur', con).html('<i></i> $' + numberWithCommas(0));
 			
-			if (rec.registrants == null || rec.registrants == "") {
-					rec.registrants = "10"; //dummy data
+			if (rec.numRegistrants == null || rec.numRegistrants == "") {
+					rec.numRegistrants = "NA"; //dummy data
 				}
-            $('.cgReg', con).html('<i></i>' + rec.numRegistrants);
+            $('.cgReg', con).html('<i></i>' + rec.numberOfRegistrants);
 			
-			if (rec.submissions == null || rec.submissions == "") {
-					rec.submissions = "10"; //dummy data
+			if (rec.numSubmissions == null || rec.numSubmissions == "") {
+					rec.numSubmissions = "NA"; //dummy data
 				}
-            $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
+            $('.cgSub', con).html('<i></i>' + rec.numberOfSubmissions);
             		
 		}else if(ajax.data["contest_type"]=="design"){	
             
@@ -1406,12 +1422,12 @@ var app = {
 				$('.vEndDate', row).html(app.formatDate2(new Date(rec.endDate)));
 				
 				if (rec.timeLeft == null || rec.timeLeft == "") {
-					rec.timeLeft = "3 days"; //dummy data
+					rec.timeLeft = "NA days"; //dummy data
 				}
-				$('.colTLeft', row).html(rec.timeLeft);
+				$('.colTLeft', row).html(((new Number(rec.timeRemaining)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
 				
 				if (rec.purse == null || rec.purse == "") {
-					rec.purse = "1500"; //dummy data
+					rec.purse = "NA"; //dummy data
 				}
 				$('.colPur', row).html("$" + numberWithCommas(rec.purse));
 				

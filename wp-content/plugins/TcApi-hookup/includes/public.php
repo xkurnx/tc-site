@@ -27,7 +27,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	
 	// returns contest type
 	public function get_contest_type($userKey = '') {
-		$response = wp_remote_get ( 'http://api.topcoder.com/rest/contestTypes?user_key=' . $userKey );
+		$response = wp_remote_get ( 'https://api.topcoder.com/rest/contestTypes?user_key=' . $userKey );
 		
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
@@ -49,14 +49,13 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	// returns active contest list
 	public function get_active_contests($contestType = '', $contestID = '', $page = 1, $post_per_page = 30, $userKey = '') {
 		$contestType = str_replace ( "%20", "+", $contestType );
-		//$url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=ACTIVE&type=" . $contestType . "&sortOrder=asc";
-		$url =  "http://api.topcoder.com/v2/$contestType/challenges/$contestID";
+		$url =  "https://api.topcoder.com/v2/$contestType/challenges/$contestID";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => get_option ( 'request_timeout' ) 
 		);
 		if ($contestType == "") {
-			$url = "http://api.topcoder.com/v2/develop/challenges/30036134";
+			$url = "https://api.topcoder.com/v2/develop/challenges/30036134";
 		}
 		$response = wp_remote_get ( $url, $args );
 		
@@ -73,7 +72,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	// returns past contest list
 	public function get_past_contests($userKey = '', $contestType = '', $page = 1, $post_per_page = 30) {
 		$contestType = str_replace ( "%20", "+", $contestType );
-		$url = "http://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&sortOrder=asc";
+		$url = "https://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&sortOrder=asc";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => get_option ( 'request_timeout' ) 
@@ -93,7 +92,6 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	// returns member profile details
 	public function get_member_profile($handle = '') {
 		$url = "http://api.topcoder.com/v2/users/" . $handle;
-		echo $url;
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => get_option ( 'request_timeout' ) 
@@ -112,7 +110,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	
 	// search contest function
 	public function search_contest($userKey = '', $keyword = '') {
-		$url = "http://api.topcoder.com/rest/contests?user_key=$userKey&listType=ACTIVE&contestName=$keyword&sortOrder=asc";
+		$url = "https://api.topcoder.com/rest/contests?user_key=$userKey&listType=ACTIVE&contestName=$keyword&sortOrder=asc";
 		
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
@@ -136,9 +134,9 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		// This IF isn't working. It's not getting the contestType var. We need to call the design vs. develop api based on the contest type.
 		#echo "	contest type ".$contestType;		
 		if ($contestType == "design") {
-			$url = "http://api.topcoder.com/v2/design/challenges/$contestID";
+			$url = "https://api.topcoder.com/v2/design/challenges/$contestID";
 		} else {
-			$url = "http://api.topcoder.com/v2/develop/challenges/$contestID";
+			$url = "https://api.topcoder.com/v2/develop/challenges/$contestID";
 		}	
 	
 		$args = array (
@@ -343,9 +341,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	
 	/* member stastics  */
 	function tcapi_get_member_stats($handle, $track){
-//		$url = "http://api.topcoder.com/v2/$track/statistics/$handle";
-		$url = "http://api.topcoder.com/v2/users/$handle/statistics/$track";
-//		$url = "http://api.topcoder.com/v2/users/petr/statistics/data/srm";
+		$url = "https://api.topcoder.com/v2/users/$handle/statistics/$track";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				//'timeout' => get_option ( 'request_timeout' )
@@ -402,7 +398,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	/* forum posts  */
 	function tcapi_get_forum_posts(){
 		// Old Forum Posts API
-		$url = "http://apps.topcoder.com/forums/?module=RSS&categoryID=13";
+		$url = "https://apps.topcoder.com/forums/?module=RSS&categoryID=13";
 		$response = wp_remote_get ( $url, array() );
 		
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
