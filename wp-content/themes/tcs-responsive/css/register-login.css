@@ -52,6 +52,25 @@ hover style icons
 .animeMan{
 	border-top: 1px solid #fff;
 }
+
+.row.planToCompete{
+	margin-top: 15px;
+	margin-bottom: 15px;	
+}
+.row.planToCompete label{
+	display: block;
+	float: left;	
+}
+.options{
+	display: inline-block;
+}
+.options .checkBox{
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 .manBlue {
 	
 }
