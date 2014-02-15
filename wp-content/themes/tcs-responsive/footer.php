@@ -563,6 +563,7 @@ if( !is_page_template('page-challenges.php') &&
     state:			'http://www.topcoder.com/',
     redirect_uri:   'http://www.topcoder.com/'
   });
+
   var auth0Register = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',

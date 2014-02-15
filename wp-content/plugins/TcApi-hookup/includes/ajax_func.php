@@ -18,7 +18,7 @@ function post_register_controller(){
 	'password' => $_POST['password']
 	),
 	'cookies' => array()
-    )
+	)
 );
 
 	$msg = json_decode($response['body']);
@@ -29,7 +29,7 @@ function post_register_controller(){
 	foreach ( $msg->error->details as $m ):
 		$mm.= $m;
 	endforeach;
-	
+
 	echo json_encode(array("code" => $code, "description" => $mm ));	
 	exit;
 	return "Error in processing request";
@@ -386,7 +386,7 @@ $url .= "&submissionEndDate.startDate=$startDate";
 if ($endDate) {
 $url .= "&submissionEndDate.endDate=$endDate";
 }
-#echo $url;
+
 $args = array (
 'httpversion' => get_option ( 'httpversion' ),
 'timeout' => get_option ( 'request_timeout' )
@@ -525,6 +525,14 @@ $srmData->data[count($srmData)+1] = array(
 );
 }
 }
+
+$urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=".$page."&pageSize=".$post_per_page;
+
+$args = array (
+'httpversion' => get_option ( 'httpversion' ),
+'timeout' => get_option ( 'request_timeout' )
+);
+$responseMarathon = wp_remote_get ( $urlMarathon, $args );
 
 
 }

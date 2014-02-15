@@ -60,7 +60,7 @@ if ($response ['response'] ['code'] == 200) {
 				</div>
 				<div class="grid-3-1 track trackAn<?php if($contest_type=="data") echo " isActive"; ?>" >
 					<a href="<?php echo $activeDataChallengesLink;?>">
-						<i></i>Algorithm &amp; Big Data Challenges
+						<i></i>Data Science Challenges
 					</a><span class="arrow"></span>
 				</div>
 			</div>

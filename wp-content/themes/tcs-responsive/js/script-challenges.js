@@ -483,7 +483,6 @@ appChallenges = {
 				$('.colReg', row).html('<a href="javascript:;">'+rec.totalCompetitors+'</a>');				
 			}
 			else {
-				//$('.contestName', row).html(rec.fullName); 
 				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName);           
 				$('.contestName', row).attr('href','http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId );
  				$('.colType', row).html("Marathon");
@@ -763,7 +762,7 @@ appChallenges = {
 
 				var startDate = app.formatDateChallenges(rec.startDate);
 				var totalCompetitors = rec.totalCompetitors;
-				var numSubmissions = rec.divIITotalSolutionsSubmitted;
+				var numSubmissions = rec.numberOfSubmissions;
 				
 				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName + '</a>');
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
@@ -1112,7 +1111,7 @@ appChallenges = {
 				$('.winBages', row).html('<a href="http://studio.topcoder.com/?module=ViewContestResults&ct='+rec.challengeId+'">View Winners</a>');
 			}
 			else{
-				$('.winBages', row).html('<a href=http://community.topcoder.com/tc?module=ProjectDetail&pj='+rec.challengeId+'">View Winners</a>');
+				$('.winBages', row).html('<a href="http://community.topcoder.com/tc?module=ProjectDetail&pj='+rec.challengeId+'">View Winners</a>');
 			}
 			$('.moreWin', row).hide();
             

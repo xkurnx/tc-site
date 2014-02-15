@@ -55,7 +55,7 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/raphael-min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.carousel.js" type="text/javascript"></script>
-<!--<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.customSelect.min.js" type="text/javascript"></script>-->
+<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.customSelect.min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/swipe.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.inputhints.js" type="text/javascript"></script>
 
