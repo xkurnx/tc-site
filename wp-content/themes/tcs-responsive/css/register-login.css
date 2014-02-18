@@ -1,4 +1,4 @@
-/**
+/*
 hover style icons
 */
 .animeButton, .animeButtonHover {
@@ -40,50 +40,74 @@ hover style icons
 	background-position: -192px bottom;
 }
 
-.animeMan, .animeManHover {
-	width: 146px;
-	height: 99px;
+.animeMan {
+	width: 40px;
+	height: 44px;
 	display: block;
+	float: left;
 	margin: 0 auto;
 	background: url(../i/menButtons.png) no-repeat;
 	cursor: pointer;
+	margin-top: -3px;
 }
 
 .animeMan{
 	border-top: 1px solid #fff;
 }
-.manBlue {
-	
+.row.planToCompete{
+	margin-top: 15px;
+	margin-bottom: 15px;	
 }
-
-.manBlueHover {
-	background-position: 0 -100px;
+.row.planToCompete label{
+	display: block;
+	float: left;	
+}
+.options{
+	display: inline-block;
+}
+.options .checkBox{
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.manBlue:hover {
+	background-position: 0 -44px;
 }
 
 .manGreen {
-	background-position: -146px 0;
+	background-position: -40px 0;
 }
 
-.manGreenHover {
-	background-position: -146px bottom;
+.manGreen:hover {
+	background-position: -40px -44px;
 }
 
 .manYellow {
-	background-position: -292px 0;
+	background-position: -80px 0;
 }
 
-.manYellowHover {
-	background-position: -292px bottom;
+.manYellow:hover {
+	background-position: -80px -44px;
 }
 
 .manGrey {
-	background-position: -438px 0;
+	background-position: -120px 0;
 }
 
-.manGreyHover {
-	background-position: -438px bottom;
+.manGrey:hover {
+	background-position: -120px -44px;
 }
 
+
+#register input[type="email"], 
+#register input[type="number"], 
+#register input[type="password"], 
+#register input[type="tel"], 
+#register input[type="url"], 
+#register input[type="text"]{
+padding:2px 6px;
+}
 /*
 backgorund modal
 */
@@ -250,8 +274,9 @@ Register modal
 				width: 336px;
 				background: #fafafa;
 				border: 1px solid #e1e1e1;
-				height: 14px;
-				line-height: 14px;
+				height: 22px;
+				line-height: 16px;
+				font-size:12px;
 			}
 			#register form p.row input[type="text"].invalid,
 			#register form p.row input[type="password"].invalid,
@@ -314,10 +339,6 @@ Register modal
 		float: left;
 	}
 
-
-		#register .options {
-			background: url(../i/optionsBg.png) no-repeat top center;
-		}
 		#register .person .checkBox{
 			background: url(../i/checkBoxBg.png) repeat-x;
 			color: #fff;
