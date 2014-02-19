@@ -274,7 +274,7 @@ $(function(){
 				if ( data.code == "200" ) {
 					$('.modal').hide();
 					$("#thanks h2").html('Thanks for Registering');
-					$("#thanks p").html('We have sent you an email with a activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+					$("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
 					showModal('#thanks'); 
 					$('#registerForm .invalid').removeClass('invalid');
 					$('#registerForm .valid').removeClass('valid');

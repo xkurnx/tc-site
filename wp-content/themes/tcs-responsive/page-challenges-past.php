@@ -89,7 +89,7 @@ $postId = $post->ID;
 							<li><a href="<?php echo $activeChallenges;?>" class="link">Open Challenges</a></li>
 							<li><a href="javascript:;" class="active link">Past Challenges</a></li>
 							<li><a href="<?php echo $reviewChallenges;?>" class="link">Review Opportunities </a></li>
-							<li><a href="<?php echo $bugraceChallenges;?>" class="link">Bug Races</a></li>
+							<li><a href="<?php echo $bugraceChallenges;?>" class="link">Races</a></li>
 						</ul>
 					</div>
 					<div class="rt">
