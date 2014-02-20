@@ -272,7 +272,7 @@ $postId = $post->ID;
 									<th class="colType" data-placeholder="challengeType">Type<i></i></th>
 									<th class="colTime desc" data-placeholder="postingDate">Timeline<i></i></th>
 									<th class="colTLeft noSort" data-placeholder="currentPhaseRemainingTime">Time Left<i></i></th>
-									<th class="colPur noSort" data-placeholder="prize">Purse<i></i></th>
+									<th class="colPur noSort" data-placeholder="prize">Prize<i></i></th>
 									<th class="colPhase noSort" data-placeholder="currentPhase">Current Phase<i></i></th>
 									<th class="colReg noSort" data-placeholder="numRegistrants">Registrants<i></i></th>
 									<th class="colSub noSort" data-placeholder="numSubmissions">Submissions<i></i></th>

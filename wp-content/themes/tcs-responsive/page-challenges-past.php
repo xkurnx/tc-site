@@ -271,7 +271,7 @@ $postId = $post->ID;
 									<th class="colCh" data-placeholder="challengeName">Challenges<i></i></th>
 									<th class="colType" data-placeholder="challengeType">Type<i></i></th>
 									<th class="colTime desc" data-placeholder="submissionEndDate">Timeline<i></i></th>
-									<th class="colPur noSort" data-placeholder="prize">Purse<i></i></th>
+									<th class="colPur noSort" data-placeholder="prize">Prize<i></i></th>
 									<th class="colPhase noSort" data-placeholder="currentPhase">Current Phase<i></i></th>
 									<th class="colReg noSort" data-placeholder="numRegistrants">Registrants<i></i></th>
 									<th class="coleSub noSort" data-placeholder="numSubmissions">Eligible Submissions<i></i></th>
