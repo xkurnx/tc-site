@@ -29,8 +29,8 @@ function post_register_controller(){
 	$response = wp_remote_post( $url, $params );
 
 	$msg = json_decode($response['body']);
-	browser()->log($params);
-	browser()->log($msg);
+//	browser()->log($params);
+//	browser()->log($msg);
 	$code = $response['response']['code'];
 	#print_r($msg);
 	$mm = "";
