@@ -23,6 +23,8 @@ $(function(){
 	
 	function closeModal() {
 		$('.modal,#bgModal').hide();
+		$(".pwd, .confirm, .strength").parents(".row").show();
+		$("#register a.btnSubmit").removeClass("socialRegister");
 	};
 	
 	$(window).on('resize', function(){
@@ -294,7 +296,8 @@ $(function(){
 				}
 				$('#register .btnSubmit').html('Sign Up');
 			}, "json");				
-				
+			$(".pwd, .confirm, .strength").parents(".row").show();
+			$("#register a.btnSubmit").removeClass("socialRegister");
 		}
 	});
 	
