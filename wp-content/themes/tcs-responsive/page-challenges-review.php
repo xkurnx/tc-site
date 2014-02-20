@@ -54,7 +54,7 @@ $postId = $post->ID;
 				</div>
 				<div class="grid-3-1 track trackAn<?php if($contest_type=="data") echo " isActive"; ?>" >
 					<a href="<?php echo $activeDataChallengesLink;?>">
-						<i></i>Data Science Challenges
+						<i></i>Algorithm &amp; Big Data Challenges
 					</a><span class="arrow"></span>
 				</div>
 			</div>
@@ -77,7 +77,7 @@ $postId = $post->ID;
 							<li><a href="<?php echo $activeChallenges;?>" class="link">Open Challenges</a></li>
 							<li><a href="<?php echo $pastChallenges;?>" class="link">Past Challenges</a></li>
 							<li><a href="javascript:;" class="active link">Review Opportunities </a></li>
-							<li><a href="<?php echo $bugraceChallenges;?>" class="link">Bug Races</a></li>
+							<li><a href="<?php echo $bugraceChallenges;?>" class="link">Races</a></li>
 						</ul>
 					</div>
 					<div class="rt">
