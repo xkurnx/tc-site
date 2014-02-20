@@ -187,94 +187,97 @@ $(function(){
 	$('select').customSelect();
 	
 	$('#register a.btnSubmit').on('click', function(){
-		var frm = $('#register form.register');
-		$('.invalid', frm).removeClass('invalid');
-		$('.err1,.err2',frm).hide();
 		var isValid = true;
-		$('input:text',frm).each(function(){
-			if($.trim($(this).val()) == ""){
-				$(this).closest('.row').find('.err1').show();
-				$(this).closest('.row').find('input:text').addClass('invalid');
-				isValid = false;
-			}else if ($(this).hasClass("handle") && $.trim($(this).val()) == "user01") {
-				$(this).closest('.row').find('.err2').show();
-				$(this).closest('.row').find('input:text').addClass('invalid');
-				$(this).closest('.row').find('span.valid').hide();
-				isValid = false;
-			}
-		});
-		$('select',frm).each(function(){
-			if($.trim($(this).val()) == ""){
-				$(this).closest('.row').find('.err1').show();
-				$(this).closest('.row').find('.customSelect').addClass('invalid');
-				isValid = false;
-			}
-		});
-		
-		$('input.email:text',frm).each(function(){
-			if($.trim($(this).val()) == "")
-			{
-				$(this).closest('.row').find('.err1').show();
-				$(this).closest('.row').find('input.email:text').addClass('invalid');
-				isValid = false;
-			}
-			else if(!isValidEmailAddress($(this).val())){
-				$(this).closest('.row').find('.err2').show();
-				$(this).closest('.row').find('input.email:text').addClass('invalid');
-				isValid = false;
-			}
+		var frm = $('#register form.register');
+			$('.invalid', frm).removeClass('invalid');
+			$('.err1,.err2',frm).hide();
+			$('input:text',frm).each(function(){
+				if($.trim($(this).val()) == ""){
+					$(this).closest('.row').find('.err1').show();
+					$(this).closest('.row').find('input:text').addClass('invalid');
+					isValid = false;
+				}else if ($(this).hasClass("handle") && $.trim($(this).val()) == "user01") {
+					$(this).closest('.row').find('.err2').show();
+					$(this).closest('.row').find('input:text').addClass('invalid');
+					$(this).closest('.row').find('span.valid').hide();
+					isValid = false;
+				}
+			});
+			$('select',frm).each(function(){
+				if($.trim($(this).val()) == ""){
+					$(this).closest('.row').find('.err1').show();
+					$(this).closest('.row').find('.customSelect').addClass('invalid');
+					isValid = false;
+				}
+			});
 			
-		});
-		
+			$('input.email:text',frm).each(function(){
+				if($.trim($(this).val()) == "")
+				{
+					$(this).closest('.row').find('.err1').show();
+					$(this).closest('.row').find('input.email:text').addClass('invalid');
+					isValid = false;
+				}
+				else if(!isValidEmailAddress($(this).val())){
+					$(this).closest('.row').find('.err2').show();
+					$(this).closest('.row').find('input.email:text').addClass('invalid');
+					isValid = false;
+				}
+				
+			});
+		if(!$(this).hasClass("socialRegister")){
+			$('input.pwd:password',frm).each(function(){
+				if($(this).val() == ""){
+					$(this).closest('.row').find('.err1').show();
+					$(this).closest('.row').find('input:password').addClass('invalid');
+					isValid = false;
+				}else if($(".strength .field.red", frm).length > 0){
+					frm.find(".err2.red").show();
+					$(this).closest('.row').find('.err2').show();
+					$(this).closest('.row').find('input:password').addClass('invalid');
+					isValid = false;
+				}
+				if($('input.pwd:password',frm).val() != $('input.confirm:password',frm).val()) {
+					$('input.confirm:password').closest('.row').find('.err2').show();
+					$('input.confirm:password').closest('.row').find('input:password').addClass('invalid');
+					isValid = false;
+				}
+				else if($('input.confirm:password',frm).val() == "" ) {
+					$('input.confirm:password').closest('.row').find('.err1').show();
+					$('input.confirm:password').closest('.row').find('input:password').addClass('invalid');
+					isValid = false;
+				}
+			});
+		}
 		$('.lSpace input:checkbox',frm).each(function(){
-			if(!$(this).is(':checked')) {
-				$(this).closest('.row').find('.err1').show();
-				isValid = false;
-			}
-		});
-		
-		
-		$('input.pwd:password',frm).each(function(){
-			if($(this).val() == ""){
-				$(this).closest('.row').find('.err1').show();
-				$(this).closest('.row').find('input:password').addClass('invalid');
-				isValid = false;
-			}else if($(".strength .field.red", frm).length > 0){
-				frm.find(".err2.red").show();
-				$(this).closest('.row').find('.err2').show();
-				$(this).closest('.row').find('input:password').addClass('invalid');
-				isValid = false;
-			}
-			if($('input.pwd:password',frm).val() != $('input.confirm:password',frm).val()) {
-				$('input.confirm:password').closest('.row').find('.err2').show();
-				$('input.confirm:password').closest('.row').find('input:password').addClass('invalid');
-				isValid = false;
-			}
-			else if($('input.confirm:password',frm).val() == "" ) {
-				$('input.confirm:password').closest('.row').find('.err1').show();
-				$('input.confirm:password').closest('.row').find('input:password').addClass('invalid');
-				isValid = false;
-			}
-			
-		});
-		
-		
-		
+				if(!$(this).is(':checked')) {
+					$(this).closest('.row').find('.err1').show();
+					isValid = false;
+				}
+			});
 		if(isValid && $('#register a.btnSubmit').html() == 'Sign Up' ){
 			$('#register a.btnSubmit').html('Please Wait');
-			
-			$.post( ajaxUrl+'?action=post_register', { 
-			firstName: $('#registerForm input.firstName').val(),
-			lastName: $('#registerForm input.lastName').val(), 
-			handle: $('#registerForm input.handle').val(),
-			country: $('#registerForm select#selCountry').val(),			
-			email: $('#registerForm input.email').val() ,
-			password : $('#registerForm  input.pwd').val() 
-			},function( data ) {
+			var fields = { 
+				firstName: $('#registerForm input.firstName').val(),
+				lastName: $('#registerForm input.lastName').val(), 
+				handle: $('#registerForm input.handle').val(),
+				country: $('#registerForm select#selCountry').val(),
+				email: $('#registerForm input.email').val()
+			}
+			if(socialProviderId !== ""){
+				fields.socialProviderId = socialProviderId;
+				fields.socialUserName = socialUserName;
+				fields.socialEmail = $('#registerForm input.email').val();
+				fields.socialEmailVerified = "t";
+			} else {
+				fields.password = $('#registerForm  input.pwd').val();
+			}
+
+			$.post( ajaxUrl+'?action=post_register', fields ,function( data ) {
 				if ( data.code == "200" ) {
 					$('.modal').hide();
 					$("#thanks h2").html('Thanks for Registering');
-					$("#thanks p").html('We have sent you an email with a activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+					$("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
 					showModal('#thanks'); 
 					$('#registerForm .invalid').removeClass('invalid');
 					$('#registerForm .valid').removeClass('valid');

@@ -465,10 +465,11 @@ if( !is_page_template('page-challenges.php') &&
 				</p>
 				
 				<p class="row lSpace">
-					<label><input type="checkbox">I agree to the <a target="_blank" href="/customers/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/customers/how-it-works/privacy-policy/">privacy policy</a>*</label>
+					<label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>*</label>
 					<span class="err1">You must agree to the terms</span>
 					<span class="err2">You must agree to the terms</span>
 				</p>
+
 				<p class="row planToCompete">
 					<label>Planning to compete?</label>
 						<span class="options">
@@ -572,21 +573,25 @@ if( !is_page_template('page-challenges.php') &&
     redirect_uri:   'http://www.topcoder.com/'
   });
   
+  var socialProviderId = "", socialUserName = "";
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+			var socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
-			if(profile.identities[0].connection === googleProvider || profile.identities[0].connection === facebookProvider){
+			if(socialProvider === googleProvider || socialProvider === facebookProvider){
 				firstName = profile.given_name;
 				lastName = profile.family_name;
 				handle = profile.nickname;
 				email = profile.email;
-			} else if(profile.identities[0].connection === twitterProvider){
+				socialProviderId = socialProvider === googleProvider ? 2 : 1;
+			} else if(socialProvider === twitterProvider){
 				var splitName = profile.name.split(" ");
 				firstName = splitName[0];
 				if(splitName.length > 1){
 					lastName = splitName[1];
 				}
 				handle = profile.screen_name;
-			} else if(profile.identities[0].connection === githubProvider){
+				socialProviderId = 3;
+			} else if(socialProvider === githubProvider){
 				var splitName = profile.name.split(" ");
 				firstName = splitName[0];
 				if(splitName.length > 1){
@@ -594,7 +599,9 @@ if( !is_page_template('page-challenges.php') &&
 				}
 				handle = profile.nickname;
 				email = profile.email;
+				socialProviderId = 4;
 			}
+			socialUserName = handle;
      $("#registerForm .firstName").val(firstName);
      $("#registerForm .lastName").val(lastName);
      $("#registerForm .handle").val(handle);
