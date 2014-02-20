@@ -2,26 +2,35 @@
 function post_register_controller(){
 	global $_POST;
 	$url = "https://api.topcoder.com/v2/users";
-	$response = wp_remote_post( $url, array(
-	'method' => 'POST',
-	'timeout' => 45,
-	'redirection' => 5,
-	'httpversion' => '1.0',
-	'blocking' => true,
-	'headers' => array(),
-	'body' => array( 
-	'firstName' => $_POST['firstName'], 
-	'lastName' => $_POST['lastName'],
-	'handle' => $_POST['handle'],
-	'country' => $_POST['country'],
-	'email' => $_POST['email'],
-	'password' => $_POST['password']
-	),
-	'cookies' => array()
-	)
-);
+	$params = array(
+		'method' => 'POST',
+		'timeout' => 45,
+		'redirection' => 5,
+		'httpversion' => '1.0',
+		'blocking' => true,
+		'headers' => array(),
+		'body' => array( 
+		'firstName' => $_POST['firstName'], 
+		'lastName' => $_POST['lastName'],
+		'handle' => $_POST['handle'],
+		'country' => $_POST['country'],
+		'email' => $_POST['email']
+		),
+		'cookies' => array()
+	);
+	if(isset($_POST['socialProviderId'])){
+		$params["body"]["socialProviderId"] = $_POST['socialProviderId'];
+		$params["body"]["socialUserName"] = $_POST['socialUserName'];
+		$params["body"]["socialEmail"] = $_POST['socialEmail'];
+		$params["body"]["socialEmailVerified"] = $_POST['socialEmailVerified'];
+	} else {
+		$params["body"]["password"] = $_POST['password'];
+	}
+	$response = wp_remote_post( $url, $params );
 
 	$msg = json_decode($response['body']);
+	browser()->log($params);
+	browser()->log($msg);
 	$code = $response['response']['code'];
 	#print_r($msg);
 	$mm = "";
