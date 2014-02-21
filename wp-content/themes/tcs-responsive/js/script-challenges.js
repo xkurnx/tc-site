@@ -454,10 +454,10 @@ appChallenges = {
 					callback();
 				}
 			},
-			error: function(data) {
+			fail: function(data) {
 				$('.loading').hide();
-				$('tbody', table).html(null);
-				alert("Ops.. Data not found!"); 
+				//$('tbody', table).html(null);
+				alert(" Data not found!"); 
 			}
 		});
     },	
@@ -483,9 +483,8 @@ appChallenges = {
 				$('.colReg', row).html('<a href="javascript:;">'+rec.totalCompetitors+'</a>');				
 			}
 			else {
-				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName);           
-				$('.contestName', row).attr('href','http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId );
- 				$('.colType', row).html("Marathon");
+				//$('.contestName', row).html(rec.fullName); 
+				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>'); $('.colType', row).html("Marathon");
 				$('.colR1start', row).html(app.formatDateChallenges(rec.startDate));
 				$('.colReg', row).html(rec.numberOfRegistrants);
 			}
@@ -550,9 +549,9 @@ appChallenges = {
 					callback();
 				}
 			},
-			error: function(data) {
+			fail: function(data) {
 				$('.loading').hide();
-				$('tbody', table).html(null);
+				//$('tbody', table).html(null);
 				alert("Data not found!"); 
 			}
 		});
@@ -710,9 +709,9 @@ appChallenges = {
 					callback();
 				}				
 			},
-			error: function(data) {
+			fail: function(data) {
 				$('.loading').hide();
-				$('tbody', table).html(null);
+			//	$('tbody', table).html(null);
 				alert("Data not found!"); 
 			}
 		});
@@ -739,7 +738,7 @@ appChallenges = {
 					callback();
 				}				
 			},
-			error: function(data) {
+			fail: function(data) {
 				$('.loading').hide();
 				//$('tbody', table).html(null);
 				alert("Data not found!"); 
@@ -762,7 +761,7 @@ appChallenges = {
 
 				var startDate = app.formatDateChallenges(rec.startDate);
 				var totalCompetitors = rec.totalCompetitors;
-				var numSubmissions = rec.numberOfSubmissions;
+				var numSubmissions = rec.divIITotalSolutionsSubmitted;
 				
 				$('.contestName', row).html('<img alt="" class="allContestIco" src="'+stylesheet_dir+'/i/ico-track-data.png" />' + rec.fullName + '</a>');
 				$('.contestName', row).parents(".inTCO").addClass("hasTCOIco");		
