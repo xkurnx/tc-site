@@ -39,7 +39,10 @@ $(document).ready(function(){
 					$('.myProfileLink, .profileLink').attr('href', userPofileUrl);
 					$('.userDetails .country').text(data['country']);
 					$('.userDetails .memberSince').text(data['memberSince'].split(" ")[0].split(".")[2]);
-					$('.userDetails .memberEarning').text("$"+data['overallEarning']);
+					if ( data['overallEarning'] )
+						$('.userDetails .memberEarning').text("$"+data['overallEarning']);
+					else
+						$('.userDetails .memberEarning').text("n/a");
 				});
 				$('#navigation, .sidebarNav').removeClass('newUser');
 			});
