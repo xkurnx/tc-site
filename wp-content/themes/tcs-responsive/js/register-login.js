@@ -23,8 +23,6 @@ $(function(){
 	
 	function closeModal() {
 		$('.modal,#bgModal').hide();
-		$(".pwd, .confirm, .strength").parents(".row").show();
-		$("#register a.btnSubmit").removeClass("socialRegister");
 	};
 	
 	$(window).on('resize', function(){
@@ -39,7 +37,9 @@ $(function(){
 	
 	$('.actionLogin').on('click', function() {
 		document.getElementById("loginForm").reset();
-		$('#loginForm .btnSubmit').html('Login'); 
+		$('#loginForm .btnSubmit').html('Login');
+		$(".pwd, .confirm, .strength").parents(".row").show();
+		$("#register a.btnSubmit").removeClass("socialRegister"); 
 		showModal('#login');
     });
 	
@@ -268,8 +268,10 @@ $(function(){
 			}
 			if(socialProviderId !== ""){
 				fields.socialProviderId = socialProviderId;
+				fields.socialUserId = socialUserId;
+				fields.socialProvider = socialProvider,
 				fields.socialUserName = socialUserName;
-				fields.socialEmail = $('#registerForm input.email').val();
+				fields.socialEmail = socialEmail;
 				fields.socialEmailVerified = "t";
 			} else {
 				fields.password = $('#registerForm  input.pwd').val();
@@ -284,7 +286,7 @@ $(function(){
 					$('#registerForm .invalid').removeClass('invalid');
 					$('#registerForm .valid').removeClass('valid');
 					$('.err1,.err2',frm).hide();
-					
+					resetRegisterFields();
 				}
 				else{
 					//$('.modal').hide();
@@ -295,9 +297,7 @@ $(function(){
 					
 				}
 				$('#register .btnSubmit').html('Sign Up');
-			}, "json");				
-			$(".pwd, .confirm, .strength").parents(".row").show();
-			$("#register a.btnSubmit").removeClass("socialRegister");
+			}, "json");
 		}
 	});
 	
@@ -375,3 +375,13 @@ $(function(){
 		});  
 	});
 });
+
+// Resets the registration popup fields
+function resetRegisterFields(){
+	$("#registerForm input[type='text'], #registerForm input[type='password']").val("");
+	$("#registerForm select").val($("#registerForm select option:first").val());
+	$("#registerForm .customSelectInner").text($("#registerForm select option:first").text());
+	$("#registerForm input[type='checkbox']").attr('checked', false);
+	$(".pwd, .confirm, .strength").parents(".row").show();
+	$("#register a.btnSubmit").removeClass("socialRegister");
+}

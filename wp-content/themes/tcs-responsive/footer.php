@@ -573,9 +573,9 @@ if( !is_page_template('page-challenges.php') &&
     redirect_uri:   'http://www.topcoder.com/'
   });
   
-  var socialProviderId = "", socialUserName = "";
+  var socialProviderId = "", socialUserName = "", socialEmail = "",socialProvider = "";
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
-			var socialProvider = profile.identities[0].connection;
+			socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
 			if(socialProvider === googleProvider || socialProvider === facebookProvider){
 				firstName = profile.given_name;
@@ -602,10 +602,14 @@ if( !is_page_template('page-challenges.php') &&
 				socialProviderId = 4;
 			}
 			socialUserName = handle;
+			socialUserId = profile.user_id.split('|')[1];
+			socialEmail = profile.email;				
      $("#registerForm .firstName").val(firstName);
      $("#registerForm .lastName").val(lastName);
      $("#registerForm .handle").val(handle);
      $("#registerForm .email").val(email);
+	
+	 
   });
   
   $('.register-google').on('click', function() {

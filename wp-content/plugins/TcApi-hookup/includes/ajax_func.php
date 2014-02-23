@@ -14,13 +14,17 @@ function post_register_controller(){
 		'lastName' => $_POST['lastName'],
 		'handle' => $_POST['handle'],
 		'country' => $_POST['country'],
+		'regSource' => 'http://www.topcoder.com/',
 		'email' => $_POST['email']
 		),
 		'cookies' => array()
 	);
+	#print_r($_POST);
 	if(isset($_POST['socialProviderId'])){
 		$params["body"]["socialProviderId"] = $_POST['socialProviderId'];
+		$params["body"]["socialProvider"] = $_POST['socialProvider'];
 		$params["body"]["socialUserName"] = $_POST['socialUserName'];
+		$params["body"]["socialUserId"] = $_POST['socialUserId'];
 		$params["body"]["socialEmail"] = $_POST['socialEmail'];
 		$params["body"]["socialEmailVerified"] = $_POST['socialEmailVerified'];
 	} else {
@@ -29,10 +33,12 @@ function post_register_controller(){
 	$response = wp_remote_post( $url, $params );
 
 	$msg = json_decode($response['body']);
+	#browser()->log($params);
+	#browser()->log($msg);
 	$code = $response['response']['code'];
 	#print_r($msg);
 	$mm = "";
-	if ( $msg->error )
+	if ( $msg->error->details )
 	foreach ( $msg->error->details as $m ):
 		$mm.= $m;
 	endforeach;
