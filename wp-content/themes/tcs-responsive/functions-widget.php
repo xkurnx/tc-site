@@ -297,10 +297,16 @@ class Popular_post_widget extends WP_Widget {
 			<?php	
 				while ( have_posts() ) : the_post();
 					$post;
+					
+					$postId = $post->ID;
+					$imageMobile = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), 'thumbnail' );
+					if($imageMobile!=null) $imageUrlMobile = $imageMobile[0];
+					else $imageUrlMobile = get_bloginfo('stylesheet_directory')."/i/content-thumb.png";
+					
 					?>
 					<li>
 						<a class="contentLink" href="<?php the_permalink() ?>">
-						<img class="contentThumb" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/content-thumb.png" alt="<?php the_title(); ?>">
+						<img class="contentThumb" src="<?php echo $imageUrlMobile; ?>" alt="<?php the_title(); ?>">
 						<?php the_title(); ?>
 						</a> <span class="contentBrief"><?php echo wrap_content_strip_html(wpautop(get_the_content()), 70, true,'\n\r','...') ?></span>
 					</li>

@@ -279,10 +279,8 @@ img {
         }
 		.sideFindRelatedContent .relatedContentList li a.contentLink:hover {
 			color: #FFB800;
+			text-shadow:none;
         }
-			.sideFindRelatedContent .relatedContentList li a:hover .contentThumb{
-				box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-			}
 		.sideFindRelatedContent .relatedContentList li .contentBrief {
 			display: block;
 			line-height: 15px;
