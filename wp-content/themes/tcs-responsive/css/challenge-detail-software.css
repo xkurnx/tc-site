@@ -254,7 +254,7 @@
 
 .challenge-detail .tableWrap h1{
 	color: #00aeff;
-	font-size:16px;
+	font-size:15px;
 	line-height:22px;
 	font-weight: bold;
 	border-bottom: 1px solid #e7e7e7;
@@ -309,6 +309,7 @@
 	height: auto;
 	padding-left:12px;
 	background: url("../i/bullet.png") no-repeat 0 7px;
+	color:#797979;
 }
 
 .challenge-detail .tableWrap p a{
